@@ -1,13 +1,12 @@
 # dungeon
 
 <pre>
-<strong> next meeting: Sunday 11/28 at 9 am PST</strong>
 
-Darence: maze, and if have time work on player class
+Darence: maze, dungeon/adventure
 Pranav: storyboard, intro page, instructions, central document, and if time, dungeon/adventure
 Manny: Rooms, adventurer
 
-
+[summary of classes](https://docs.google.com/document/d/1_fHq2u9l7wrHIi3lbca_GFkGuPdS3TVKLNKEBCa02TU/edit)
 
 DUNGEON ADVENTURE
 
@@ -73,6 +72,7 @@ Room 0,0 might look like
 * * *
 * E |
 * - *
+
 Adventurer.java
     • Has a name
     • Contains at least the following:
@@ -111,7 +111,7 @@ Dungeon
             which you do not need for this assignment)
     • Places the Entrance, the Exit, and the Pillars. NOTES: the entrance and exit are empty rooms. The Pillars cannot be at the entrance or the exit. No two Pillars may be in the same room.
     • (Possibly) Maintains location of the Adventurer in the Dungeon
-    • Contains a _ _ str _ _ () method that builds a String containing information about the entire 
+    • Contains a __str__() method that builds a String containing information about the entire 
     dungeon.
 
 DungeonAdventure
