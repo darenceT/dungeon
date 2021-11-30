@@ -6,10 +6,12 @@ class Adventure:
     def __init__(self):
         self.p = MakeDungeon(2, 2)
         self.p.make()
+        print(self.p)
 
     def print_room(self, x, y):
         print(f'Current room (x: {x}, y: {y}): ')
-        print(self.p.hor[y][x] + '+\n' + self.p.ver[y][x] + self.p.ver[y][x + 1] + '\n' + self.p.hor[y + 1][x] + '+')
+        print(self.p.hor[y][x] + '+\n' + self.p.ver[y][x] + self.p.ver[y][x + 1] + '\n'
+              + self.p.hor[y + 1][x] + '+')
 
 
     # print('exit room')
@@ -33,4 +35,4 @@ DungeonAdventure
 
 if __name__ == '__main__':
     a = Adventure()
-    a.print_room(0,1)
+    a.print_room(0, 1)
