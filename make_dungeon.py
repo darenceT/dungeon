@@ -90,34 +90,53 @@ class MakeDungeon:
                 # move to next room
                 break_wall(xx, yy)
 
-        # create & check entrance to exit pathway, else recreate
-        # while True:
+        # Create & Check entrance to exit pathway, else recreate
+        while True:
             # Entrance location
-                # randomize start location (OPTION)
+            #     randomize start location (OPTION)
             # walk(randrange(w), randrange(h))
-                # specify location e.g. 0,0 for top left: x, y
-        break_wall(1, 0)
-
-            # if self.traverse_dungeon():
-            #     break
+            #     specify location e.g. 0,0 for top left: x, y
+            break_wall(1, 0)
+            if self.traverse_dungeon():    # if true, break loop
+                break
 
     def traverse_dungeon(self):
-        exit = (self.__width - 1, self.__height - 1)    # bottom right corner
+        maze = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
+        maze[self.__height-1][self.__width-1] = 'E'    # Exit at bottom right corner
+        # maze[0][0] = 'E'
+        stack = [(0, 0)]     # stack with entrance room pushed
 
-        while True:
-            pass
+        while len(stack) > 0:
+            x, y = stack.pop()
 
-    def print_dungeon(self):
+            if maze[y][x] == 'E':
+                return True
+            # 1 is already visited or outside of maze
+            if maze[y][x] == 1:
+                continue
+            # mark current location as visited
+            maze[y][x] = 1
+
+            # push all possible neighbor routes, "0", to stack; Order is N, S, E, W
+            if maze[y-1][x] in (0, 'E') and self.__hor[y][x] == "+  ":
+                stack.append((x, y-1))
+            if maze[y+1][x] in (0, 'E') and self.__hor[y+1][x] == "+  ":
+                stack.append((x, y+1))
+            if maze[y][x+1] in (0, 'E') and self.__ver[y][x+1] == "   ":
+                stack.append((x+1, y))
+            if maze[y][x-1] in (0, 'E') and self.__ver[y][x] == "   ":
+                stack.append((x-1, y))
+
+        return False
+
+    def __str__(self):
         s = ""
         for (a, b) in zip(self.__hor, self.__ver):
             s += ''.join(a + ['\n'] + b + ['\n'])
         return s
 
-    def __str__(self):
-        return self.print_dungeon()
-
 
 if __name__ == '__main__':
     p = MakeDungeon(8, 4)
     p.make()
-    print(p)
+
