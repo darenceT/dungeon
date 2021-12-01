@@ -94,9 +94,9 @@ class MakeDungeon:
         while True:
             # Entrance location
             #     randomize start location (OPTION)
-            # walk(randrange(w), randrange(h))
+            # break_wall(randrange(w), randrange(h))
             #     specify location e.g. 0,0 for top left: x, y
-            break_wall(1, 0)
+            break_wall(0, 0)
             if self.traverse_dungeon():    # if true, break loop
                 break
 
@@ -139,4 +139,5 @@ class MakeDungeon:
 if __name__ == '__main__':
     p = MakeDungeon(8, 4)
     p.make()
+    print(p)
 
