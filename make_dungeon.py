@@ -91,7 +91,7 @@ class MakeDungeon:
                     self.__hor[max(y, yy)][x] = "+  "
                 # remove vertical wall, "|"   turns into "   "
                 if yy == y:
-                    self.__ver[y][max(x, xx)] =  
+                    self.__ver[y][max(x, xx)] =
                 # move to next room
                 break_wall(xx, yy)
 

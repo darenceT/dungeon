@@ -21,7 +21,6 @@ class Room:
             print(self.__room_items)
         else:
             print(self.__room_items)
-            return
 
     def print(self):
         xx = self.__x
