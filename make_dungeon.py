@@ -10,6 +10,10 @@ class MakeDungeon:
         self.__height = h
         self.__ver = []
         self.__hor = []
+        self.__items = {}
+
+    def get_items(self):
+        return self.__items
 
     def get_width(self):
         return self.__width
@@ -39,6 +43,7 @@ class MakeDungeon:
     height = property(get_height, set_height)
     ver = property(get_ver, set_ver)
     hor = property(get_hor, set_hor)
+    items = property(get_items)
 
     # place holder method for selecting difficulty, not functional
     def difficulty(self, mode):
@@ -100,11 +105,76 @@ class MakeDungeon:
             if self.traverse_dungeon():    # if true, break loop
                 break
 
+        self.put_inside_room()
+        # call pillars to assign location
+
+    def put_inside_room(self):
+
+        # put entrance "i" and exit "o"
+        self.add_item_in_room(0, 0, 'i')
+        self.add_item_in_room(self.width-1, self.height-1, 'O')
+
+        # put pillars
+        self.add_pillars()
+
+        # put traps
+        for _ in range(2):   # change based on difficulty
+            self.add_item_in_room(randrange(1, self.width - 2), randrange(1, self.height - 2), 'X')
+
+        # put healing potions
+        for _ in range(2):   # change based on difficulty
+            self.add_item_in_room(randrange(1, self.width - 2), randrange(1, self.height - 2), 'H')
+
+        # put vision potions
+        for _ in range(2):   # change based on difficulty
+            self.add_item_in_room(randrange(1, self.width - 2), randrange(1, self.height - 2), 'V')
+
+    def add_pillars(self):
+        """
+        Separate method for adding pillars to avoid more than 1 pillar in a room
+        :return:
+        """
+        pillars = ['A', 'I', 'E', 'P']
+
+        def check_room(tower):
+
+            while True:
+                x, y = randrange(1, self.width-2), randrange(1, self.height-2)
+
+                print(self.__items[(x, y)])   # error
+                if self.__items[(x, y)]:
+                    for item in pillars:
+                        if item in self.__items[(x, y)]:
+                            break
+
+                self.add_item_in_room(x, y, tower)
+
+        for obj in pillars:
+            check_room(obj)
+
+    def add_item_in_room(self, x, y, letter):
+        if self.ver[y][x][1] != ' ':
+            self.ver[y][x] = self.ver[y][x][0] + 'M '
+            self.__items[(x, y)].append(letter)
+        else:
+            self.ver[y][x] = self.ver[y][x][0] + letter + ' '
+            self.__items[(x, y)] = [letter]
+
+    def visited_potion(self, x, y, potion):         ######## Not tested ###########
+        if potion in self.__items[(x, y)]:
+            self.__items[(x, y)].remove(potion)
+            if len(self.__items[(x, y)]) == 0:      # update map for empty room
+                self.ver[y][x] = self.ver[y][x][0] + '  '
+            elif len(self.__items[(x, y)]) == 1:    # update map for single item in room
+                self.ver[y][x] = self.ver[y][x][0] + self.__items[(x, y)] + ' '
+        else:
+            raise ValueError('Game error, no potion at this location to change to used potion')
+
     def traverse_dungeon(self):
         maze = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
         maze[self.__height-1][self.__width-1] = 'E'    # Exit at bottom right corner
-        # maze[0][0] = 'E'
-        stack = [(0, 0)]     # stack with entrance room pushed
+
+        stack = [(0, 0)]     # stack starts with entrance room
 
         while len(stack) > 0:
             x, y = stack.pop()
@@ -131,13 +201,25 @@ class MakeDungeon:
 
     def __str__(self):
         s = ""
-        for (a, b) in zip(self.__hor, self.__ver):
+        for a, b in zip(self.__hor, self.__ver):
             s += ''.join(a + ['\n'] + b + ['\n'])
         return s
 
+# Here are the letters to use and what they represent:
+#     ▪ M - Multiple Items
+#     ▪ X-Pit
+#     ▪ i - Entrance (In)
+#     ▪ O-Exit(Out)
+#     ▪ V-VisionPotion
+#     ▪ H-HealingPotion
+#     ▪ -EmptyRoom
 
+
+# delete this later for submission
 if __name__ == '__main__':
     p = MakeDungeon(8, 4)
     p.make()
     print(p)
 
+    for i in p.items:
+        print(i, p.items[i])
