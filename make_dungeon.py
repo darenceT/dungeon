@@ -91,7 +91,7 @@ class MakeDungeon:
                     self.__hor[max(y, yy)][x] = "+  "
                 # remove vertical wall, "|"   turns into "   "
                 if yy == y:
-                    self.__ver[y][max(x, xx)] = "   "
+                    self.__ver[y][max(x, xx)] =  
                 # move to next room
                 break_wall(xx, yy)
 
@@ -136,7 +136,7 @@ class MakeDungeon:
         index = 0
         while index < len(pillars):
             x, y = randrange(0, self.width), randrange(0, self.height)
-            if (y, x) not in self.__items.keys():
+            if (x, y) not in self.__items.keys():
                 self.add_item_in_room(x, y, pillars[index])
                 index += 1
 
@@ -144,11 +144,9 @@ class MakeDungeon:
         if self.ver[y][x][1] != ' ':
             self.ver[y][x] = self.ver[y][x][0] + 'M '
             self.__items[(x, y)].append(letter)
-            # print(self.__items, 'specifically x,y:', x, y)          DELETE  #################################
         else:
             self.ver[y][x] = self.ver[y][x][0] + letter + ' '
             self.__items[(x, y)] = [letter]
-            # print(self.__items, 'specifically x,y:', x, y)          DELETE  #################################
 
     def visited_potion(self, x, y, potion):         ######## Not tested ###########
         if potion in self.__items[(x, y)]:
@@ -208,23 +206,5 @@ if __name__ == '__main__':
     p.make()
     print(p)
 
-    '''
-    xx = 0
-    yy = 3
-    # modify values if at borders of dungeons
-    x = xx if xx > 0 else 1
-    x = x if x < p.width - 1 else p.width - 2
-    y = yy if yy > 0 else 1
-    y = y if y < p.height - 1 else p.height - 2
-
-    print(''.join(p.hor[y-1][x-1:x+2]) + '+\n' +
-            ''.join(p.ver[y-1][x-1:x+2]) + p.ver[y-1][x+2][0] + '\n' +
-            ''.join(p.hor[y][x-1:x+2]) + '+\n' +
-            ''.join(p.ver[y][x-1:x+2]) + p.ver[y][x+2][0] + '\n' +
-            ''.join(p.hor[y+1][x-1:x+2]) + '+\n' +
-            ''.join(p.ver[y+1][x-1:x+1]) + p.ver[y+1][x+1][0] + ':::\n' +
-            ''.join(p.hor[y+2][x-1:x+1]) + '+') #+ '+:::')
-    '''
-
-    # for i in p.items:
-    #     print(i, p.items[i])
+    for i in p.items:
+        print(i, p.items[i])

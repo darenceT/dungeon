@@ -1,17 +1,20 @@
 from make_dungeon import MakeDungeon
+from room import Room
 from vision_potion import VisionPotion
 
 
 class Adventure:
 
     def __init__(self):
-        self.p = MakeDungeon(20, 10)
+        self.p = MakeDungeon(6, 3)
         self.p.make()
         print(self.p) # delete
         self.current_loc(0, 0)
 
     def current_loc(self, x, y):
-        self.print_room(x, y)
+        p = Room(self, x, y)
+        p.print()
+        p.get_room_items()
 
         # if user reached end
         if x == self.p.width -1 and y == self.p.height -1:
@@ -19,13 +22,8 @@ class Adventure:
             # if collected 4 pillars, return, else: self.move_options
             self.move_options(x, y)
 
-        self.vision(x, y)           # DELETE
+        # self.vision(x, y)           # DELETE
         self.move_options(x, y)
-
-    def print_room(self, x, y):
-        print(f'Current room (x: {x}, y: {y}): ')
-        print(self.p.hor[y][x] + '+\n' + self.p.ver[y][x] + self.p.ver[y][x + 1] + '\n'
-              + self.p.hor[y + 1][x] + '+')
 
     def move_options(self, x, y):
         options = []
@@ -36,13 +34,12 @@ class Adventure:
             options.append('South')
         if self.p.ver[y][x] == "   ":
             options.append('West')
-        if self.p.ver[y][x+1] == "   ":
+        if self.p.ver[y][x+1][0] == " ":
             options.append('East')
 
         while True:
             print('Your options for moving to next room are:', ','.join(options))
             player_choice = input('Input letter for moving to next room (e.g. n, s, e, w): ').lower()
-
             input_detail = {'n': 'North', 's': 'South', 'e': 'East', 'w': 'West'}
 
             if player_choice not in input_detail.keys():
