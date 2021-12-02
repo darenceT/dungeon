@@ -1,10 +1,10 @@
+# import the time module
+import time
 
-pillars = ['A', 'I', 'E', 'P']
 
-item_list = []
-
-for item in pillars:
-    if item not in item_list:
-        item_list.append(item)
-        print('add')
-print(item_list)
+print("Using vision potion in ...", end='')
+count = ['3,', ' 2,', ' 1!']
+for i in count:
+    time.sleep(1)
+    print(i, end='')
+time.sleep(1)

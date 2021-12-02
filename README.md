@@ -6,12 +6,12 @@ Darence: maze, dungeon/adventure
 Pranav: storyboard, intro page, instructions, central document, and if time, dungeon/adventure
 Manny: Rooms, adventurer
 
-<a href=https://docs.google.com/document/d/1_fHq2u9l7wrHIi3lbca_GFkGuPdS3TVKLNKEBCa02TU/edit)>summary of classes</a>
+<a href=https://docs.google.com/document/d/1_fHq2u9l7wrHIi3lbca_GFkGuPdS3TVKLNKEBCa02TU/edit>summary of classes</a>
 
 DUNGEON ADVENTURE
 
 PROGRAM PURPOSE:
-The purpose of this is assignment is for you to practice problem solving, working more on teams, 
+The purpose of this is assignment is for you to practic~~e~~ problem solving, working more on teams, 
 working with multiple classes, maze generation, and maze traversal. You will optionally be able to 
 incorporate GUI components as part of your solution.
 

@@ -108,57 +108,47 @@ class MakeDungeon:
         self.put_inside_room()
         # call pillars to assign location
 
-    def put_inside_room(self):
+    def put_inside_room(self):      ######## Move to RoomFactory ##########
 
         # put entrance "i" and exit "o"
         self.add_item_in_room(0, 0, 'i')
         self.add_item_in_room(self.width-1, self.height-1, 'O')
-
-        # put pillars
         self.add_pillars()
 
         # put traps
         for _ in range(2):   # change based on difficulty
-            self.add_item_in_room(randrange(1, self.width - 2), randrange(1, self.height - 2), 'X')
+            self.add_item_in_room(randrange(1, self.width - 1), randrange(1, self.height - 1), 'X')
 
         # put healing potions
         for _ in range(2):   # change based on difficulty
-            self.add_item_in_room(randrange(1, self.width - 2), randrange(1, self.height - 2), 'H')
+            self.add_item_in_room(randrange(1, self.width - 1), randrange(1, self.height - 1), 'H')
 
         # put vision potions
         for _ in range(2):   # change based on difficulty
-            self.add_item_in_room(randrange(1, self.width - 2), randrange(1, self.height - 2), 'V')
+            self.add_item_in_room(randrange(1, self.width - 1), randrange(1, self.height - 1), 'V')
 
-    def add_pillars(self):
+    def add_pillars(self):      ######## Move to RoomFactory ##########
         """
-        Separate method for adding pillars to avoid more than 1 pillar in a room
-        :return:
+        Separate method for adding pillars to avoid more than 1 pillar in a room.
         """
         pillars = ['A', 'I', 'E', 'P']
 
-        def check_room(tower):
+        index = 0
+        while index < len(pillars):
+            x, y = randrange(0, self.width), randrange(0, self.height)
+            if (y, x) not in self.__items.keys():
+                self.add_item_in_room(x, y, pillars[index])
+                index += 1
 
-            while True:
-                x, y = randrange(1, self.width-2), randrange(1, self.height-2)
-
-                print(self.__items[(x, y)])   # error
-                if self.__items[(x, y)]:
-                    for item in pillars:
-                        if item in self.__items[(x, y)]:
-                            break
-
-                self.add_item_in_room(x, y, tower)
-
-        for obj in pillars:
-            check_room(obj)
-
-    def add_item_in_room(self, x, y, letter):
+    def add_item_in_room(self, x, y, letter):      ######## Move to RoomFactory ##########
         if self.ver[y][x][1] != ' ':
             self.ver[y][x] = self.ver[y][x][0] + 'M '
             self.__items[(x, y)].append(letter)
+            # print(self.__items, 'specifically x,y:', x, y)          DELETE  #################################
         else:
             self.ver[y][x] = self.ver[y][x][0] + letter + ' '
             self.__items[(x, y)] = [letter]
+            # print(self.__items, 'specifically x,y:', x, y)          DELETE  #################################
 
     def visited_potion(self, x, y, potion):         ######## Not tested ###########
         if potion in self.__items[(x, y)]:
@@ -173,7 +163,6 @@ class MakeDungeon:
     def traverse_dungeon(self):
         maze = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
         maze[self.__height-1][self.__width-1] = 'E'    # Exit at bottom right corner
-
         stack = [(0, 0)]     # stack starts with entrance room
 
         while len(stack) > 0:
@@ -186,7 +175,6 @@ class MakeDungeon:
                 continue
             # mark current location as visited
             maze[y][x] = 1
-
             # push all possible neighbor routes, "0", to stack; Order is N, S, E, W
             if maze[y-1][x] in (0, 'E') and self.__hor[y][x] == "+  ":
                 stack.append((x, y-1))
@@ -196,7 +184,6 @@ class MakeDungeon:
                 stack.append((x+1, y))
             if maze[y][x-1] in (0, 'E') and self.__ver[y][x] == "   ":
                 stack.append((x-1, y))
-
         return False
 
     def __str__(self):
@@ -221,5 +208,23 @@ if __name__ == '__main__':
     p.make()
     print(p)
 
-    for i in p.items:
-        print(i, p.items[i])
+    '''
+    xx = 0
+    yy = 3
+    # modify values if at borders of dungeons
+    x = xx if xx > 0 else 1
+    x = x if x < p.width - 1 else p.width - 2
+    y = yy if yy > 0 else 1
+    y = y if y < p.height - 1 else p.height - 2
+
+    print(''.join(p.hor[y-1][x-1:x+2]) + '+\n' +
+            ''.join(p.ver[y-1][x-1:x+2]) + p.ver[y-1][x+2][0] + '\n' +
+            ''.join(p.hor[y][x-1:x+2]) + '+\n' +
+            ''.join(p.ver[y][x-1:x+2]) + p.ver[y][x+2][0] + '\n' +
+            ''.join(p.hor[y+1][x-1:x+2]) + '+\n' +
+            ''.join(p.ver[y+1][x-1:x+1]) + p.ver[y+1][x+1][0] + ':::\n' +
+            ''.join(p.hor[y+2][x-1:x+1]) + '+') #+ '+:::')
+    '''
+
+    # for i in p.items:
+    #     print(i, p.items[i])

@@ -1,4 +1,5 @@
 from make_dungeon import MakeDungeon
+from vision_potion import VisionPotion
 
 
 class Adventure:
@@ -18,6 +19,7 @@ class Adventure:
             # if collected 4 pillars, return, else: self.move_options
             self.move_options(x, y)
 
+        self.vision(x, y)           # DELETE
         self.move_options(x, y)
 
     def print_room(self, x, y):
@@ -55,11 +57,8 @@ class Adventure:
                     self.current_loc(move_next[player_choice][0], move_next[player_choice][1])
                     break
 
-    def use_vision(self, x, y):
-        s = ""
-        for a, b in zip(self.__hor, self.__ver):
-            s += ''.join(a + ['\n'] + b + ['\n'])
-        return s
+    def vision(self, x, y):
+        VisionPotion.use_vision(self, x, y)
 
 """
 
