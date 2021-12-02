@@ -22,12 +22,9 @@ class Room:
         else:
             print(self.__room_items)
 
-    def print(self):
-        xx = self.__x
-        yy = self.__y
-        print(f'Current room (x: {xx}, y: {yy}): ')
-        print(self.__maze.hor[yy][xx] + '+\n' + self.__maze.ver[yy][xx] +
-              self.__maze.ver[yy][xx + 1][0] + '\n' + self.__maze.hor[yy + 1][xx] + '+')
+    def print(self):        # delete redundant code, call __str__?
+        print(f'Current room (x: {self.__x}, y: {self.__y}): ')
+        print(self)
 
     def __str__(self):
         xx = self.__x
