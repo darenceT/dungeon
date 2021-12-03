@@ -22,7 +22,7 @@ class Room:
         else:
             print(self.__room_items)
 
-    def print(self):        # delete redundant code, call __str__?
+    def print(self):
         print(f'Current room (x: {self.__x}, y: {self.__y}): ')
         print(self)
 
