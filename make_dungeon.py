@@ -10,10 +10,9 @@ class MakeDungeon:
         self.__height = h
         self.__ver = []
         self.__hor = []
-        self.__items = {}
-
-    def get_items(self):
-        return self.__items
+        self.build_maze()
+        # factory puts objects into maze
+        self.__factory = ObjectFactory(self)
 
     def get_width(self):
         return self.__width
@@ -39,11 +38,14 @@ class MakeDungeon:
     def get_hor(self):
         return self.__hor
 
+    def get_factory(self):
+        return self.__factory
+
     width = property(get_width, set_width)
     height = property(get_height, set_height)
     ver = property(get_ver, set_ver)
     hor = property(get_hor, set_hor)
-    items = property(get_items)
+    factory = property(get_factory)
 
     # place holder method for selecting difficulty, not functional
     def difficulty(self, mode):
@@ -60,7 +62,7 @@ class MakeDungeon:
         else:
             raise ValueError('Input does not match "easy", "medium", or "hard" mode options')
 
-    def make(self):
+    def build_maze(self):
         # (wide x height of 0s + last column 1s) + last row 1s
         visited = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
 
@@ -97,26 +99,13 @@ class MakeDungeon:
 
         # Create & Check entrance to exit pathway, else recreate
         while True:
-            # Entrance location
-            #     randomize start location (OPTION)
+            '''# Entrance location
+                # randomize start location (alternate OPTION)
             # break_wall(randrange(w), randrange(h))
-            #     specify location e.g. 0,0 for top left: x, y
+                # specify location e.g. 0,0 for top left: x, y '''
             break_wall(0, 0)
-            if self.traverse_dungeon():    # if true, break loop
+            if self.traverse_dungeon():    # if not true, recreate maze
                 break
-
-        factory = ObjectFactory(self)
-        factory.put_inside_rooms()
-
-    def visited_potion(self, x, y, potion):         ######## Not tested ########### Move to adventure??
-        if potion in self.__items[(x, y)]:
-            self.__items[(x, y)].remove(potion)
-            if len(self.__items[(x, y)]) == 0:      # update map for empty room
-                self.ver[y][x] = self.ver[y][x][0] + '  '
-            elif len(self.__items[(x, y)]) == 1:    # update map for single item in room
-                self.ver[y][x] = self.ver[y][x][0] + self.__items[(x, y)] + ' '
-        else:
-            raise ValueError('Game error, no potion at this location to change to used potion')
 
     def traverse_dungeon(self):
         maze = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
@@ -144,27 +133,27 @@ class MakeDungeon:
                 stack.append((x-1, y))
         return False
 
+    def visited_potion(self, x, y, potion):         ######## Not tested ########### Move to adventure??
+        if potion in self.__items[(x, y)]:
+            self.__items[(x, y)].remove(potion)
+            if len(self.__items[(x, y)]) == 0:      # update map for empty room
+                self.ver[y][x] = self.ver[y][x][0] + '  '
+            elif len(self.__items[(x, y)]) == 1:    # update map for single item in room
+                self.ver[y][x] = self.ver[y][x][0] + self.__items[(x, y)] + ' '
+        else:
+            raise ValueError('Game error, no potion at this location to change to used potion')
+
     def __str__(self):
         s = ""
         for a, b in zip(self.__hor, self.__ver):
             s += ''.join(a + ['\n'] + b + ['\n'])
         return s
 
-# Here are the letters to use and what they represent:
-#     ▪ M - Multiple Items
-#     ▪ X-Pit
-#     ▪ i - Entrance (In)
-#     ▪ O-Exit(Out)
-#     ▪ V-VisionPotion
-#     ▪ H-HealingPotion
-#     ▪ -EmptyRoom
-
 
 # delete this later for submission
 if __name__ == '__main__':
     p = MakeDungeon(8, 4)
-    p.make()
     print(p)
 
-    for i in p.items:
-        print(i, p.items[i])
+    # for i in p.factory.items:                       ############### DELETE
+    #     print(i, p.factory.items[i])

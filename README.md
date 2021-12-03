@@ -2,9 +2,9 @@
 
 <pre>
 
-Darence: maze, dungeon/adventure
-Pranav: intro page, instructions, storyboard
-Manny: Rooms, adventurer
+Darence: maze, dungeon/adventure, room
+Pranav: intro, instructions, storyboard
+Manny: player, room objects
 
 <a href=https://docs.google.com/document/d/1_fHq2u9l7wrHIi3lbca_GFkGuPdS3TVKLNKEBCa02TU/edit>summary of classes</a>
 
