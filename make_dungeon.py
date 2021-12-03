@@ -1,4 +1,3 @@
-# https://rosettacode.org/wiki/Maze_generation#Python
 from object_factory import ObjectFactory
 from random import shuffle, randrange
 
@@ -63,6 +62,12 @@ class MakeDungeon:
             raise ValueError('Input does not match "easy", "medium", or "hard" mode options')
 
     def build_maze(self):
+        """
+        Build maze by first creating a grid of 1s, and 0s, where unvisited 0 becomes 1 when visited.
+        Walls are created vertically, "ver" and horizontally, "hor". Helper function break_wall
+        creates path of maze.
+        Credit for logic/algorithm to https://rosettacode.org/wiki/Maze_generation#Python
+        """
         # (wide x height of 0s + last column 1s) + last row 1s
         visited = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
 
@@ -73,17 +78,18 @@ class MakeDungeon:
         self.__hor = [["+--"] * self.__width + ['+'] for _ in range(self.__height + 1)]
 
         def break_wall(x, y):
+            """
+            Path of maze created using visited grid. In each room, neighbors ("d" list) are approached
+            randomly by using time.shuffle.
+            """
             # change 0 to 1 after room visited
             visited[y][x] = 1
-
             # initializes an array with all four neighbors of the current room
-            # [(-1,0),(0,1),(1,0),(0,-1)]
             # d = [(west),(south),(east),(north)]
             d = [(x - 1, y), (x, y + 1), (x + 1, y), (x, y - 1)]
 
             # randomize order of next room to visit
             shuffle(d)
-
             for (xx, yy) in d:
                 # if neighbor has been visited or at grid border, skip to next neighbor
                 if visited[yy][xx]:
@@ -108,6 +114,12 @@ class MakeDungeon:
                 break
 
     def traverse_dungeon(self):
+        """
+        Traverse maze just after walls broken and path created, ensure path from (0, 0)
+        to exit, 'E' is possible.
+        :return: True if path to exit is possible
+        :rtype: boolean
+        """
         maze = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
         maze[self.__height-1][self.__width-1] = 'E'    # Exit at bottom right corner
         stack = [(0, 0)]     # stack starts with entrance room
