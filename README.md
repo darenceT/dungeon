@@ -3,7 +3,7 @@
 <pre>
 
 Darence: maze, dungeon/adventure
-Pranav: storyboard, intro page, instructions, central document, and if time, dungeon/adventure
+Pranav: intro page, instructions, storyboard
 Manny: Rooms, adventurer
 
 <a href=https://docs.google.com/document/d/1_fHq2u9l7wrHIi3lbca_GFkGuPdS3TVKLNKEBCa02TU/edit>summary of classes</a>
@@ -11,7 +11,7 @@ Manny: Rooms, adventurer
 DUNGEON ADVENTURE
 
 PROGRAM PURPOSE:
-The purpose of this is assignment is for you to practic~~e~~ problem solving, working more on teams, 
+The purpose of this is assignment is for you to practice problem solving, working more on teams, 
 working with multiple classes, maze generation, and maze traversal. You will optionally be able to 
 incorporate GUI components as part of your solution.
 
@@ -109,7 +109,8 @@ Dungeon
             ▪ You could represent your maze via rooms that have references to other rooms (this would 
             be much like a linked list structure but without all the basic linked list functionality 
             which you do not need for this assignment)
-    • Places the Entrance, the Exit, and the Pillars. NOTES: the entrance and exit are empty rooms. The Pillars cannot be at the entrance or the exit. No two Pillars may be in the same room.
+    • Places the Entrance, the Exit, and the Pillars. NOTES: the entrance and exit are empty rooms. 
+    The Pillars cannot be at the entrance or the exit. No two Pillars may be in the same room.
     • (Possibly) Maintains location of the Adventurer in the Dungeon
     • Contains a __str__() method that builds a String containing information about the entire 
     dungeon.

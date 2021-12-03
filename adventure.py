@@ -22,7 +22,7 @@ class Adventure:
             # if collected 4 pillars, return, else: self.move_options
             self.move_options(x, y)
 
-        # self.vision(x, y)           # DELETE
+        self.vision(x, y)           # DELETE
         self.move_options(x, y)
 
     def move_options(self, x, y):
