@@ -11,9 +11,10 @@ class Adventure:
         self.current_loc(0, 0)
 
     def current_loc(self, x, y):
-        p = Room(self, x, y)
-        p.print()
-        p.get_room_items()
+        d = Room(self, x, y)
+        self.p.room_index[(x, y)].enter_room()
+        print(d)
+        d.get_room_items()
 
         # if user reached end
         if x == self.p.width -1 and y == self.p.height -1:

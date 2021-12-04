@@ -1,4 +1,6 @@
 from object_factory import ObjectFactory
+from room2 import Room
+
 from random import shuffle, randrange
 
 
@@ -10,6 +12,7 @@ class MakeDungeon:
         self.__ver = []
         self.__hor = []
         self.__difficulty(mode)
+        self.room_index = {}
         self.impassible_rooms = []
         self.build_maze()
         self.__factory = ObjectFactory(self)  # factory puts objects into maze
@@ -80,7 +83,9 @@ class MakeDungeon:
             """
             Path of maze created using visited grid. In each room, neighbors ("d" list) are approached
             randomly by using time.shuffle.
+            Room objects created during wall-breaking process, indexed into dictionary "__room_index"
             """
+            self.room_index[(x, y)] = Room(x, y)
             # change 0 to 1 after room visited
             visited[y][x] = 1
             # [(west),(south),(east),(north)] neighbors of the current room
@@ -111,9 +116,11 @@ class MakeDungeon:
             if self.traverse_dungeon(self.__width-1, self.__height-1):    # if false, recreate maze
                 break
             else:
+                print('reset')              ####################### delete ###########################
                 self.impassible_rooms = []
                 self.build_maze()
                 break
+        print(len(self.room_index), 'room index length')       ####################### delete ########################
 
     def create_impassible(self):
         """
@@ -131,6 +138,7 @@ class MakeDungeon:
                     continue
                 elif (x, y) not in self.impassible_rooms:     # avoid duplicates
                     self.impassible_rooms.append((x, y))
+                    self.room_index[(x, y)].set_impassible()
                     self.__hor[y][x] = "+--"
                     self.__ver[y][x] = "|  "
                     self.__ver[y][x + 1] = "|" + self.__ver[y][x + 1][1:3]
@@ -147,7 +155,6 @@ class MakeDungeon:
         maze = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
         maze[target_y][target_x] = 'E'    # Target
         stack = [(0, 0)]     # stack starts with entrance room
-
         while len(stack) > 0:
             x, y = stack.pop()
 
@@ -188,7 +195,7 @@ class MakeDungeon:
 
 # delete this later for submission
 if __name__ == '__main__':
-    p = MakeDungeon(3)
+    p = MakeDungeon(2)
     print(p)
 
     # for i in p.factory.items:                       ############### DELETE

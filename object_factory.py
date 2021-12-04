@@ -5,6 +5,7 @@ class ObjectFactory:
 
     def __init__(self, maze):
         self.__maze = maze
+        self.__room_index = maze.room_index
         self.__items = {}
         self.pillars_loc = []           # delete???
         self.put_inside_rooms()
@@ -75,6 +76,8 @@ class ObjectFactory:
     def add_item_in_room(self, location, letter):
         x = location[0]
         y = location[1]
+        self.__room_index[(x, y)].object_delivery(letter)
+        print("success sending items")
         if self.__maze.ver[y][x][1] != ' ':
             self.__maze.ver[y][x] = self.__maze.ver[y][x][0] + 'M '
             self.__items[(x, y)].append(letter)
