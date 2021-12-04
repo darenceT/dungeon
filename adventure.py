@@ -5,8 +5,8 @@ from vision_potion import VisionPotion
 
 class Adventure:
 
-    def __init__(self):
-        self.p = MakeDungeon(6, 3)
+    def __init__(self, mode):
+        self.p = MakeDungeon(mode)
         print(self.p)                   ################### delete
         self.current_loc(0, 0)
 
@@ -31,7 +31,7 @@ class Adventure:
             options.append('North')
         if self.p.hor[y+1][x] == "+  ":
             options.append('South')
-        if self.p.ver[y][x] == "   ":
+        if self.p.ver[y][x][0] == " ":
             options.append('West')
         if self.p.ver[y][x+1][0] == " ":
             options.append('East')
@@ -73,5 +73,9 @@ DungeonAdventure
 """
 
 if __name__ == '__main__':
-    a = Adventure()
+    # try:
+    mode = int(input('Select difficulty:\n1. Easy\n2. Normal\n3. Hard\nType 1, 2 or 3: '))
+    # except TypeError:
+
+    a = Adventure(mode)
 

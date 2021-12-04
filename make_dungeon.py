@@ -4,14 +4,15 @@ from random import shuffle, randrange
 
 class MakeDungeon:
 
-    def __init__(self, w=16, h=8):
-        self.__width = w
-        self.__height = h
+    def __init__(self, mode):
+        self.__width = 0
+        self.__height = 0
         self.__ver = []
         self.__hor = []
+        self.__difficulty(mode)
+        self.impassible_rooms = []
         self.build_maze()
-        # factory puts objects into maze
-        self.__factory = ObjectFactory(self)
+        self.__factory = ObjectFactory(self)  # factory puts objects into maze
 
     def get_width(self):
         return self.__width
@@ -46,20 +47,18 @@ class MakeDungeon:
     hor = property(get_hor, set_hor)
     factory = property(get_factory)
 
-    # place holder method for selecting difficulty, not functional
-    def difficulty(self, mode):
-        mode = mode.lower().strip()
-        if mode == 'easy':
-            self.__width = 12
-            self.__height = 6
-        elif mode == 'medium':
-            self.__width = 20
-            self.__height = 10
-        elif mode == 'hard':
-            self.__width = 40
-            self.__height = 20
+    def __difficulty(self, mode):
+        if mode == 1:
+            self.__width = 8
+            self.__height = 4
+        elif mode == 2:
+            self.__width = 16
+            self.__height = 8
+        elif mode == 3:
+            self.__width = 24
+            self.__height = 12
         else:
-            raise ValueError('Input does not match "easy", "medium", or "hard" mode options')
+            raise ValueError('Input is not between 1 to 3 for difficulty mode')
 
     def build_maze(self):
         """
@@ -71,10 +70,10 @@ class MakeDungeon:
         # (wide x height of 0s + last column 1s) + last row 1s
         visited = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
 
-        # (wide + 1 x height) vertical walls. +[[]] allows printing of bottom wall
+        # (wide + 1 x height) vertical walls. "+[[]]" allows printing of bottom wall
         self.__ver = [["|  "] * self.__width + ['|'] for _ in range(self.__height)] + [[]]
 
-        # wide (+--) + 1 (+) x height + 1) horizontal walls
+        # wide (+--) + 1 (+) x (height + 1) horizontal walls
         self.__hor = [["+--"] * self.__width + ['+'] for _ in range(self.__height + 1)]
 
         def break_wall(x, y):
@@ -84,13 +83,11 @@ class MakeDungeon:
             """
             # change 0 to 1 after room visited
             visited[y][x] = 1
-            # initializes an array with all four neighbors of the current room
-            # d = [(west),(south),(east),(north)]
-            d = [(x - 1, y), (x, y + 1), (x + 1, y), (x, y - 1)]
+            # [(west),(south),(east),(north)] neighbors of the current room
+            neighbors = [(x - 1, y), (x, y + 1), (x + 1, y), (x, y - 1)]
+            shuffle(neighbors)
 
-            # randomize order of next room to visit
-            shuffle(d)
-            for (xx, yy) in d:
+            for (xx, yy) in neighbors:
                 # if neighbor has been visited or at grid border, skip to next neighbor
                 if visited[yy][xx]:
                     continue
@@ -104,16 +101,43 @@ class MakeDungeon:
                 break_wall(xx, yy)
 
         # Create & Check entrance to exit pathway, else recreate
+        break_wall(0, 0)
         while True:
             '''# Entrance location
                 # randomize start location (alternate OPTION)
             # break_wall(randrange(w), randrange(h))
                 # specify location e.g. 0,0 for top left: x, y '''
-            break_wall(0, 0)
-            if self.traverse_dungeon():    # if not true, recreate maze
+            self.create_impassible()
+            if self.traverse_dungeon(self.__width-1, self.__height-1):    # if false, recreate maze
+                break
+            else:
+                self.impassible_rooms = []
+                self.build_maze()
                 break
 
-    def traverse_dungeon(self):
+    def create_impassible(self):
+        """
+        Append to list of impassible rooms to avoid putting objects into these rooms
+        Credit to Steph for help with debugging.
+        """
+        temp_stack =[]
+        # rooms per difficulty, Easy: 1, Normal: 2, Hard: 3
+        for _ in range(self.__width // 4):
+            while True:
+                x = randrange(0, self.__width)
+                y = randrange(0, self.__height)
+                # Avoid entrance and exit rooms
+                if x == 0 and y == 0 or x == self.__width-1 and y == self.__height - 1:
+                    continue
+                elif (x, y) not in self.impassible_rooms:     # avoid duplicates
+                    self.impassible_rooms.append((x, y))
+                    self.__hor[y][x] = "+--"
+                    self.__ver[y][x] = "|  "
+                    self.__ver[y][x + 1] = "|" + self.__ver[y][x + 1][1:3]
+                    self.__hor[y + 1][x] = "+--"
+                    break
+
+    def traverse_dungeon(self, target_x, target_y):
         """
         Traverse maze just after walls broken and path created, ensure path from (0, 0)
         to exit, 'E' is possible.
@@ -121,7 +145,7 @@ class MakeDungeon:
         :rtype: boolean
         """
         maze = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
-        maze[self.__height-1][self.__width-1] = 'E'    # Exit at bottom right corner
+        maze[target_y][target_x] = 'E'    # Target
         stack = [(0, 0)]     # stack starts with entrance room
 
         while len(stack) > 0:
@@ -164,7 +188,7 @@ class MakeDungeon:
 
 # delete this later for submission
 if __name__ == '__main__':
-    p = MakeDungeon(8, 4)
+    p = MakeDungeon(3)
     print(p)
 
     # for i in p.factory.items:                       ############### DELETE
