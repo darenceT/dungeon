@@ -4,6 +4,7 @@ class Room:
         self.__maze = maze.p
         self.__x = x
         self.__y = y
+        self.__impassible = False
         self.__room_items = []
         self.__health_pots = []
         self.__pillar = []
