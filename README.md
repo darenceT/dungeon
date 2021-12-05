@@ -6,7 +6,7 @@ Darence: maze, dungeon/adventure
 Pranav: storyboard, intro page, instructions, central document, and if time, dungeon/adventure
 Manny: Rooms, adventurer
 
-<a href=https://docs.google.com/document/d/1_fHq2u9l7wrHIi3lbca_GFkGuPdS3TVKLNKEBCa02TU/edit)>summary of classes</a>
+<a href=https://docs.google.com/document/d/1_fHq2u9l7wrHIi3lbca_GFkGuPdS3TVKLNKEBCa02TU/edit>summary of classes</a>
 
 DUNGEON ADVENTURE
 
