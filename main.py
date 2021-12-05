@@ -3,12 +3,13 @@ from adventure import Adventure
 
 
 class Main:
-
-    @staticmethod
-    def load_game():
-        game = Instructions()
+    def __init__(self):
+        self.__user = Instructions()
+        self.__player_name = self.__user.player_name
+        self.__difficulty = self.__user.difficulty
+        self.__adventure = Adventure(self.__difficulty)
 
 
 if __name__ == '__main__':
     m = Main()
-    load = m.load_game()
+
