@@ -8,7 +8,7 @@ class ObjectFactory:
         self.__room_index = map.room_index
         self.__items = {}           ################ delete??? ###############################
         self.pillars_loc = []           ################ delete??? ###############################
-        self.put_inside_rooms()
+        self.create_objects()
 
     def get_items(self):
         return self.__items
@@ -34,11 +34,11 @@ class ObjectFactory:
                     print('before return')           ####################### delete ###########################
                     return x, y
 
-    def put_inside_rooms(self):
+    def create_objects(self):
 
         # Put entrance "i" and exit "o"
-        self.add_item_in_room((0, 0), 'i')
-        self.add_item_in_room((self.__map.width-1, self.__map.height-1), 'O')
+        self.deliver_to_room((0, 0), 'i')
+        self.deliver_to_room((self.__map.width-1, self.__map.height-1), 'O')
         self.add_pillars()
 
         # Put pits
@@ -48,7 +48,7 @@ class ObjectFactory:
             coordinate = self.valid_random_loc()
             if coordinate not in temp_pit:
                 temp_pit.append(coordinate)
-                self.add_item_in_room(coordinate, 'X')
+                self.deliver_to_room(coordinate, 'X')
                 print(coordinate, 'pit')
                 index += 1
             else:       ####################### delete ###########################
@@ -62,7 +62,7 @@ class ObjectFactory:
             coordinate = self.valid_random_loc()
             if coordinate not in temp_healing:
                 temp_healing.append(coordinate)
-                self.add_item_in_room(coordinate, 'H')
+                self.deliver_to_room(coordinate, 'H')
                 print(coordinate, 'healing potion')
                 index += 1
             else:       ####################### delete ###########################
@@ -76,7 +76,7 @@ class ObjectFactory:
             coordinate = self.valid_random_loc()
             if coordinate not in temp_vision:
                 temp_vision.append(coordinate)
-                self.add_item_in_room(coordinate, 'V')
+                self.deliver_to_room(coordinate, 'V')
                 print(coordinate, 'vision potion')
                 index += 1
             else:       ####################### delete ###########################
@@ -97,20 +97,20 @@ class ObjectFactory:
                 if count >= 20:         # break infinite loop by reset maze. Too many unintended impassible rooms
                     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXRESET')
                     self.__map.build_maze()
-                    self.put_inside_rooms()
+                    self.create_objects()
                     return
                 else:
                     count += 1
                 if (x, y) not in temp_list and self.__map.traverse_dungeon(x, y):
                     print('will add_item PILLAR')           ####################### delete ###########################
-                    self.add_item_in_room((x, y), item)
+                    self.deliver_to_room((x, y), item)
                     temp_list.append((x, y))
                     break
 
-    def add_item_in_room(self, location, letter):
+    def deliver_to_room(self, location, letter):
         x = location[0]
         y = location[1]
-        self.__room_index[(x, y)].object_delivery(letter)
+        self.__room_index[(x, y)].receive_from_factory(letter)
         print("success sending items")           ####################### delete #####################
         if self.__map.ver[y][x][1] != ' ':                  ################ delete??? ###############################
             self.__map.ver[y][x] = self.__map.ver[y][x][0] + 'M '
