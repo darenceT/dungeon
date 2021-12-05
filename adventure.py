@@ -19,9 +19,12 @@ class Adventure:
 
         # if user reached end
         if x == self.p.width -1 and y == self.p.height -1:
-            print('You have reached the end!')
-            # if collected 4 pillars, return, else: self.move_options
-            self.move_options(x, y)
+            print('You have reached the exit!')
+            # if player.pillars:          True for collected all 4
+            #     print('you win! You have gained adequate knowledge for quarter 2 and still much to learn...')
+            # else:
+            #     print('Keep looking for those pillars of success...')
+            #     self.move_options(x, y)
 
         # self.vision(x, y)           ################################ DELETE
         self.move_options(x, y)
@@ -56,7 +59,7 @@ class Adventure:
                     self.current_loc(move_next[player_choice][0], move_next[player_choice][1])
                     break
 
-    def vision(self, x, y):
+    def vision(self, x, y):                     ############# move to player class? #################
         VisionPotion.use_vision(self, x, y)
 
 """
