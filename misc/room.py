@@ -2,7 +2,7 @@ class Room:
 
     def __init__(self):
         self.__healthPotion = False
-        self.__visionPotion = False
+        self.__visionPotion = True
         self.__pillar = "No pillar"
         self.__pit = False
         self.__exit = False

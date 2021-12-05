@@ -1,42 +1,41 @@
 from object_factory import ObjectFactory
-from room2 import Room
+from room import Room
 
 from random import shuffle, randrange
 
 
-class MakeDungeon:
-
+class BuildDungeon:
     def __init__(self, mode):
         self.__width = 0
         self.__height = 0
         self.__ver = []
         self.__hor = []
         self.__difficulty(mode)
-        self.room_index = {}
-        self.impassible_rooms = []
+        self.__room_index = {}
+        # self.impassible_rooms = []                      ######### DELETE ???? ######################
         self.build_maze()
         self.__factory = ObjectFactory(self)  # factory puts objects into maze
 
     def get_width(self):
         return self.__width
 
-    def set_width(self, w):
-        self.__width = w
+    # def set_width(self, w):
+    #     self.__width = w
 
     def get_height(self):
         return self.__height
 
-    def set_height(self, h):
-        self.__height = h
+    # def set_height(self, h):
+    #     self.__height = h
 
-    def set_ver(self, ver):
-        self.__ver = ver
+    # def set_ver(self, ver):
+    #     self.__ver = ver
 
     def get_ver(self):
         return self.__ver
 
-    def set_hor(self, hor):
-        self.__hor = hor
+    # def set_hor(self, hor):
+    #     self.__hor = hor
 
     def get_hor(self):
         return self.__hor
@@ -44,11 +43,15 @@ class MakeDungeon:
     def get_factory(self):
         return self.__factory
 
-    width = property(get_width, set_width)
-    height = property(get_height, set_height)
-    ver = property(get_ver, set_ver)
-    hor = property(get_hor, set_hor)
+    def get_room_index(self):
+        return self.__room_index
+
+    width = property(get_width)
+    height = property(get_height)
+    ver = property(get_ver)
+    hor = property(get_hor)
     factory = property(get_factory)
+    room_index = property(get_room_index)
 
     def __difficulty(self, mode):
         if mode == 1:
@@ -79,13 +82,13 @@ class MakeDungeon:
         # wide (+--) + 1 (+) x (height + 1) horizontal walls
         self.__hor = [["+--"] * self.__width + ['+'] for _ in range(self.__height + 1)]
 
-        def break_wall(x, y):
+        def __break_wall(x, y):
             """
             Path of maze created using visited grid. In each room, neighbors ("d" list) are approached
             randomly by using time.shuffle.
             Room objects created during wall-breaking process, indexed into dictionary "__room_index"
             """
-            self.room_index[(x, y)] = Room(x, y)
+            self.room_index[(x, y)] = Room(self, x, y)
             # change 0 to 1 after room visited
             visited[y][x] = 1
             # [(west),(south),(east),(north)] neighbors of the current room
@@ -103,10 +106,10 @@ class MakeDungeon:
                 if yy == y:
                     self.__ver[y][max(x, xx)] = "   "
                 # move to next room
-                break_wall(xx, yy)
+                __break_wall(xx, yy)
 
         # Create & Check entrance to exit pathway, else recreate
-        break_wall(0, 0)
+        __break_wall(0, 0)
         while True:
             '''# Entrance location
                 # randomize start location (alternate OPTION)
@@ -117,27 +120,27 @@ class MakeDungeon:
                 break
             else:
                 print('reset')              ####################### delete ###########################
-                self.impassible_rooms = []
+                #self.impassible_rooms = []  ####################### delete ###########################
                 self.build_maze()
                 break
-        print(len(self.room_index), 'room index length')       ####################### delete ########################
+        print(len(self.__room_index), 'room index length')       ####################### delete ########################
 
     def create_impassible(self):
         """
         Append to list of impassible rooms to avoid putting objects into these rooms
         Credit to Steph for help with debugging.
         """
-        temp_stack =[]
+        temp_list = []
         # rooms per difficulty, Easy: 1, Normal: 2, Hard: 3
-        for _ in range(self.__width // 4):
+        for _ in range(self.__width // 8):
             while True:
                 x = randrange(0, self.__width)
                 y = randrange(0, self.__height)
                 # Avoid entrance and exit rooms
                 if x == 0 and y == 0 or x == self.__width-1 and y == self.__height - 1:
                     continue
-                elif (x, y) not in self.impassible_rooms:     # avoid duplicates
-                    self.impassible_rooms.append((x, y))
+                elif (x, y) not in temp_list:     # avoid duplicates
+                    temp_list.append((x, y))
                     self.room_index[(x, y)].set_impassible()
                     self.__hor[y][x] = "+--"
                     self.__ver[y][x] = "|  "
@@ -152,6 +155,7 @@ class MakeDungeon:
         :return: True if path to exit is possible
         :rtype: boolean
         """
+        print('traverse')       ####################### delete ########################
         maze = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
         maze[target_y][target_x] = 'E'    # Target
         stack = [(0, 0)]     # stack starts with entrance room
@@ -163,8 +167,9 @@ class MakeDungeon:
             # 1 is already visited or outside of maze
             if maze[y][x] == 1:
                 continue
-            # mark current location as visited
-            maze[y][x] = 1
+            # Check room not impassible and mark current location as visited
+            if not self.__room_index[(x, y)].impassible:
+                maze[y][x] = 1
             # push all possible neighbor routes, "0", to stack; Order is N, S, E, W
             if maze[y-1][x] in (0, 'E') and self.__hor[y][x] == "+  ":
                 stack.append((x, y-1))
@@ -195,7 +200,7 @@ class MakeDungeon:
 
 # delete this later for submission
 if __name__ == '__main__':
-    p = MakeDungeon(2)
+    p = BuildDungeon(1)
     print(p)
 
     # for i in p.factory.items:                       ############### DELETE

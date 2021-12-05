@@ -3,11 +3,11 @@ from random import randrange
 
 class ObjectFactory:
 
-    def __init__(self, maze):
-        self.__maze = maze
-        self.__room_index = maze.room_index
-        self.__items = {}
-        self.pillars_loc = []           # delete???
+    def __init__(self, map):
+        self.__map = map
+        self.__room_index = map.room_index
+        self.__items = {}           ################ delete??? ###############################
+        self.pillars_loc = []           ################ delete??? ###############################
         self.put_inside_rooms()
 
     def get_items(self):
@@ -22,32 +22,66 @@ class ObjectFactory:
         :rtype: tuple
         """
         while True:
-            x = randrange(0, self.__maze.width)
-            y = randrange(0, self.__maze.height)
-            if (x, y) not in self.__maze.impassible_rooms:
-                if (x == 0 and y == 0) or (x == self.__maze.width - 1 and y == self.__maze.height - 1):
+            x = randrange(0, self.__map.width)
+            y = randrange(0, self.__map.height)
+            if not self.__map.room_index[(x, y)].impassible:
+            # if (x, y) not in self.__map.impassible_rooms:            ####################### delete ################
+                print('this is passible for putting object')
+                if (x == 0 and y == 0) or (x == self.__map.width - 1 and y == self.__map.height - 1):
+                    print('before continue')           ####################### delete ###########################
                     continue
                 else:
+                    print('before return')           ####################### delete ###########################
                     return x, y
 
     def put_inside_rooms(self):
 
         # Put entrance "i" and exit "o"
         self.add_item_in_room((0, 0), 'i')
-        self.add_item_in_room((self.__maze.width-1, self.__maze.height-1), 'O')
+        self.add_item_in_room((self.__map.width-1, self.__map.height-1), 'O')
         self.add_pillars()
 
-        # Put traps
-        for _ in range(2):   # change based on difficulty
-            self.add_item_in_room(self.valid_random_loc(), 'X')
+        # Put pits
+        temp_pit = []
+        index = 0
+        while index < 2:
+            coordinate = self.valid_random_loc()
+            if coordinate not in temp_pit:
+                temp_pit.append(coordinate)
+                self.add_item_in_room(coordinate, 'X')
+                print(coordinate, 'pit')
+                index += 1
+            else:       ####################### delete ###########################
+                print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        temp_pit = []
 
-        # Put healing potions
-        for _ in range(2):   # change based on difficulty
-            self.add_item_in_room(self.valid_random_loc(), 'H')
+        # healing potion
+        temp_healing = []
+        index = 0
+        while index < 2:
+            coordinate = self.valid_random_loc()
+            if coordinate not in temp_healing:
+                temp_healing.append(coordinate)
+                self.add_item_in_room(coordinate, 'H')
+                print(coordinate, 'healing potion')
+                index += 1
+            else:       ####################### delete ###########################
+                print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        temp_healing = []
 
-        # Put vision potions
-        for _ in range(2):   # change based on difficulty
-            self.add_item_in_room(self.valid_random_loc(), 'V')
+        # vision potion
+        temp_vision = []
+        index = 0
+        while index < 2:
+            coordinate = self.valid_random_loc()
+            if coordinate not in temp_vision:
+                temp_vision.append(coordinate)
+                self.add_item_in_room(coordinate, 'V')
+                print(coordinate, 'vision potion')
+                index += 1
+            else:       ####################### delete ###########################
+                print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        temp_vision = []
 
     def add_pillars(self):
         """
@@ -56,18 +90,28 @@ class ObjectFactory:
         pillars = ['A', 'I', 'E', 'P']
         temp_list = []
         for item in pillars:
+            count = 0                   # counting for possible infinite loop
             while True:
                 x, y = self.valid_random_loc()
-                if (x, y) not in temp_list and self.__maze.traverse_dungeon(x, y):
+                print('before add_item PILLAR')           ####################### delete ###########################
+                if count >= 20:         # break infinite loop by reset maze. Too many unintended impassible rooms
+                    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXRESET')
+                    self.__map.build_maze()
+                    self.put_inside_rooms()
+                    return
+                else:
+                    count += 1
+                if (x, y) not in temp_list and self.__map.traverse_dungeon(x, y):
+                    print('will add_item PILLAR')           ####################### delete ###########################
                     self.add_item_in_room((x, y), item)
                     temp_list.append((x, y))
                     break
 
         # index = 0
         # while index < len(pillars):
-        #     x, y = randrange(0, self.__maze.width), randrange(0, self.__maze.height)
-        #     if (x, y) not in self.__items.keys() and (x, y) not in self.__maze.impassible_rooms \
-        #             and self.__maze.traverse_dungeon(x, y):
+        #     x, y = randrange(0, self.__map.width), randrange(0, self.__map.height)
+        #     if (x, y) not in self.__items.keys() and (x, y) not in self.__map.impassible_rooms \
+        #             and self.__map.traverse_dungeon(x, y):
         #         self.add_item_in_room((x, y), pillars[index])
         #         self.pillars_loc.append((x, y))
         #         index += 1
@@ -77,10 +121,10 @@ class ObjectFactory:
         x = location[0]
         y = location[1]
         self.__room_index[(x, y)].object_delivery(letter)
-        print("success sending items")
-        if self.__maze.ver[y][x][1] != ' ':
-            self.__maze.ver[y][x] = self.__maze.ver[y][x][0] + 'M '
+        print("success sending items")           ####################### delete #####################
+        if self.__map.ver[y][x][1] != ' ':                  ################ delete??? ###############################
+            self.__map.ver[y][x] = self.__map.ver[y][x][0] + 'M '
             self.__items[(x, y)].append(letter)
         else:
-            self.__maze.ver[y][x] = self.__maze.ver[y][x][0] + letter + ' '
+            self.__map.ver[y][x] = self.__map.ver[y][x][0] + letter + ' '
             self.__items[(x, y)] = [letter]
