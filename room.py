@@ -86,18 +86,23 @@ class Room:
             print('pillar has been added')               ####################### delete ###########################
 
     def enter_room(self):
-        ref_list = {'i':'Entrance', 'O': 'Exit', 'X': 'Pit', 'V': 'Vision Potion', 'H': 'Healing Potion',
-                    'A': 'Pillar of Abstraction!', 'E': 'Pillar of Encapsulation!', 'I': 'Pillar of Inheritance!',
-                    'P': 'Pillar of Polymorphism'}
+        """
+        Player enters room, method checks impassible status.
+        """
         if not self.__impassible:
             print(f'Entered room (x: {self.__x_loc}, y: {self.__y_loc}):')
         else:
             raise ValueError('Room has been set impassible, you are trespassing!')
 
     def obtain_items(self):
-        ref_list = {'i':'Entrance', 'O': 'Exit', 'X': 'Pit', 'V': 'Vision Potion', 'H': 'Healing Potion',
-                     'A': 'Pillar of Abstraction!', 'E': 'Pillar of Encapsulation!', 'I': 'Pillar of Inheritance!',
-                     'P': 'Pillar of Polymorphism'}
+        """
+        Allow player to obtain objects in room
+        :return: objects
+        :rtype: list of characters
+        """
+        ref_list = {'i': 'Entrance', 'O': 'Exit', 'X': 'Pit', 'V': 'Vision Potion', 'H': 'Healing Potion',
+                    'A': 'Pillar of Abstraction!', 'E': 'Pillar of Encapsulation!', 'I': 'Pillar of Inheritance!',
+                    'P': 'Pillar of Polymorphism'}
         if self.__objects:
             print('This room contains:', ', '.join([ref_list[i] for i in self.__objects]))
         else:
@@ -105,20 +110,17 @@ class Room:
 
         return self.__objects
 
-    def object_delivery(self, object_letter):
+    def receive_from_factory(self, object_letter):
         mail_route = {'i': self.set_entrance, 'O': self.set_exit, 'H': self.set_health_potion,
                       'V': self.set_vision_potion, 'X': self.set_pit, 'A': self.set_pillar,
                       'E': self.set_pillar, 'I': self.set_pillar, 'P': self.set_pillar}
-        print('success receiving:', object_letter)
+        print('success receiving:', object_letter)            ####################### delete ###########################
 
         if object_letter in ['A', 'E', 'I', 'P']:
             mail_route[object_letter](object_letter)
         else:
             mail_route[object_letter]()
         self.__objects.append(object_letter)
-
-    def print(self):                           ####################### delete ??? ###########################
-        print(self)
 
     def __str__(self):
         display = ' '
@@ -135,10 +137,6 @@ class Room:
                self.__map.ver[y][x + 1][0] + '\n' + self.__map.hor[y + 1][x] + '+'
 '''
 
-
-        ref_list = {'i':'Entrance', 'O': 'Exit', 'X': 'Pit', 'V': 'Vision Potion', 'H': 'Healing Potion',
-                     'A': 'Pillar of Abstraction!', 'E': 'Pillar of Encapsulation!', 'I': 'Pillar of Inheritance!',
-                     'P': 'Pillar of Polymorphism'}
 
     def get_health_chance(self):
         return self.__healthChance
