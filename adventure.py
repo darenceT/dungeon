@@ -1,24 +1,29 @@
 from build_dungeon import BuildDungeon
-from vision_potion import VisionPotion
+from player import Player
+from vision_potion import VisionPotion              ############# delete #################
 
 
 class Adventure:
 
     def __init__(self, difficulty):
-        self.p = BuildDungeon(difficulty)
-        print(self.p)                   ################### delete
-        self.current_loc(0, 0)
+        self.__p = BuildDungeon(difficulty)
+        print(self.__p)                   ################### delete
+        self.__player = Player()
+        self.__entrance_loc = self.__p.entrance_loc
+        self.__exit_loc = self.__p.exit_loc
+        self.__current_loc(self.__entrance_loc)
 
-    def current_loc(self, x, y):
-        self.p.room_index[(x, y)].enter_room()
-        print(self.p.room_index[(x, y)])
+    def __current_loc(self, location):
+        self.__p.room_index[location].enter_room()
+        print(self.__p.room_index[location])
 
-        items_found = self.p.room_index[(x, y)].obtain_items()
+        items_found = self.__p.room_index[location].obtain_items()
 
-        # player.pickup(items_found)
+        self.__player.pick_up(items_found)
 
         # if user reached end
-        if x == self.p.width -1 and y == self.p.height -1:
+        print(location, 'and', self.__exit_loc)
+        if location == self.__exit_loc:
             print('You have reached the exit!')
             # if player.pillars:          True for collected all 4
             #     print('you win! You have gained adequate knowledge for quarter 2 and still much to learn...')
@@ -27,36 +32,36 @@ class Adventure:
             #     self.move_options(x, y)
 
         # self.vision(x, y)           ################################ DELETE
-        self.move_options(x, y)
+        self.__move_options(location)
 
-    def move_options(self, x, y):
-        options = []
-
-        if self.p.hor[y][x] == "+  ":
-            options.append('North')
-        if self.p.hor[y+1][x] == "+  ":
-            options.append('South')
-        if self.p.ver[y][x][0] == " ":
-            options.append('West')
-        if self.p.ver[y][x+1][0] == " ":
-            options.append('East')
+    def __move_options(self, location):
+        x = location[0]
+        y = location[1]
+        open_path = []
+        if self.__p.hor[y][x] == "+  ":
+            open_path.append('North')
+        if self.__p.hor[y+1][x] == "+  ":
+            open_path.append('South')
+        if self.__p.ver[y][x][0] == " ":
+            open_path.append('West')
+        if self.__p.ver[y][x+1][0] == " ":
+            open_path.append('East')
 
         while True:
-            print('Your options for moving to next room:', ', '.join(options))
+            print('Your options for moving to next room:', ', '.join(open_path))
             player_choice = input('Input letter for your next action "n, s, e, w" for next room,\n'
                                   '"p" for potion, "i" for status: ').lower()
             input_detail = {'n': 'North', 's': 'South', 'e': 'East', 'w': 'West'}   # add 's': status(), 'p': potion()
-
+            next_room = {'n': (x, y - 1), 's': (x, y + 1), 'e': (x + 1, y), 'w': (x - 1, y)}
             if player_choice not in input_detail.keys():
                 print('Invalid input!')
                 continue
             else:
-                if input_detail[player_choice] not in options:
+                if input_detail[player_choice] not in open_path:
                     print('That path is not possible!')
                     continue
                 else:
-                    move_next = {'n': (x, y - 1), 's': (x, y + 1), 'e': (x + 1, y), 'w': (x - 1, y)}
-                    self.current_loc(move_next[player_choice][0], move_next[player_choice][1])
+                    self.__current_loc((next_room[player_choice][0], next_room[player_choice][1]))
                     break
 
     def vision(self, x, y):                     ############# move to player class? #################

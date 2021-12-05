@@ -10,7 +10,9 @@ class BuildDungeon:
         self.__height = 0
         self.__ver = []
         self.__hor = []
+        self.__entrance_loc = ()
         self.__difficulty(mode)
+        self.__exit_loc = (self.__width - 1, self.__height - 1)
         self.__room_index = {}
         # self.impassible_rooms = []                      ######### DELETE ???? ######################
         self.build_maze()
@@ -19,29 +21,23 @@ class BuildDungeon:
     def get_width(self):
         return self.__width
 
-    # def set_width(self, w):
-    #     self.__width = w
-
     def get_height(self):
         return self.__height
 
-    # def set_height(self, h):
-    #     self.__height = h
-
-    # def set_ver(self, ver):
-    #     self.__ver = ver
-
     def get_ver(self):
         return self.__ver
-
-    # def set_hor(self, hor):
-    #     self.__hor = hor
 
     def get_hor(self):
         return self.__hor
 
     def get_factory(self):
         return self.__factory
+
+    def get_entrance_loc(self):
+        return self.__entrance_loc
+
+    def get_exit_loc(self):
+        return self.__exit_loc
 
     def get_room_index(self):
         return self.__room_index
@@ -51,6 +47,8 @@ class BuildDungeon:
     ver = property(get_ver)
     hor = property(get_hor)
     factory = property(get_factory)
+    entrance_loc = property(get_entrance_loc)
+    exit_loc = property(get_exit_loc)
     room_index = property(get_room_index)
 
     def __difficulty(self, mode):
@@ -65,6 +63,8 @@ class BuildDungeon:
             self.__height = 12
         else:
             raise ValueError('Input is not between 1 to 3 for difficulty mode')
+
+        self.__entrance_loc = (randrange(0, self.__width // 2,), randrange(0, self.__height // 2))
 
     def build_maze(self):
         """
@@ -82,13 +82,15 @@ class BuildDungeon:
         # wide (+--) + 1 (+) x (height + 1) horizontal walls
         self.__hor = [["+--"] * self.__width + ['+'] for _ in range(self.__height + 1)]
 
-        def __break_wall(x, y):
+        def __break_wall(location):
             """
             Path of maze created using visited grid. In each room, neighbors ("d" list) are approached
             randomly by using time.shuffle.
             Room objects created during wall-breaking process, indexed into dictionary "__room_index"
             """
-            self.room_index[(x, y)] = Room(self, x, y)
+            x = location[0]
+            y = location[1]
+            self.room_index[location] = Room(self, x, y)
             # change 0 to 1 after room visited
             visited[y][x] = 1
             # [(west),(south),(east),(north)] neighbors of the current room
@@ -106,10 +108,10 @@ class BuildDungeon:
                 if yy == y:
                     self.__ver[y][max(x, xx)] = "   "
                 # move to next room
-                __break_wall(xx, yy)
+                __break_wall((xx, yy))
 
         # Create & Check entrance to exit pathway, else recreate
-        __break_wall(0, 0)
+        __break_wall(self.__entrance_loc)
         while True:
             '''# Entrance location
                 # randomize start location (alternate OPTION)

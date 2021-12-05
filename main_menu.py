@@ -12,8 +12,7 @@ menu()
 option = int(input("Enter the option you would like to choose: "))
 while option != 0:
     if option == 1:
-#        obj = instructions.CharacterCreation
-
+        obj = instructions.CharacterCreation
     elif option == 2:
         instructions()
         print()

@@ -10,6 +10,7 @@ class Player:
         self.__healingpotions = []
         self.__visionpotioncount = 0
         self.__pillarsfound = []
+        self.__bag = []
 
     @property
     def name(self):
@@ -30,6 +31,11 @@ class Player:
     @property
     def pillarsfound(self):
         return self.__pillarsfound
+
+    def pick_up(self, objects):
+        for obj in objects:
+            self.__bag.append(obj)
+            print('Player picked up', obj)
 
     def addhealingpotion(self, potion):
         self.__healingpotions.append(potion)

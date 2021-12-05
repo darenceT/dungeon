@@ -37,8 +37,8 @@ class ObjectFactory:
     def create_objects(self):
 
         # Put entrance "i" and exit "o"
-        self.deliver_to_room((0, 0), 'i')
-        self.deliver_to_room((self.__map.width-1, self.__map.height-1), 'O')
+        self.deliver_to_room(self.__map.entrance_loc, 'i')
+        self.deliver_to_room(self.__map.exit_loc, 'O')
         self.add_pillars()
 
         # Put pits
