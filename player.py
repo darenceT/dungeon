@@ -60,7 +60,7 @@ class Player:
         self.__visionpotions += 1
         print("Added vision potion to inventory.")
 
-    def takevisionpotion(self):
+    def take_vision_potion(self):
         if self.__visionpotioncount == 0:
             print("You are all out of vision potions.")
         else:

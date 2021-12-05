@@ -101,7 +101,7 @@ class ObjectFactory:
                     return
                 else:
                     count += 1
-                if (x, y) not in temp_list and self.__map.traverse_dungeon(x, y):
+                if (x, y) not in temp_list and self.__map.traverse_dungeon((x, y)):
                     print('will add_item PILLAR')           ####################### delete ###########################
                     self.deliver_to_room((x, y), item)
                     temp_list.append((x, y))

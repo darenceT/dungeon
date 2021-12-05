@@ -118,7 +118,7 @@ class BuildDungeon:
             # break_wall(randrange(w), randrange(h))
                 # specify location e.g. 0,0 for top left: x, y '''
             self.create_impassible()
-            if self.traverse_dungeon(self.__width-1, self.__height-1):    # if false, recreate maze
+            if self.traverse_dungeon(self.__exit_loc):    # if false, recreate maze
                 break
             else:
                 print('reset')              ####################### delete ###########################
@@ -150,7 +150,7 @@ class BuildDungeon:
                     self.__hor[y + 1][x] = "+--"
                     break
 
-    def traverse_dungeon(self, target_x, target_y):
+    def traverse_dungeon(self, target_loc):
         """
         Traverse maze just after walls broken and path created, ensure path from (0, 0)
         to exit, 'E' is possible.
@@ -158,9 +158,10 @@ class BuildDungeon:
         :rtype: boolean
         """
         print('traverse')       ####################### delete ########################
+        target_x, target_y = target_loc
         maze = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
         maze[target_y][target_x] = 'E'    # Target
-        stack = [(0, 0)]     # stack starts with entrance room
+        stack = [self.__entrance_loc]     # stack starts with entrance room
         while len(stack) > 0:
             x, y = stack.pop()
 
