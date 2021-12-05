@@ -1,3 +1,6 @@
+# Name: Manuel Duarte
+
+
 from random import randint
 
 
