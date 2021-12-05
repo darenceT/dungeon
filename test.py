@@ -1,18 +1,16 @@
-from random import randrange
 
-width = 35
-height = 3
-__impassible_rooms = []
+class obj:
+    def __init__(self, impass=False):
+        self.impass= impass
 
-for i in range(width // 4):
-    while True:
-        x = randrange(0, width)
-        y = randrange(0, height)
-        print(x, y)
-        # Avoid entrance and exit rooms
-        if x == 0 and y == 0 or x == width - 1 and y == height-1:
-            continue
-        elif (x, y) not in __impassible_rooms:
-            __impassible_rooms.append((x, y))
-            print(__impassible_rooms)
-            break
+dict = {}
+
+
+dict[1] = obj()
+dict[2] = obj(impass=True)
+dict[3] = obj(impass=True)
+count = 0
+for i in dict:
+    if dict[i].impass:
+        count += 1
+print(count)

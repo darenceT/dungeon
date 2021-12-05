@@ -1,19 +1,21 @@
-from make_dungeon import MakeDungeon
-from room import Room
+from build_dungeon import BuildDungeon
 from vision_potion import VisionPotion
 
 
 class Adventure:
 
-    def __init__(self, mode):
-        self.p = MakeDungeon(mode)
+    def __init__(self, difficulty):
+        self.p = BuildDungeon(difficulty)
         print(self.p)                   ################### delete
         self.current_loc(0, 0)
 
     def current_loc(self, x, y):
-        p = Room(self, x, y)
-        p.print()
-        p.get_room_items()
+        self.p.room_index[(x, y)].enter_room()
+        print(self.p.room_index[(x, y)])
+
+        items_found = self.p.room_index[(x, y)].obtain_items()
+
+        # player.pickup(items_found)
 
         # if user reached end
         if x == self.p.width -1 and y == self.p.height -1:
@@ -37,9 +39,10 @@ class Adventure:
             options.append('East')
 
         while True:
-            print('Your options for moving to next room are:', ','.join(options))
-            player_choice = input('Input letter for moving to next room (e.g. n, s, e, w): ').lower()
-            input_detail = {'n': 'North', 's': 'South', 'e': 'East', 'w': 'West'}
+            print('Your options for moving to next room:', ', '.join(options))
+            player_choice = input('Input letter for your next action "n, s, e, w" for next room,\n'
+                                  '"p" for potion, "i" for status: ').lower()
+            input_detail = {'n': 'North', 's': 'South', 'e': 'East', 'w': 'West'}   # add 's': status(), 'p': potion()
 
             if player_choice not in input_detail.keys():
                 print('Invalid input!')

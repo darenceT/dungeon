@@ -1,4 +1,4 @@
-from make_dungeon import MakeDungeon
+from build_dungeon import BuildDungeon
 import time
 
 
