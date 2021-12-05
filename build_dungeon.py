@@ -202,6 +202,3 @@ class BuildDungeon:
 if __name__ == '__main__':
     p = BuildDungeon(1)
     print(p)
-
-    # for i in p.factory.items:                       ############### DELETE
-    #     print(i, p.factory.items[i])

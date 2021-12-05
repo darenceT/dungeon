@@ -107,16 +107,6 @@ class ObjectFactory:
                     temp_list.append((x, y))
                     break
 
-        # index = 0
-        # while index < len(pillars):
-        #     x, y = randrange(0, self.__map.width), randrange(0, self.__map.height)
-        #     if (x, y) not in self.__items.keys() and (x, y) not in self.__map.impassible_rooms \
-        #             and self.__map.traverse_dungeon(x, y):
-        #         self.add_item_in_room((x, y), pillars[index])
-        #         self.pillars_loc.append((x, y))
-        #         index += 1
-        #         print('pillar')
-
     def add_item_in_room(self, location, letter):
         x = location[0]
         y = location[1]

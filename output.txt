@@ -1,0 +1,12 @@
+
+
+
+
+
+
+
+    • Output captures (or tests) that show
+        • Maze generation works (generates a passable maze, if impassable maze is generated then a new
+        maze is generated) • Example of losing game
+        • Example of winning game
+        • NOTE: for these tests you can (should?) make your maze smaller to test things more easily.
