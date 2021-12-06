@@ -19,7 +19,7 @@ class DungeonObject(ABC):
             raise TypeError('Only string accepted')
         elif not letter.isalpha():
             raise ValueError('No strange business, alphabet letters only!')
-        elif len(letter) >1:
+        elif len(letter) > 1:
             raise ValueError('No more than 1 letter')
         self.__letter = letter
 

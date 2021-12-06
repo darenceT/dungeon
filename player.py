@@ -34,8 +34,17 @@ class Player:
 
     def pick_up(self, objects):
         for obj in objects:
-            self.__bag.append(obj)
-            print('Player picked up', obj)
+            if obj.letter == 'X':
+                self.__hitpoints -= obj.function()
+                obj.set_visited()
+            elif obj.letter in ['H', 'V']:
+                print(self.__name, 'picked up', obj)
+            elif obj not in self.__bag:
+                obj.function()
+                self.__bag.append(obj)
+
+    def potion_menu(self):
+        print("potion menu: you have X potions, use healing or vision?")
 
     def addhealingpotion(self, potion):
         self.__healingpotions.append(potion)
@@ -76,6 +85,6 @@ class Player:
             f"Name: {self.__name}\n"
             f"Hit Points: {self.__hitpoints}\n"
             f"Total Healing Potions: {len(self.__healingpotions)}\n"
-            f"Total Vision Potions: {self.__visionpotions}\n"
+            f"Total Vision Potions: {self.__visionpotioncount}\n"
             f"List of Pillars Pieces Found: {', '.join(p for p in self.__pillarsfound)}"
         )
