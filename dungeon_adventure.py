@@ -3,21 +3,22 @@ from player import Player
 from vision_potion import VisionPotion              ############# delete #################
 
 
-class Adventure:
+class DungeonAdventure:
 
-    def __init__(self, user_input):
-        self.__map = BuildDungeon(user_input.difficulty)
+    def __init__(self, input):
+        self.__map = BuildDungeon(input.difficulty)
         print(self.__map)                   ################### delete
         self.__room_index = self.__map.room_index
-        self.__player = Player(user_input.player_name)
+        self.__player = Player(input.player_name.capitalize())
         self.__entrance_loc = self.__map.entrance_loc
         self.__exit_loc = self.__map.exit_loc
         self.__current_loc(self.__entrance_loc)
 
     def __current_loc(self, location):
-        print(self.__player.name, end=' ')
+        print('============================================================\n    ',
+              self.__player.name, end=' ')
         self.__map.room_index[location].enter_room()
-        print(self.__room_index[location])
+
         items_list = self.__room_index[location].obtain_items()
         self.__player.pick_up(items_list)
 
@@ -32,6 +33,7 @@ class Adventure:
             #     self.move_options(x, y)
 
         # self.vision(x, y)           ################################ DELETE
+        print(self.__room_index[location])
         self.__move_options(location)
 
     def __move_options(self, location):
@@ -96,5 +98,5 @@ if __name__ == '__main__':
     b.difficulty = int(input('Select difficulty:\n1. Easy\n2. Normal\n3. Hard\nType 1, 2 or 3: '))
     # except TypeError:
     b.player_name = 'jack'
-    a = Adventure(b)
+    a = DungeonAdventure(b)
 

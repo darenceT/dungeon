@@ -15,7 +15,8 @@ class BuildDungeon:
         self.__exit_loc = (self.__width - 1, self.__height - 1)
         self.__room_index = {}
         self.__pillars_loc = []
-        self.build_maze()
+        self.__build_maze()
+        self.__objects_for_traversal()
         self.__factory = ObjectFactory(self)  # factory puts objects into maze
 
     def get_width(self):
@@ -70,7 +71,7 @@ class BuildDungeon:
 
         self.__entrance_loc = (randrange(0, self.__width // 2,), randrange(0, self.__height // 2))
 
-    def build_maze(self):
+    def __build_maze(self):
         """
         Build maze by first creating a grid of 1s, and 0s, where unvisited 0 becomes 1 when visited.
         Walls are created vertically, "ver" and horizontally, "hor". Helper function break_wall
@@ -113,23 +114,22 @@ class BuildDungeon:
                 __break_wall((xx, yy))
 
         __break_wall(self.__entrance_loc)
-        self.objects_for_traversal()
 
-    def objects_for_traversal(self):                # need to clean up this code
+    def __objects_for_traversal(self):                # need to clean up this code
         while True:
-            self.create_impassible()
-            self.create_pillar_loc()
-            if self.traverse_dungeon(self.__exit_loc):
-                for i, loc in enumerate(self.__pillars_loc):
-                    if not self.traverse_dungeon(loc):
-                        self.build_maze()
+            self.__create_impassible()
+            self.__create_pillar_loc()
+            if self.__traverse_dungeon(self.__exit_loc):
+                for loc in self.__pillars_loc:
+                    if not self.__traverse_dungeon(loc):
+                        self.__build_maze()
                         return
                 break
             else:
-                self.build_maze()
+                self.__build_maze()
                 break
 
-    def create_pillar_loc(self):
+    def __create_pillar_loc(self):
         while len(self.__pillars_loc) < 4:
             x = randrange(0, self.__width)
             y = randrange(0, self.__height)
@@ -138,7 +138,7 @@ class BuildDungeon:
                 self.__pillars_loc.append((x, y))
                 print()
 
-    def create_impassible(self):
+    def __create_impassible(self):
         """
         Append to list of impassible rooms to avoid putting objects into these rooms
         Credit to Steph for help with debugging.
@@ -160,7 +160,7 @@ class BuildDungeon:
                     self.__hor[y + 1][x] = "+--"
                     break
 
-    def traverse_dungeon(self, target_loc):
+    def __traverse_dungeon(self, target_loc):
         """
         Traverse maze just after walls broken and path created, ensure path from (0, 0)
         to exit, 'E' is possible.
@@ -202,5 +202,5 @@ class BuildDungeon:
 
 # delete this later for submission
 if __name__ == '__main__':
-    p = BuildDungeon(1)
+    p = BuildDungeon(2)
     print(p)

@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 import time
 
 
-class Potion(DungeonObject, ABC):
+class Potion(DungeonObject):
 
     @staticmethod
     def timer():
@@ -15,7 +15,7 @@ class Potion(DungeonObject, ABC):
         time.sleep(1)
 
     # print('\nOnly 8 rooms revealed, not bottom right which is covered by :::\n')
-    @abstractmethod
+    # @abstractmethod
     def function(self):
         pass
         "use potion"

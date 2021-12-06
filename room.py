@@ -104,9 +104,9 @@ class Room:
                     'A': 'Pillar of Abstraction!', 'E': 'Pillar of Encapsulation!', 'I': 'Pillar of Inheritance!',
                     'P': 'Pillar of Polymorphism'}
         if self.__objects:
-            print('This room contains:', ', '.join([ref_list[i.letter] for i in self.__objects]))
+            print('     This room contains:', ', '.join([ref_list[i.letter] for i in self.__objects]), '\n')
         else:
-            print('This room is empty.')
+            print('     This room is empty.\n')
 
         return self.__objects
 
@@ -145,8 +145,9 @@ class Room:
         y = self.__y_loc
         self.__map.ver[y][x] = self.__map.ver[y][x][0] + display + ' '
 
-        return self.__map.hor[y][x] + '+\n' + self.__map.ver[y][x] +\
-               self.__map.ver[y][x + 1][0] + '\n' + self.__map.hor[y + 1][x] + '+'
+        return '               ' + self.__map.hor[y][x] + \
+               '+\n               ' + self.__map.ver[y][x] + self.__map.ver[y][x + 1][0] + \
+               '\n               ' + self.__map.hor[y + 1][x] + '+'
 '''
 
 

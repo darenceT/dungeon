@@ -38,7 +38,7 @@ class Player:
                 self.__hitpoints -= obj.function()
                 obj.set_visited()
             elif obj.letter in ['H', 'V']:
-                print(self.__name, 'picked up', obj)
+                print(self.__name, 'picked up', obj, '\n')
             elif obj not in self.__bag:
                 obj.function()
                 self.__bag.append(obj)
