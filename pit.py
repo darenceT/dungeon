@@ -24,12 +24,12 @@ class Pit(DungeonObject):
 
     def function(self):
         if not self.__visited:
-            print('Walk slow or run too fast, you still fell into a pit!')
+            print('Walk slow or run too fast, you still fell into a pit!\n')
             time.sleep(3)
-            print('You lose', self.__damage, 'health.')
+            print('You lose', self.__damage, 'health.\n')
             return self.__damage
         else:
-            print('You safely walk around the pit')
+            print('You safely walk around the pit\n')
             time.sleep(2)
             return 0
 
