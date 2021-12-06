@@ -104,7 +104,7 @@ class Room:
                     'A': 'Pillar of Abstraction!', 'E': 'Pillar of Encapsulation!', 'I': 'Pillar of Inheritance!',
                     'P': 'Pillar of Polymorphism'}
         if self.__objects:
-            print('This room contains:', ', '.join([ref_list[i] for i in self.__objects]))
+            print('This room contains:', ', '.join([ref_list[i.letter] for i in self.__objects]))
         else:
             print('This room is empty.')
 
@@ -135,7 +135,7 @@ class Room:
     def __str__(self):
         display = ' '
         if len(self.__objects) == 1:
-            display = self.__objects[0]
+            display = self.__objects[0].letter
         elif len(self.__objects) > 1:
             display = 'M'
 
