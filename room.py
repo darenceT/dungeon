@@ -14,11 +14,11 @@ class Room:
         self.__pillar = None
         self.__objects = []
 
-    def set_impassible(self):
+    def set_impassible(self, change=True):
         if self.__impassible:
             raise ValueError('Redundancy, Room has already been made impassible')
         else:
-            self.__impassible = True
+            self.__impassible = change
             print('now impassible')               ####################### delete ###########################
 
     def get_impassible(self):
@@ -93,11 +93,6 @@ class Room:
             print(f'entered room (x: {self.__x_loc}, y: {self.__y_loc}):')
         else:
             raise ValueError('Room has been set impassible, you are trespassing!')
-        # if self.__pit:
-        #     self.__pit.function()
-        #     print(self.__pit.visited)
-        #     self.__pit.set_visited()
-        #     print(self.__pit.visited)
 
     def obtain_items(self):
         """
@@ -115,19 +110,19 @@ class Room:
 
         return self.__objects
 
-    def receive_from_factory(self, object):
-        function_route = {'i': self.set_entrance, 'O': self.set_exit, 'H': self.set_health_potion,
-                      'V': self.set_vision_potion, 'X': self.set_pit, 'A': self.set_pillar,
-                      'E': self.set_pillar, 'I': self.set_pillar, 'P': self.set_pillar}
-        print('success receiving:', object)            ####################### delete ###########################
+    def receive_from_factory(self, obj):
+        route = {'i': self.set_entrance, 'O': self.set_exit, 'H': self.set_health_potion,
+                 'V': self.set_vision_potion, 'X': self.set_pit, 'A': self.set_pillar,
+                 'E': self.set_pillar, 'I': self.set_pillar, 'P': self.set_pillar}
+        print('success receiving:', obj)            ####################### delete ###########################
 
-        if object.letter in ['A', 'E', 'I', 'P']:
-            function_route[object.letter](object.letter)
-        elif object.letter == 'X':
-            function_route[object.letter](object)
+        if obj.letter in ['A', 'E', 'I', 'P']:
+            route[obj.letter](obj.letter)
+        elif obj.letter == 'X':
+            route[obj.letter](obj)
         else:
-            function_route[object.letter]()
-        self.__objects.append(object)
+            route[obj.letter]()
+        self.__objects.append(obj)
 
     # def visited_potion(self, x, y, potion):         ######## Not tested ########### Move to adventure??
     #     if potion in self.__items[(x, y)]:

@@ -14,7 +14,7 @@ class BuildDungeon:
         self.__difficulty(mode)
         self.__exit_loc = (self.__width - 1, self.__height - 1)
         self.__room_index = {}
-        # self.impassible_rooms = []                      ######### DELETE ???? ######################
+        self.__pillars_loc = []
         self.build_maze()
         self.__factory = ObjectFactory(self)  # factory puts objects into maze
 
@@ -42,6 +42,9 @@ class BuildDungeon:
     def get_room_index(self):
         return self.__room_index
 
+    def get_pillars_loc(self):
+        return self.__pillars_loc
+
     width = property(get_width)
     height = property(get_height)
     ver = property(get_ver)
@@ -50,6 +53,7 @@ class BuildDungeon:
     entrance_loc = property(get_entrance_loc)
     exit_loc = property(get_exit_loc)
     room_index = property(get_room_index)
+    pillars_loc = property(get_pillars_loc)
 
     def __difficulty(self, mode):
         if mode == 1:
@@ -86,9 +90,10 @@ class BuildDungeon:
             randomly by using time.shuffle.
             Room objects created during wall-breaking process, indexed into dictionary "__room_index"
             """
-            x = location[0]
-            y = location[1]
+            x, y = location
+            # create room and map index, reset so room is passable
             self.room_index[location] = Room(self, x, y)
+            self.room_index[location].set_impassible(change=False)
             # change 0 to 1 after room visited
             visited[y][x] = 1
             # [(west),(south),(east),(north)] neighbors of the current room
@@ -107,22 +112,31 @@ class BuildDungeon:
                 # move to next room
                 __break_wall((xx, yy))
 
-        # Create & Check entrance to exit pathway, else recreate
         __break_wall(self.__entrance_loc)
+        self.objects_for_traversal()
+
+    def objects_for_traversal(self):                # need to clean up this code
         while True:
-            '''# Entrance location
-                # randomize start location (alternate OPTION)
-            # break_wall(randrange(w), randrange(h))
-                # specify location e.g. 0,0 for top left: x, y '''
             self.create_impassible()
-            if self.traverse_dungeon(self.__exit_loc):    # if false, recreate maze
+            self.create_pillar_loc()
+            if self.traverse_dungeon(self.__exit_loc):
+                for i, loc in enumerate(self.__pillars_loc):
+                    if not self.traverse_dungeon(loc):
+                        self.build_maze()
+                        return
                 break
             else:
-                print('reset')              ####################### delete ###########################
-                #self.impassible_rooms = []  ####################### delete ###########################
                 self.build_maze()
                 break
-        print(len(self.__room_index), 'room index length')       ####################### delete ########################
+
+    def create_pillar_loc(self):
+        while len(self.__pillars_loc) < 4:
+            x = randrange(0, self.__width)
+            y = randrange(0, self.__height)
+            if (x, y) != self.__entrance_loc and (x, y) != self.__exit_loc \
+                    and (x, y) not in self.__pillars_loc:
+                self.__pillars_loc.append((x, y))
+                print()
 
     def create_impassible(self):
         """
@@ -135,8 +149,7 @@ class BuildDungeon:
             while True:
                 x = randrange(0, self.__width)
                 y = randrange(0, self.__height)
-                # Avoid entrance and exit rooms
-                if x == 0 and y == 0 or x == self.__width-1 and y == self.__height - 1:
+                if (x, y) == self.__entrance_loc or (x, y) == self.__entrance_loc:
                     continue
                 elif (x, y) not in temp_list:     # avoid duplicates
                     temp_list.append((x, y))
@@ -161,7 +174,6 @@ class BuildDungeon:
         stack = [self.__entrance_loc]     # stack starts with entrance room
         while len(stack) > 0:
             x, y = stack.pop()
-
             if maze[y][x] == 'E':
                 return True
             # 1 is already visited or outside of maze
