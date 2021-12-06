@@ -4,10 +4,10 @@ from adventure import Adventure
 
 class Main:
     def __init__(self):
-        self.__user = Instructions()
-        self.__player_name = self.__user.player_name
-        self.__difficulty = self.__user.difficulty
-        self.__adventure = Adventure(self.__difficulty)
+        # self.__user_input = Instructions()
+        # self.__adventure = Adventure(self.__user_input)
+
+        Adventure(Instructions())
 
 
 if __name__ == '__main__':

@@ -1,13 +1,12 @@
 from dungeon_object import DungeonObject
-import timer
+from abc import ABC, abstractmethod
+import time
 
 
-class Potion(DungeonObject):
+class Potion(DungeonObject, ABC):
 
-    def __init__(self):
-        self.__name = ''
-
-    def timer(self):
+    @staticmethod
+    def timer():
         print("\n*** Using potion in ...", end='')
         count = [' 3,', ' 2,', ' 1!']
         for i in count:
@@ -16,13 +15,7 @@ class Potion(DungeonObject):
         time.sleep(1)
 
     # print('\nOnly 8 rooms revealed, not bottom right which is covered by :::\n')
-
+    @abstractmethod
     def function(self):
         pass
         "use potion"
-
-    def char(self):
-        return self.__name[0]
-
-    def __str__(self):
-        return self.__name

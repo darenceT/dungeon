@@ -5,21 +5,23 @@ from vision_potion import VisionPotion              ############# delete #######
 
 class Adventure:
 
-    def __init__(self, difficulty):
-        self.__p = BuildDungeon(difficulty)
-        print(self.__p)                   ################### delete
-        self.__player = Player()
-        self.__entrance_loc = self.__p.entrance_loc
-        self.__exit_loc = self.__p.exit_loc
+    def __init__(self, user_input):
+        self.__map = BuildDungeon(user_input.difficulty)
+        print(self.__map)                   ################### delete
+        self.__player = Player(user_input.player_name)
+        self.__entrance_loc = self.__map.entrance_loc
+        self.__exit_loc = self.__map.exit_loc
         self.__current_loc(self.__entrance_loc)
 
     def __current_loc(self, location):
-        self.__p.room_index[location].enter_room()
-        print(self.__p.room_index[location])
-
-        items_found = self.__p.room_index[location].obtain_items()
-
+        self.__map.room_index[location].enter_room()
+        print(self.__map.room_index[location])
+        print('Welcome', self.__player.name)
+        items_found = self.__map.room_index[location].obtain_items()
         self.__player.pick_up(items_found)
+
+        # for obj in items_found:
+        #     obj.function()
 
         # if user reached end
         print(location, 'and', self.__exit_loc)
@@ -38,13 +40,13 @@ class Adventure:
         x = location[0]
         y = location[1]
         open_path = []
-        if self.__p.hor[y][x] == "+  ":
+        if self.__map.hor[y][x] == "+  ":
             open_path.append('North')
-        if self.__p.hor[y+1][x] == "+  ":
+        if self.__map.hor[y+1][x] == "+  ":
             open_path.append('South')
-        if self.__p.ver[y][x][0] == " ":
+        if self.__map.ver[y][x][0] == " ":
             open_path.append('West')
-        if self.__p.ver[y][x+1][0] == " ":
+        if self.__map.ver[y][x+1][0] == " ":
             open_path.append('East')
 
         while True:
@@ -84,9 +86,12 @@ DungeonAdventure
 """
 
 if __name__ == '__main__':
-    # try:
-    mode = int(input('Select difficulty:\n1. Easy\n2. Normal\n3. Hard\nType 1, 2 or 3: '))
-    # except TypeError:
+    class Obj:
+        pass
+    b = Obj()
 
-    a = Adventure(mode)
+    b.difficulty = int(input('Select difficulty:\n1. Easy\n2. Normal\n3. Hard\nType 1, 2 or 3: '))
+    # except TypeError:
+    b.player_name = 'jack'
+    a = Adventure(b)
 

@@ -111,8 +111,10 @@ class ObjectFactory:
         x = location[0]
         y = location[1]
         self.__room_index[(x, y)].receive_from_factory(letter)
-        print("success sending items")           ####################### delete #####################
-        if self.__map.ver[y][x][1] != ' ':                  ################ delete??? ###############################
+        print("success sending items")       ####################### delete #####################
+
+        # update map, shows all initial objects
+        if self.__map.ver[y][x][1] != ' ':
             self.__map.ver[y][x] = self.__map.ver[y][x][0] + 'M '
             self.__items[(x, y)].append(letter)
         else:
