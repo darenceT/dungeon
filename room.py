@@ -110,17 +110,27 @@ class Room:
 
         return self.__objects
 
-    def receive_from_factory(self, object_letter):
+    def receive_from_factory(self, object):
         mail_route = {'i': self.set_entrance, 'O': self.set_exit, 'H': self.set_health_potion,
                       'V': self.set_vision_potion, 'X': self.set_pit, 'A': self.set_pillar,
                       'E': self.set_pillar, 'I': self.set_pillar, 'P': self.set_pillar}
-        print('success receiving:', object_letter)            ####################### delete ###########################
+        print('success receiving:', object.letter)            ####################### delete ###########################
 
-        if object_letter in ['A', 'E', 'I', 'P']:
-            mail_route[object_letter](object_letter)
+        if object.letter in ['A', 'E', 'I', 'P']:
+            mail_route[object.letter](object.letter)
         else:
-            mail_route[object_letter]()
-        self.__objects.append(object_letter)
+            mail_route[object.letter]()
+        self.__objects.append(object)
+
+    # def visited_potion(self, x, y, potion):         ######## Not tested ########### Move to adventure??
+    #     if potion in self.__items[(x, y)]:
+    #         self.__items[(x, y)].remove(potion)
+    #         if len(self.__items[(x, y)]) == 0:      # update map for empty room
+    #             self.ver[y][x] = self.ver[y][x][0] + '  '
+    #         elif len(self.__items[(x, y)]) == 1:    # update map for single item in room
+    #             self.ver[y][x] = self.ver[y][x][0] + self.__items[(x, y)] + ' '
+    #     else:
+    #         raise ValueError('Game error, no potion at this location to change to used potion')
 
     def __str__(self):
         display = ' '

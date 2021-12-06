@@ -1,3 +1,10 @@
+from entrance_door import EntranceDoor
+from exit_door import ExitDoor
+from pillar import Pillar
+from health_potion import HealthPotion
+from vision_potion import VisionPotion
+from pit import Pit
+
 from random import randrange
 
 
@@ -6,14 +13,14 @@ class ObjectFactory:
     def __init__(self, map):
         self.__map = map
         self.__room_index = map.room_index
-        self.__items = {}           ################ delete??? ###############################
+        # self.__items = {}           ################ delete??? ###############################
         self.pillars_loc = []           ################ delete??? ###############################
         self.create_objects()
 
-    def get_items(self):
-        return self.__items
-
-    items = property(get_items)
+    # def get_items(self):            ################ delete??? ###############################
+    #     return self.__items
+    #
+    # items = property(get_items)            ################ delete??? ###############################
 
     def valid_random_loc(self):
         """
@@ -37,8 +44,8 @@ class ObjectFactory:
     def create_objects(self):
 
         # Put entrance "i" and exit "o"
-        self.deliver_to_room(self.__map.entrance_loc, 'i')
-        self.deliver_to_room(self.__map.exit_loc, 'O')
+        self.deliver_to_room(self.__map.entrance_loc, EntranceDoor())
+        self.deliver_to_room(self.__map.exit_loc, ExitDoor())
         self.add_pillars()
 
         # Put pits
@@ -48,7 +55,7 @@ class ObjectFactory:
             coordinate = self.valid_random_loc()
             if coordinate not in temp_pit:
                 temp_pit.append(coordinate)
-                self.deliver_to_room(coordinate, 'X')
+                self.deliver_to_room(coordinate, Pit())
                 print(coordinate, 'pit')
                 index += 1
             else:       ####################### delete ###########################
@@ -62,7 +69,7 @@ class ObjectFactory:
             coordinate = self.valid_random_loc()
             if coordinate not in temp_healing:
                 temp_healing.append(coordinate)
-                self.deliver_to_room(coordinate, 'H')
+                self.deliver_to_room(coordinate, HealthPotion())
                 print(coordinate, 'healing potion')
                 index += 1
             else:       ####################### delete ###########################
@@ -76,7 +83,7 @@ class ObjectFactory:
             coordinate = self.valid_random_loc()
             if coordinate not in temp_vision:
                 temp_vision.append(coordinate)
-                self.deliver_to_room(coordinate, 'V')
+                self.deliver_to_room(coordinate, VisionPotion())
                 print(coordinate, 'vision potion')
                 index += 1
             else:       ####################### delete ###########################
@@ -103,20 +110,20 @@ class ObjectFactory:
                     count += 1
                 if (x, y) not in temp_list and self.__map.traverse_dungeon((x, y)):
                     print('will add_item PILLAR')           ####################### delete ###########################
-                    self.deliver_to_room((x, y), item)
+                    self.deliver_to_room((x, y), Pillar(item))
                     temp_list.append((x, y))
                     break
 
-    def deliver_to_room(self, location, letter):
+    def deliver_to_room(self, location, object):
         x = location[0]
         y = location[1]
-        self.__room_index[(x, y)].receive_from_factory(letter)
+        self.__room_index[(x, y)].receive_from_factory(object)
         print("success sending items")       ####################### delete #####################
 
         # update map, shows all initial objects
         if self.__map.ver[y][x][1] != ' ':
             self.__map.ver[y][x] = self.__map.ver[y][x][0] + 'M '
-            self.__items[(x, y)].append(letter)
+            # self.__items[(x, y)].append(object.letter)           ####################### delete ##
         else:
-            self.__map.ver[y][x] = self.__map.ver[y][x][0] + letter + ' '
-            self.__items[(x, y)] = [letter]
+            self.__map.ver[y][x] = self.__map.ver[y][x][0] + object.letter + ' '
+            # self.__items[(x, y)] = [letter]                  ####################### delete ##

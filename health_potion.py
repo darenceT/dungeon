@@ -1,7 +1,7 @@
 from potion import Potion
 
 
-class HealingPotion(Potion):
+class HealthPotion(Potion):
 
     def __init__(self):
         super().set_name('Healing Potion')

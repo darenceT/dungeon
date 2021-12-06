@@ -11,3 +11,6 @@ class Pit(DungeonObject):
     @property
     def damage(self):
         return self.__damage
+
+    def function(self):
+        print('Walk slow or run too fast, you still fell into a pit!')
