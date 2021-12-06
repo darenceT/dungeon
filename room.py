@@ -8,7 +8,7 @@ class Room:
         self.__impassible = False
         self.__entrance = False            ####################### ??? delete ############
         self.__exit = False
-        self.__pit = False
+        self.__pit = None
         self.__health_potion = False
         self.__vision_potion = False
         self.__pillar = None
@@ -71,11 +71,11 @@ class Room:
         elif not self.__vision_potion and remove:
             raise ValueError('Redundancy, no vision potion to remove')
 
-    def set_pit(self):
+    def set_pit(self, object):
         if self.__pit:
             raise ValueError('Redundancy, pit has already been set')
         else:
-            self.__pit = True
+            self.__pit = object
             print('pit added')               ####################### delete ###########################
 
     def set_pillar(self, pillar):
@@ -90,9 +90,14 @@ class Room:
         Player enters room, method checks impassible status.
         """
         if not self.__impassible:
-            print(f'Entered room (x: {self.__x_loc}, y: {self.__y_loc}):')
+            print(f'entered room (x: {self.__x_loc}, y: {self.__y_loc}):')
         else:
             raise ValueError('Room has been set impassible, you are trespassing!')
+        # if self.__pit:
+        #     self.__pit.function()
+        #     print(self.__pit.visited)
+        #     self.__pit.set_visited()
+        #     print(self.__pit.visited)
 
     def obtain_items(self):
         """
@@ -111,15 +116,17 @@ class Room:
         return self.__objects
 
     def receive_from_factory(self, object):
-        mail_route = {'i': self.set_entrance, 'O': self.set_exit, 'H': self.set_health_potion,
+        function_route = {'i': self.set_entrance, 'O': self.set_exit, 'H': self.set_health_potion,
                       'V': self.set_vision_potion, 'X': self.set_pit, 'A': self.set_pillar,
                       'E': self.set_pillar, 'I': self.set_pillar, 'P': self.set_pillar}
-        print('success receiving:', object.letter)            ####################### delete ###########################
+        print('success receiving:', object)            ####################### delete ###########################
 
         if object.letter in ['A', 'E', 'I', 'P']:
-            mail_route[object.letter](object.letter)
+            function_route[object.letter](object.letter)
+        elif object.letter == 'X':
+            function_route[object.letter](object)
         else:
-            mail_route[object.letter]()
+            function_route[object.letter]()
         self.__objects.append(object)
 
     # def visited_potion(self, x, y, potion):         ######## Not tested ########### Move to adventure??

@@ -8,23 +8,21 @@ class Adventure:
     def __init__(self, user_input):
         self.__map = BuildDungeon(user_input.difficulty)
         print(self.__map)                   ################### delete
+        self.__room_index = self.__map.room_index
         self.__player = Player(user_input.player_name)
         self.__entrance_loc = self.__map.entrance_loc
         self.__exit_loc = self.__map.exit_loc
         self.__current_loc(self.__entrance_loc)
 
     def __current_loc(self, location):
+        print(self.__player.name, end=' ')
         self.__map.room_index[location].enter_room()
-        print(self.__map.room_index[location])
-        print('Welcome', self.__player.name)
-        items_found = self.__map.room_index[location].obtain_items()
-        self.__player.pick_up(items_found)
+        print(self.__room_index[location])
+        items_list = self.__room_index[location].obtain_items()
+        self.__player.pick_up(items_list)
 
-        # for obj in items_found:
-        #     obj.function()
 
         # if user reached end
-        print(location, 'and', self.__exit_loc)
         if location == self.__exit_loc:
             print('You have reached the exit!')
             # if player.pillars:          True for collected all 4
@@ -51,19 +49,24 @@ class Adventure:
 
         while True:
             print('Your options for moving to next room:', ', '.join(open_path))
-            player_choice = input('Input letter for your next action "n, s, e, w" for next room,\n'
-                                  '"p" for potion, "i" for status: ').lower()
-            input_detail = {'n': 'North', 's': 'South', 'e': 'East', 'w': 'West'}   # add 's': status(), 'p': potion()
+            choice = input('Input letter for your next action "n, s, e, w" for next room,\n'
+                           '"p" for potion, "i" for status: ').lower()
+            menu = {'n': 'North', 's': 'South', 'e': 'East', 'w': 'West',
+                    'i': 'Player Status', 'p': 'Potion Menu'}
             next_room = {'n': (x, y - 1), 's': (x, y + 1), 'e': (x + 1, y), 'w': (x - 1, y)}
-            if player_choice not in input_detail.keys():
+            if choice not in menu.keys():
                 print('Invalid input!')
                 continue
             else:
-                if input_detail[player_choice] not in open_path:
+                if choice == 'i':
+                    print(self.__player)
+                elif choice == 'p':
+                    self.__player.potion_menu()
+                elif menu[choice] not in open_path:
                     print('That path is not possible!')
                     continue
                 else:
-                    self.__current_loc((next_room[player_choice][0], next_room[player_choice][1]))
+                    self.__current_loc((next_room[choice][0], next_room[choice][1]))
                     break
 
     def vision(self, x, y):                     ############# move to player class? #################

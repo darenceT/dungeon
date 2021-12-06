@@ -13,14 +13,8 @@ class ObjectFactory:
     def __init__(self, map):
         self.__map = map
         self.__room_index = map.room_index
-        # self.__items = {}           ################ delete??? ###############################
-        self.pillars_loc = []           ################ delete??? ###############################
+        # self.pillars_loc = []           ################ delete??? ###############################
         self.create_objects()
-
-    # def get_items(self):            ################ delete??? ###############################
-    #     return self.__items
-    #
-    # items = property(get_items)            ################ delete??? ###############################
 
     def valid_random_loc(self):
         """
@@ -32,9 +26,8 @@ class ObjectFactory:
             x = randrange(0, self.__map.width)
             y = randrange(0, self.__map.height)
             if not self.__map.room_index[(x, y)].impassible:
-            # if (x, y) not in self.__map.impassible_rooms:            ####################### delete ################
                 print('this is passible for putting object')
-                if (x == 0 and y == 0) or (x == self.__map.width - 1 and y == self.__map.height - 1):
+                if (x, y) == self.__map.entrance_loc or (x, y) == self.__map.exit_loc:
                     print('before continue')           ####################### delete ###########################
                     continue
                 else:
@@ -118,12 +111,10 @@ class ObjectFactory:
         x = location[0]
         y = location[1]
         self.__room_index[(x, y)].receive_from_factory(object)
-        print("success sending items")       ####################### delete #####################
+        print("success sending items", object, object.letter)       ####################### delete #####################
 
-        # update map, shows all initial objects
+        # Update map, always show all initial objects
         if self.__map.ver[y][x][1] != ' ':
             self.__map.ver[y][x] = self.__map.ver[y][x][0] + 'M '
-            # self.__items[(x, y)].append(object.letter)           ####################### delete ##
         else:
             self.__map.ver[y][x] = self.__map.ver[y][x][0] + object.letter + ' '
-            # self.__items[(x, y)] = [letter]                  ####################### delete ##
