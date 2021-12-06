@@ -1,43 +1,46 @@
 from build_dungeon import BuildDungeon
-import time
+from potion import Potion
 
 
-class VisionPotion:
+class VisionPotion(Potion):
 
     def __init__(self):
-        pass
-        # count or container of potions
+        super().set_name('Vision Potion')
+        super().set_letter('V')
 
-    @staticmethod
-    def use_vision(self, xx, yy):
+    def function(self, map, xx, yy):
+        super().timer()
         # modify values if at borders of dungeons
         x = xx if xx > 0 else 1
-        x = x if x < self.p.width - 1 else self.p.width - 2
+        x = x if x < map.width - 1 else map.width - 2
         y = yy if yy > 0 else 1
-        y = y if y < self.p.height - 1 else self.p.height - 2
+        y = y if y < map.height - 1 else map.height - 2
 
-        print("\n*** Using vision potion in ...", end='')
-        count = [' 3,', ' 2,', ' 1!']
-        for i in count:
-            time.sleep(1)
-            print(i, end='')
-        time.sleep(1)
         print('\nOnly 8 rooms revealed, not bottom right which is covered by :::\n')
 
-        print(''.join(self.p.hor[y - 1][x - 1:x + 2]) + '+\n' +
-              ''.join(self.p.ver[y - 1][x - 1:x + 2]) + self.p.ver[y - 1][x + 2][0] + '\n' +
-              ''.join(self.p.hor[y][x - 1:x + 2]) + '+\n' +
-              ''.join(self.p.ver[y][x - 1:x + 2]) + self.p.ver[y][x + 2][0] + '\n' +
-              ''.join(self.p.hor[y + 1][x - 1:x + 2]) + '+\n' +
-              ''.join(self.p.ver[y + 1][x - 1:x + 1]) + self.p.ver[y + 1][x + 1][0] + ':::\n' +
-              ''.join(self.p.hor[y + 2][x - 1:x + 1]) + '+\n')  # + '+:::')
+        print(''.join(map.hor[y - 1][x - 1:x + 2]) + '+\n' +
+              ''.join(map.ver[y - 1][x - 1:x + 2]) + map.ver[y - 1][x + 2][0] + '\n' +
+              ''.join(map.hor[y][x - 1:x + 2]) + '+\n' +
+              ''.join(map.ver[y][x - 1:x + 2]) + map.ver[y][x + 2][0] + '\n' +
+              ''.join(map.hor[y + 1][x - 1:x + 2]) + '+\n' +
+              ''.join(map.ver[y + 1][x - 1:x + 1]) + map.ver[y + 1][x + 1][0] + ':::\n' +
+              ''.join(map.hor[y + 2][x - 1:x + 1]) + '+\n')  # + '+:::')
 
 
-# if __name__ == '__main__':
-#     p = MakeDungeon(8, 4)
-#     p.make()
-#     print(p)
-#
+        # print(''.join(map.hor[y - 1][x - 1:x + 2]) + '+\n' +
+        #       ''.join(map.ver[y - 1][x - 1:x + 2]) + map.ver[y - 1][x + 2][0] + '\n' +
+        #       ''.join(map.hor[y][x - 1:x + 2]) + '+\n' +
+        #       ''.join(map.ver[y][x - 1:x + 2]) + map.ver[y][x + 2][0] + '\n' +
+        #       ''.join(map.hor[y + 1][x - 1:x + 2]) + '+\n' +
+        #       ''.join(map.ver[y + 1][x - 1:x + 1]) + map.ver[y + 1][x + 1][0] + ':::\n' +
+        #       ''.join(map.hor[y + 2][x - 1:x + 1]) + '+\n')  # + '+:::')
+
+
+if __name__ == '__main__':
+    p = BuildDungeon(1)
+    print(p)
+    v = VisionPotion()
+    v.function(p, 6, 5)
 
 
     '''

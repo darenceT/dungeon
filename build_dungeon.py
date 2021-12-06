@@ -75,10 +75,8 @@ class BuildDungeon:
         """
         # (wide x height of 0s + last column 1s) + last row 1s
         visited = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
-
         # (wide + 1 x height) vertical walls. "+[[]]" allows printing of bottom wall
         self.__ver = [["|  "] * self.__width + ['|'] for _ in range(self.__height)] + [[]]
-
         # wide (+--) + 1 (+) x (height + 1) horizontal walls
         self.__hor = [["+--"] * self.__width + ['+'] for _ in range(self.__height + 1)]
 
@@ -96,7 +94,6 @@ class BuildDungeon:
             # [(west),(south),(east),(north)] neighbors of the current room
             neighbors = [(x - 1, y), (x, y + 1), (x + 1, y), (x, y - 1)]
             shuffle(neighbors)
-
             for (xx, yy) in neighbors:
                 # if neighbor has been visited or at grid border, skip to next neighbor
                 if visited[yy][xx]:

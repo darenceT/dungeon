@@ -12,7 +12,7 @@ class Instructions:
 
     def set_player_name(self, name):
         if not isinstance(name, str):
-            raise ValueError('Only string accepted for name')
+            raise TypeError('Only string accepted for name')
         self.__player_name = name
 
     def get_difficulty(self):
