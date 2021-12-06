@@ -181,16 +181,6 @@ class BuildDungeon:
                 stack.append((x-1, y))
         return False
 
-    def visited_potion(self, x, y, potion):         ######## Not tested ########### Move to adventure??
-        if potion in self.__items[(x, y)]:
-            self.__items[(x, y)].remove(potion)
-            if len(self.__items[(x, y)]) == 0:      # update map for empty room
-                self.ver[y][x] = self.ver[y][x][0] + '  '
-            elif len(self.__items[(x, y)]) == 1:    # update map for single item in room
-                self.ver[y][x] = self.ver[y][x][0] + self.__items[(x, y)] + ' '
-        else:
-            raise ValueError('Game error, no potion at this location to change to used potion')
-
     def __str__(self):
         s = ""
         for a, b in zip(self.__hor, self.__ver):

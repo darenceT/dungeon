@@ -32,7 +32,9 @@ class Instructions:
     def menu(self):
         option = -1
         while option != 0:
-            print("[1] Start New Game\n[2] Game Instructions\n[0] Exit Game")
+            print("[1] Start New Game\n"
+                  "[2] Game Instructions\n"
+                  "[0] Exit Game")
             option = int(input("Enter the option you would like to choose: "))
             if option == 1:
                 self.make_player_name()
