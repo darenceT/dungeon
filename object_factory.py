@@ -13,7 +13,6 @@ class ObjectFactory:
     def __init__(self, map):
         self.__map = map
         self.__room_index = map.room_index
-        # self.pillars_loc = []           ################ delete??? ###############################
         self.create_objects()
 
     def valid_random_loc(self):
@@ -26,12 +25,9 @@ class ObjectFactory:
             x = randrange(0, self.__map.width)
             y = randrange(0, self.__map.height)
             if not self.__map.room_index[(x, y)].impassible:
-                print('this is passible for putting object')
                 if (x, y) == self.__map.entrance_loc or (x, y) == self.__map.exit_loc:
-                    print('before continue')           ####################### delete ###########################
                     continue
                 else:
-                    print('before return')           ####################### delete ###########################
                     return x, y
 
     def create_objects(self):
@@ -39,8 +35,9 @@ class ObjectFactory:
         # Put entrance "i" and exit "o"
         self.deliver_to_room(self.__map.entrance_loc, EntranceDoor())
         self.deliver_to_room(self.__map.exit_loc, ExitDoor())
+        print('before adding pillars function')
         self.add_pillars()
-
+        print('after adding pillars function')
         # Put pits
         temp_pit = []
         index = 0
@@ -87,25 +84,11 @@ class ObjectFactory:
         """
         Separate method for adding pillars to avoid more than 1 pillar in a room.
         """
-        pillars = ['A', 'I', 'E', 'P']
-        temp_list = []
-        for item in pillars:
-            count = 0                   # counting for possible infinite loop
-            while True:
-                x, y = self.valid_random_loc()
-                print('before add_item PILLAR')           ####################### delete ###########################
-                if count >= 20:         # break infinite loop by reset maze. Too many unintended impassible rooms
-                    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXRESET')
-                    self.__map.build_maze()
-                    self.create_objects()
-                    return
-                else:
-                    count += 1
-                if (x, y) not in temp_list and self.__map.traverse_dungeon((x, y)):
-                    print('will add_item PILLAR')           ####################### delete ###########################
-                    self.deliver_to_room((x, y), Pillar(item))
-                    temp_list.append((x, y))
-                    break
+        letters = ['A', 'I', 'E', 'P']
+        print('before loop in pillar', self.__map.pillars_loc)
+        for loc in self.__map.pillars_loc:
+            self.deliver_to_room(loc, Pillar(letters.pop()))
+            print('added pillar', loc)
 
     def deliver_to_room(self, location, object):
         x = location[0]
