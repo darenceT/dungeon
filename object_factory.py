@@ -13,7 +13,7 @@ class ObjectFactory:
     def __init__(self, map):
         self.__map = map
         self.__room_index = map.room_index
-        self.create_objects()
+        self.__start_production()
 
     def valid_random_loc(self):
         """
@@ -30,67 +30,36 @@ class ObjectFactory:
                 else:
                     return x, y
 
-    def create_objects(self):
+    def __start_production(self):
+        self.__deliver_to_room(self.__map.entrance_loc, EntranceDoor())
+        self.__deliver_to_room(self.__map.exit_loc, ExitDoor())
+        self.__build_pillars()
+        self.__create_objects(HealthPotion())
+        self.__create_objects(VisionPotion())
+        self.__create_objects(Pit())
 
-        # Put entrance "i" and exit "o"
-        self.deliver_to_room(self.__map.entrance_loc, EntranceDoor())
-        self.deliver_to_room(self.__map.exit_loc, ExitDoor())
-        print('before adding pillars function')
-        self.add_pillars()
-        print('after adding pillars function')
-        # Put pits
-        temp_pit = []
+    def __create_objects(self, object):
+        loc_list = []
         index = 0
-        while index < 2:
-            coordinate = self.valid_random_loc()
-            if coordinate not in temp_pit:
-                temp_pit.append(coordinate)
-                self.deliver_to_room(coordinate, Pit())
-                print(coordinate, 'pit')
+        while index < self.__map.height:
+            loc = self.valid_random_loc()
+            if loc not in loc_list:
+                loc_list.append(loc)
+                self.__deliver_to_room(loc, object)
                 index += 1
-            else:       ####################### delete ###########################
-                print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-        temp_pit = []
+                print(loc, object, 'created at object factory')             ################## delete ######
+            else:                                                            ################## delete ######
+                print('object not created', object)                            ################## delete ######
 
-        # healing potion
-        temp_healing = []
-        index = 0
-        while index < 2:
-            coordinate = self.valid_random_loc()
-            if coordinate not in temp_healing:
-                temp_healing.append(coordinate)
-                self.deliver_to_room(coordinate, HealthPotion())
-                print(coordinate, 'healing potion')
-                index += 1
-            else:       ####################### delete ###########################
-                print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-        temp_healing = []
-
-        # vision potion
-        temp_vision = []
-        index = 0
-        while index < 2:
-            coordinate = self.valid_random_loc()
-            if coordinate not in temp_vision:
-                temp_vision.append(coordinate)
-                self.deliver_to_room(coordinate, VisionPotion())
-                print(coordinate, 'vision potion')
-                index += 1
-            else:       ####################### delete ###########################
-                print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-        temp_vision = []
-
-    def add_pillars(self):
+    def __build_pillars(self):
         """
-        Separate method for adding pillars to avoid more than 1 pillar in a room.
+        Create pillars by obtaining location from map (BuildDungeon class).
         """
         letters = ['A', 'I', 'E', 'P']
-        print('before loop in pillar', self.__map.pillars_loc)
         for loc in self.__map.pillars_loc:
-            self.deliver_to_room(loc, Pillar(letters.pop()))
-            print('added pillar', loc)
+            self.__deliver_to_room(loc, Pillar(letters.pop()))
 
-    def deliver_to_room(self, location, object):
+    def __deliver_to_room(self, location, object):
         x = location[0]
         y = location[1]
         self.__room_index[(x, y)].receive_from_factory(object)

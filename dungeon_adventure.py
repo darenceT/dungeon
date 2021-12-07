@@ -20,8 +20,9 @@ class DungeonAdventure:
         self.__map.room_index[location].enter_room()
 
         items_list = self.__room_index[location].obtain_items()
+        print('before player pickup', items_list)
         self.__player.pick_up(items_list)
-
+        print('after player pickup', items_list)
         # if user reached end
         if location == self.__exit_loc:
             print('You have reached the exit!')
@@ -49,13 +50,12 @@ class DungeonAdventure:
         while True:
             print('Your options for moving to next room:', ', '.join(open_path))
             choice = input('Input letter for your next action "n, s, e, w" for next room,\n'
-                           '"p" for potion, "i" for status: ').lower()
+                           '"p" for potion, "i" for status: ').lower().strip()
             menu = {'n': 'North', 's': 'South', 'e': 'East', 'w': 'West',
                     'i': 'Player Status', 'p': 'Potion Menu'}
             next_room = {'n': (x, y - 1), 's': (x, y + 1), 'e': (x + 1, y), 'w': (x - 1, y)}
             if choice not in menu.keys():
                 print('Invalid input!')
-                continue
             else:
                 if choice == 'i':
                     print(self.__player)
@@ -63,7 +63,6 @@ class DungeonAdventure:
                     self.__player.potion_menu()
                 elif menu[choice] not in open_path:
                     print('That path is not possible!')
-                    continue
                 else:
                     self.__current_loc((next_room[choice][0], next_room[choice][1]))
                     break

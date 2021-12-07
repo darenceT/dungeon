@@ -33,17 +33,21 @@ class Player:
         return self.__pillarsfound
 
     def pick_up(self, objects):
+        print('before loop', objects)
         for obj in objects:
+            print('start for loop', obj)
             if obj.letter == 'X':
                 self.__hitpoints -= obj.function()
                 obj.visited = True
+                continue
             elif obj.letter in ['H', 'V']:
+                print('in H & V', obj)
                 print(self.__name, 'picked up', obj, '\n')
             # elif obj.letter in ['A', ...] and not in self.__pillarsfound:
             #     self.__pillarsfound.append()
             elif obj not in self.__bag:
                 obj.function()
-                self.__bag.append(obj)
+            self.__bag.append(obj)
 
     def potion_menu(self):
         print("potion menu: you have X potions, use healing or vision?")
