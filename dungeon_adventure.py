@@ -9,19 +9,18 @@ class DungeonAdventure:
         self.__map = BuildDungeon(input.difficulty)
         print(self.__map)                   ################### delete
         self.__room_index = self.__map.room_index
-        self.__player = Player(input.player_name.capitalize())
+        self.__player = Player(input.player_name)
         self.__entrance_loc = self.__map.entrance_loc
         self.__exit_loc = self.__map.exit_loc
         self.__current_loc(self.__entrance_loc)
 
     def __current_loc(self, location):
-        print('============================================================\n    ',
+        print('\n============================================================\n\n    ',
               self.__player.name, end=' ')
         self.__map.room_index[location].enter_room()
 
         items_list = self.__room_index[location].obtain_items()
         self.__player.pick_up(items_list)
-
 
         # if user reached end
         if location == self.__exit_loc:
@@ -32,8 +31,6 @@ class DungeonAdventure:
             #     print('Keep looking for those pillars of success...')
             #     self.move_options(x, y)
 
-        # self.vision(x, y)           ################################ DELETE
-        print(self.__room_index[location])
         self.__move_options(location)
 
     def __move_options(self, location):

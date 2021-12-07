@@ -1,6 +1,5 @@
 from object_factory import ObjectFactory
 from room import Room
-
 from random import shuffle, randrange
 
 
@@ -19,42 +18,41 @@ class BuildDungeon:
         self.__objects_for_traversal()
         self.__factory = ObjectFactory(self)  # factory puts objects into maze
 
-    def get_width(self):
+    @property
+    def width(self):
         return self.__width
 
-    def get_height(self):
+    @property
+    def height(self):
         return self.__height
 
-    def get_ver(self):
+    @property
+    def ver(self):
         return self.__ver
 
-    def get_hor(self):
+    @property
+    def hor(self):
         return self.__hor
 
-    def get_factory(self):
+    @property
+    def factory(self):
         return self.__factory
 
-    def get_entrance_loc(self):
+    @property
+    def entrance_loc(self):
         return self.__entrance_loc
 
-    def get_exit_loc(self):
+    @property
+    def exit_loc(self):
         return self.__exit_loc
 
-    def get_room_index(self):
+    @property
+    def room_index(self):
         return self.__room_index
 
-    def get_pillars_loc(self):
+    @property
+    def pillars_loc(self):
         return self.__pillars_loc
-
-    width = property(get_width)
-    height = property(get_height)
-    ver = property(get_ver)
-    hor = property(get_hor)
-    factory = property(get_factory)
-    entrance_loc = property(get_entrance_loc)
-    exit_loc = property(get_exit_loc)
-    room_index = property(get_room_index)
-    pillars_loc = property(get_pillars_loc)
 
     def __difficulty(self, mode):
         if mode == 1:
@@ -94,7 +92,7 @@ class BuildDungeon:
             x, y = location
             # create room and map index, reset so room is passable
             self.room_index[location] = Room(self, x, y)
-            self.room_index[location].set_impassible(change=False)
+            self.room_index[location].impassible = False
             # change 0 to 1 after room visited
             visited[y][x] = 1
             # [(west),(south),(east),(north)] neighbors of the current room
@@ -153,7 +151,7 @@ class BuildDungeon:
                     continue
                 elif (x, y) not in temp_list:     # avoid duplicates
                     temp_list.append((x, y))
-                    self.room_index[(x, y)].set_impassible()
+                    self.room_index[(x, y)].impassible = True
                     self.__hor[y][x] = "+--"
                     self.__ver[y][x] = "|  "
                     self.__ver[y][x + 1] = "|" + self.__ver[y][x + 1][1:3]

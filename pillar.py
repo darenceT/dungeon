@@ -13,7 +13,7 @@ class Pillar(DungeonObject):
     def function(self):
         print(f'INSERT AMAZING {self.name.upper()} ART \n'
               'You see a shiny button and you cannot help yourself but to push it...')
-        time.sleep(3)
+        time.sleep(2)
         print(f'You have collected {self.name} key!')
 
 

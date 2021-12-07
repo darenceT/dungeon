@@ -7,7 +7,7 @@ class EntranceDoor(DungeonObject):
         super().set_letter('i')
 
     def function(self):
-        print('You found an iphone.\nIt contains is "Torch" app you can use as a flashlight!\n')
+        print('You found an iphone.\nIt contains a "Torch" app you can use as a flashlight!\n')
 
 
 if __name__ == '__main__':          ############## DELETE #################
