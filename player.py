@@ -36,21 +36,33 @@ class Player:
         for obj in objects:
             if obj.letter == 'X':
                 self.__hitpoints -= obj.function()
-                obj.set_visited()
+                obj.visited = True
             elif obj.letter in ['H', 'V']:
                 print(self.__name, 'picked up', obj, '\n')
+            # elif obj.letter in ['A', ...] and not in self.__pillarsfound:
+            #     self.__pillarsfound.append()
             elif obj not in self.__bag:
                 obj.function()
                 self.__bag.append(obj)
 
     def potion_menu(self):
         print("potion menu: you have X potions, use healing or vision?")
+        # Display: # health potions and # of vision potion
+        # 1. use health potion (option to pick which health potion) obj.letter = "H"
+        # 2. use vision potion
+        # 3. return to game
+        #         if 1:
+        #             self.__hitpoints += obj.function()
+        #         elif 2:
+        #         self.__bag.delete(obj)
+        #         elif 3:
+        #             return
 
-    def addhealingpotion(self, potion):
+    def add_healing_potion(self, potion):
         self.__healingpotions.append(potion)
         print("Added healing potion to inventory.")
 
-    def takehealingpotion(self):
+    def takehealing_potion(self):
         if len(self.__healingpotions) == 0:
             print("You are all out of healing potions.")
         else:
@@ -82,9 +94,9 @@ class Player:
 
     def __str__(self):
         return (
-            f"Name: {self.__name}\n"
+            f"\nName: {self.__name}\n"
             f"Hit Points: {self.__hitpoints}\n"
             f"Total Healing Potions: {len(self.__healingpotions)}\n"
             f"Total Vision Potions: {self.__visionpotioncount}\n"
-            f"List of Pillars Pieces Found: {', '.join(p for p in self.__pillarsfound)}"
+            f"Pillars Keys Found: {', '.join(p.name for p in self.__pillarsfound)}\n"
         )

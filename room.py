@@ -6,70 +6,37 @@ class Room:
         self.__x_loc = x_loc
         self.__y_loc = y_loc
         self.__impassible = False
-        self.__entrance = False            ####################### ??? delete ############
-        self.__exit = False
+        self.__entrance = None            ####################### ??? delete ############
+        self.__exit = None                ######################## ??? delete ##########
         self.__pit = None
-        self.__health_potion = False
-        self.__vision_potion = False
         self.__pillar = None
         self.__objects = []
 
-    def set_impassible(self, change=True):
+    @property
+    def impassible(self):
+        return self.__impassible
+
+    @impassible.setter
+    def impassible(self, change=True):
         if self.__impassible:
             raise ValueError('Redundancy, Room has already been made impassible')
         else:
             self.__impassible = change
             print('now impassible')               ####################### delete ###########################
 
-    def get_impassible(self):
-        return self.__impassible
-
-    impassible = property(get_impassible, set_impassible)
-
-    def set_entrance(self):
+    def set_entrance(self, door):
         if self.__entrance:
             raise ValueError('Redundancy, Entrance has already been set')
         else:
-            self.__entrance = True
+            self.__entrance = door
             print('entrance set')               ####################### delete ###########################
 
-    def set_exit(self):
+    def set_exit(self, door):
         if self.__exit:
             raise ValueError('Redundancy, Exit has already been set')
         else:
-            self.__exit = True
+            self.__exit = door
             print('Exit set')               ####################### delete ###########################
-
-    def set_health_potion(self, remove=False):
-        if not self.__health_potion and not remove:     # add potion
-            self.__health_potion = True
-            print('Health potion added')               ####################### delete ###########################
-        elif self.__health_potion and not remove:
-            raise ValueError('Redundancy, health potion has already been set')
-        elif self.__health_potion and remove:       # picked up potion
-            self.__health_potion = False
-            print('Health potion picked up')               ####################### delete ###########################
-        elif not self.__health_potion and remove:
-            raise ValueError('Redundancy, no health potion to remove')
-
-    def set_health_potion(self):
-        if self.__health_potion:
-            raise ValueError('Redundancy, health potion has already been set')
-        else:
-            self.__health_potion = True
-            print('Health potion added')               ####################### delete ###########################
-
-    def set_vision_potion(self, remove=False):
-        if not self.__vision_potion and not remove:     # add potion
-            self.__vision_potion = True
-            print('Vision potion added')               ####################### delete ###########################
-        elif self.__vision_potion and not remove:
-            raise ValueError('Redundancy, vision potion has already been set')
-        elif self.__vision_potion and remove:       # picked up potion
-            self.__vision_potion = False
-            print('Vision potion picked up')               ####################### delete ###########################
-        elif not self.__vision_potion and remove:
-            raise ValueError('Redundancy, no vision potion to remove')
 
     def set_pit(self, object):
         if self.__pit:
@@ -93,46 +60,42 @@ class Room:
             print(f'entered room (x: {self.__x_loc}, y: {self.__y_loc}):')
         else:
             raise ValueError('Room has been set impassible, you are trespassing!')
+        print(self)
 
     def obtain_items(self):
         """
-        Allow player to obtain objects in room
+        Allow player to obtain objects in room.
+        For loop will update display of room for potions picked up.
         :return: objects
         :rtype: list of characters
         """
         ref_list = {'i': 'Entrance', 'O': 'Exit', 'X': 'Pit', 'V': 'Vision Potion', 'H': 'Healing Potion',
                     'A': 'Pillar of Abstraction!', 'E': 'Pillar of Encapsulation!', 'I': 'Pillar of Inheritance!',
                     'P': 'Pillar of Polymorphism'}
+        pickup = self.__objects
         if self.__objects:
             print('     This room contains:', ', '.join([ref_list[i.letter] for i in self.__objects]), '\n')
         else:
             print('     This room is empty.\n')
 
-        return self.__objects
+        for obj in self.__objects:
+            if obj.letter in ['H', 'V']:
+                self.__objects.remove(obj)
+        return pickup
 
     def receive_from_factory(self, obj):
-        route = {'i': self.set_entrance, 'O': self.set_exit, 'H': self.set_health_potion,
-                 'V': self.set_vision_potion, 'X': self.set_pit, 'A': self.set_pillar,
-                 'E': self.set_pillar, 'I': self.set_pillar, 'P': self.set_pillar}
+        """
+        No function called for potions, only goes to object list.
+        """
+        route = {'A': self.set_pillar, 'E': self.set_pillar, 'I': self.set_pillar, 'P': self.set_pillar,
+                 'i': self.set_entrance, 'O': self.set_exit, 'X': self.set_pit, 'H': None, 'V': None}
         print('success receiving:', obj)            ####################### delete ###########################
 
         if obj.letter in ['A', 'E', 'I', 'P']:
             route[obj.letter](obj.letter)
-        elif obj.letter == 'X':
+        elif obj.letter in ['i', 'O', 'X']:
             route[obj.letter](obj)
-        else:
-            route[obj.letter]()
         self.__objects.append(obj)
-
-    # def visited_potion(self, x, y, potion):         ######## Not tested ########### Move to adventure??
-    #     if potion in self.__items[(x, y)]:
-    #         self.__items[(x, y)].remove(potion)
-    #         if len(self.__items[(x, y)]) == 0:      # update map for empty room
-    #             self.ver[y][x] = self.ver[y][x][0] + '  '
-    #         elif len(self.__items[(x, y)]) == 1:    # update map for single item in room
-    #             self.ver[y][x] = self.ver[y][x][0] + self.__items[(x, y)] + ' '
-    #     else:
-    #         raise ValueError('Game error, no potion at this location to change to used potion')
 
     def __str__(self):
         display = ' '
@@ -145,11 +108,41 @@ class Room:
         y = self.__y_loc
         self.__map.ver[y][x] = self.__map.ver[y][x][0] + display + ' '
 
-        return '               ' + self.__map.hor[y][x] + \
+        return '\n               ' + self.__map.hor[y][x] + \
                '+\n               ' + self.__map.ver[y][x] + self.__map.ver[y][x + 1][0] + \
                '\n               ' + self.__map.hor[y + 1][x] + '+'
-'''
 
+'''
+    # def set_health_potion(self, remove=False):
+    #     if not self.__health_potion and not remove:     # add potion
+    #         self.__health_potion = True
+    #         print('Health potion added')               ####################### delete ###########################
+    #     elif self.__health_potion and not remove:
+    #         raise ValueError('Redundancy, health potion has already been set')
+    #     elif self.__health_potion and remove:       # picked up potion
+    #         self.__health_potion = False
+    #         print('Health potion picked up')               ####################### delete ###########################
+    #     elif not self.__health_potion and remove:
+    #         raise ValueError('Redundancy, no health potion to remove')
+
+    # def set_health_potion(self):
+    #     if self.__health_potion:
+    #         raise ValueError('Redundancy, health potion has already been set')
+    #     else:
+    #         self.__health_potion = True
+    #         print('Health potion added')               ####################### delete ###########################
+    #
+    # def set_vision_potion(self, remove=False):
+    #     if not self.__vision_potion and not remove:     # add potion
+    #         self.__vision_potion = True
+    #         print('Vision potion added')               ####################### delete ###########################
+    #     elif self.__vision_potion and not remove:
+    #         raise ValueError('Redundancy, vision potion has already been set')
+    #     elif self.__vision_potion and remove:       # picked up potion
+    #         self.__vision_potion = False
+    #         print('Vision potion picked up')               ####################### delete ###########################
+    #     elif not self.__vision_potion and remove:
+    #         raise ValueError('Redundancy, no vision potion to remove')
 
     def get_health_chance(self):
         return self.__healthChance

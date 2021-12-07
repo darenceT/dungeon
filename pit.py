@@ -10,22 +10,22 @@ class Pit(DungeonObject):
         self.__damage = randint(1, 20)
         self.__visited = False
 
+    @property
     def damage(self):
         return self.__damage
 
-    def get_visited(self):
+    @property
+    def visited(self):
         return self.__visited
 
-    def set_visited(self):
-        self.__visited = True
-
-    damage = property(damage)
-    visited = property(get_visited)
+    @visited.setter
+    def visited(self, boolean=False):
+        self.__visited = boolean
 
     def function(self):
         if not self.__visited:
             print('Walk slow or run too fast, you still fell into a pit!\n')
-            time.sleep(3)
+            time.sleep(2)
             print('You lose', self.__damage, 'health.\n')
             return self.__damage
         else:
@@ -37,5 +37,5 @@ class Pit(DungeonObject):
 if __name__ == '__main__':          ############## DELETE #################
     p = Pit()
     print(p.name)
-    p.set_visited()
+    p.visited = True
     print(p.visited)
