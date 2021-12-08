@@ -1,6 +1,4 @@
-#from character_creation import CharacterCreation
-
-
+from make_dungeon import MakeDungeon
 
 class Instructions:
 
@@ -43,12 +41,19 @@ class Instructions:
                 print()
                 self.menu()
                 option = int(input("Enter the option you would like to choose: "))
+            elif option == 3:
+                self.p = MakeDungeon(20, 10)
+                print(self.p)
+                print()
+                self.menu()
+                option = int(input("Enter the option you would like to choose: "))
             else:
                 print("Invalid Option! Please choose again.\n")
                 self.menu()
                 option = int(input("Enter the option you would like to choose: "))
 
         print("Thank you for playing!")
+        exit()
 
     def player_name(self):
         name = input("Enter a character name: ")
