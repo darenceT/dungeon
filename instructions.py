@@ -29,7 +29,24 @@ class Instructions:
 
     @staticmethod
     def instructions():
-        print("Add Instructions Here")
+        print("\n               Welcome to the dungeon crawler!\n"
+              "You are tasked with guiding the player character through\n"
+              "a dangerous maze. The player can move North, South, East\n"
+              "or West by using the keys 'n', 's', 'e', and 'w' respectively.\n"
+              "Depending on where you are in the randomly generated maze,\n"
+              "you will be informed which directions it is possible to move\n"
+              "in. The goal is for the main character to make it through the\n"
+              "maze alive while finding the four pillars of Object Oriented\n"
+              "Programming: Encapsulation, Inheritance, Abstraction and\n"
+              "Polymorphism. However, you must be careful, ase many of the\n"
+              "chambers in the maze have traps and pits that will cause you\n"
+              "to lose HP(Health Points). Losing all HP will cause you to\n"
+              "lose the game. There are other items that can be found and\n"
+              "used in the dungeon, such as health potions and vision portions.\n"
+              "Health potions restore lost HP and vision potions show small\n"
+              "portions of the map that have not yet been explored. You only\n"
+              "win the game when you reach the end of the maze AFTER collecting\n"
+              "all four pillars. Good Luck Explorer!")
 
     def menu(self):
         option = -1
@@ -51,6 +68,7 @@ class Instructions:
                 continue
 
         print("Thank you for playing!")
+        exit()
 
     def make_player_name(self):
         name = input("Enter a character name: ").capitalize()

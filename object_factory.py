@@ -34,9 +34,11 @@ class ObjectFactory:
         self.__deliver_to_room(self.__map.entrance_loc, EntranceDoor())
         self.__deliver_to_room(self.__map.exit_loc, ExitDoor())
         self.__build_pillars()
-        self.__create_objects(VisionPotion())
-        self.__create_objects(HealthPotion())
-        self.__create_objects(Pit())
+
+
+        self.__create_objects(VisionPotion)
+        self.__create_objects(HealthPotion)
+        self.__create_objects(Pit)
 
     def __create_objects(self, object):
         """
@@ -45,15 +47,15 @@ class ObjectFactory:
         """
         temp_list = []
         index = 0
-        while index < self.__map.height * 3:
+        while index < self.__map.height:
             loc = self.__valid_random_loc()
             if loc not in temp_list:
                 temp_list.append(loc)
-                self.__deliver_to_room(loc, object)
+                self.__deliver_to_room(loc, object())
                 index += 1
-                print(loc, object, 'created at object factory')             ################## delete ######
-            else:                                                            ################## delete ######
-                print('object not created', object)                            ################## delete ######
+            #     print(loc, object(), 'created at object factory')             ################## delete ######
+            # else:                                                            ################## delete ######
+            #     print('object not created', object())                            ################## delete ######
 
     def __build_pillars(self):
         """
@@ -64,12 +66,15 @@ class ObjectFactory:
             self.__deliver_to_room(loc, Pillar(letters.pop()))
 
     def __deliver_to_room(self, location, object):
-        x = location[0]
-        y = location[1]
+        """
+        Deliver object to specific room. Also write letter on map.
+        Letter on map will not change when objects get picked up
+        (vs print of room which does changes when objects are picked up)
+        """
+        x, y = location
         self.__room_index[(x, y)].receive_from_factory(object)
         print("success sending items", object, object.letter)       ####################### delete #####################
 
-        # Update map, always show all initial objects
         if self.__map.ver[y][x][1] != ' ':
             self.__map.ver[y][x] = self.__map.ver[y][x][0] + 'M '
         else:

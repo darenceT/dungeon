@@ -13,7 +13,12 @@ class EntranceDoor(DungeonObject):
 
     @deactivate.setter
     def deactivate(self, switch=False):
-        self.__deactivate = switch
+        if isinstance(switch, bool):
+            if not switch:
+                raise ValueError('Only True boolean allowed')
+            self.__deactivate = switch
+        else:
+            raise TypeError('Only boolean type allowed')
 
     def function(self):
         if not self.__deactivate:

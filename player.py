@@ -9,7 +9,7 @@ class Player:
         self.__hitpoints = randint(75, 100)
         self.__healingpotions = []
         self.__visionpotioncount = 0
-        self.__pillarsfound = []
+        # self.__pillarsfound = []
         self.__backpack = []
 
     @property
@@ -34,19 +34,19 @@ class Player:
 
     def interact_objects(self, objects):
         """
-        Interact with objects in Room, add potions to bag.
+        Interact with objects in Room, add potions & pillars to inventory.
         """
         while objects:
             obj = objects.pop()
-            if obj.letter in ['i', 'o']:
+            if obj.letter == 'i':
                 obj.function()
+            elif obj.letter == 'O':
+                obj.function(self.__backpack)
             elif obj.letter == 'X':
                 self.__hitpoints -= obj.function()
             elif obj.letter in ['H', 'V']:
-            # elif obj.letter in ['A', ...] and not in self.__pillarsfound:
-            #     self.__pillarsfound.append()
                 self.__backpack.append(obj)
-            elif obj not in self.__backpack:
+            elif obj not in self.__backpack:        # for pillars
                 obj.function()
                 self.__backpack.append(obj)
 
