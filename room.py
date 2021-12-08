@@ -1,4 +1,5 @@
 
+
 class Room:
 
     def __init__(self, map, x_loc, y_loc):
@@ -6,12 +7,7 @@ class Room:
         self.__x_loc = x_loc
         self.__y_loc = y_loc
         self.__impassible = False
-        # self.__visited = False
         self.__objects = []
-        # self.__entrance = None            ####################### ??? delete ############
-        # self.__exit = None                ######################## ??? delete ##########
-        # self.__pit = None
-        # self.__pillar = None
 
     @property
     def impassible(self):
@@ -23,27 +19,12 @@ class Room:
             raise ValueError('Redundancy, Room has already been made impassible')
         else:
             self.__impassible = change
-            print('now impassible')               ####################### delete ###########################
-
-    # @property
-    # def visited(self):
-    #     return self.__visited
-    #
-    # @visited.setter
-    # def visited(self, entered=False):
-    #     if isinstance(entered, bool):
-    #         if not entered:
-    #             raise ValueError('Only True boolean allowed')
-    #         self.__visited = True
-    #     else:
-    #         raise TypeError('Only boolean type allowed')
 
     def enter_room(self):
         """
         Player enters room, method checks impassible status.
         """
         if not self.__impassible:
-            # self.visited = True
             print(f'entered room (x: {self.__x_loc}, y: {self.__y_loc}):')
         else:
             raise ValueError('Room has been set impassible, you are trespassing!')
@@ -77,7 +58,11 @@ class Room:
 
     def receive_from_factory(self, obj):
         """
-
+        Receive object from factory and adds to room's object list.
+        :param obj: dungeon object
+        :type obj: DungeonObject
+        :return: object from factory
+        :rtype: DungeonObject
         """
         self.__objects.append(obj)
 
@@ -97,48 +82,7 @@ class Room:
                '\n               ' + self.__map.hor[y + 1][x] + '+'
 
 '''
-    def receive_from_factory(self, obj):
-        """
         
-        """
-        # route = {'A': self.set_pillar, 'E': self.set_pillar, 'I': self.set_pillar, 'P': self.set_pillar,
-        #          'X': self.set_pit, 'i': None, 'O': None, 'H': None, 'V': None}
-        # print('success receiving:', obj)            ####################### delete ###########################
-        #
-        # if obj.letter in ['A', 'E', 'I', 'P']:
-        #     route[obj.letter](obj.letter)
-        # if obj.letter == 'X':
-        #     self.set_pit
-            # route[obj.letter](obj)
-        self.__objects.append(obj)
-        
-    # def set_entrance(self, door):
-    #     if self.__entrance:
-    #         raise ValueError('Redundancy, Entrance has already been set')
-    #     else:
-    #         self.__entrance = door
-    #         print('entrance set')               ####################### delete ###########################
-    #
-    # def set_exit(self, door):
-    #     if self.__exit:
-    #         raise ValueError('Redundancy, Exit has already been set')
-    #     else:
-    #         self.__exit = door
-    #         print('Exit set')               ####################### delete ###########################
-    #
-    # def set_pit(self, object):
-    #     if self.__pit:
-    #         raise ValueError('Redundancy, pit has already been set')
-    #     else:
-    #         self.__pit = object
-    #         print('pit added')               ####################### delete ###########################
-    #
-    # def set_pillar(self, pillar):
-    #     if self.__pillar:
-    #         raise ValueError('Redundancy, pillar has already been set')
-    #     else:
-    #         self.__pillar = pillar
-    #         print('pillar has been added')               ####################### delete ###########################
 
 
     # def set_health_potion(self, remove=False):

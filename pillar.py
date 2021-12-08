@@ -19,5 +19,5 @@ class Pillar(DungeonObject):
 
 if __name__ == '__main__':          ############## DELETE #################
     p = Pillar('E')
-    print(p)
+    print(isinstance(p, Lack))
     print(p.letter)

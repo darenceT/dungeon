@@ -20,23 +20,15 @@ class DungeonAdventure:
         self.__map.room_index[location].enter_room()
 
         room_objects = self.__room_index[location].touch_objects()
-        print('before player interact', room_objects)
         self.__player.interact_objects(room_objects)
-        print('after player interact', room_objects)
+
         # if user reached end
-        if location == self.__exit_loc:
-            print('You have reached the exit!')
-            # if player.pillars:          True for collected all 4
-            #     print('you win! You have gained adequate knowledge for quarter 2 and still much to learn...')
-            # else:
-            #     print('Keep looking for those pillars of success...')
-            #     self.move_options(x, y)
+        # if location == self.__exit_loc:
 
         self.__move_options(location)
 
     def __move_options(self, location):
-        x = location[0]
-        y = location[1]
+        x, y = location
         open_path = []
         if self.__map.hor[y][x] == "+  ":
             open_path.append('North')

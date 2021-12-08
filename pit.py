@@ -16,22 +16,27 @@ class Pit(DungeonObject):
 
     @property
     def deactivate(self):
-        return self.__visited
+        return self.__deactivate
 
     @deactivate.setter
     def deactivate(self, switch=False):
-        self.__deactivate = switch
+        if isinstance(switch, bool):
+            if not switch:
+                raise ValueError('Only True boolean allowed')
+            self.__deactivate = switch
+        else:
+            raise TypeError('Only boolean type allowed')
 
     def function(self):
         if not self.__deactivate:
             print('Walk slow or run too fast, you still fell into a pit!\n')
-            time.sleep(2)
+            time.sleep(1)
             print('You lose', self.__damage, 'health.\n')
             self.deactivate = True
             return self.__damage
         else:
             print('You safely walk around the pit\n')
-            time.sleep(2)
+            time.sleep(1)
             return 0
 
 
