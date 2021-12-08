@@ -6,11 +6,12 @@ class Room:
         self.__x_loc = x_loc
         self.__y_loc = y_loc
         self.__impassible = False
-        self.__entrance = None            ####################### ??? delete ############
-        self.__exit = None                ######################## ??? delete ##########
-        self.__pit = None
-        self.__pillar = None
+        # self.__visited = False
         self.__objects = []
+        # self.__entrance = None            ####################### ??? delete ############
+        # self.__exit = None                ######################## ??? delete ##########
+        # self.__pit = None
+        # self.__pillar = None
 
     @property
     def impassible(self):
@@ -24,45 +25,31 @@ class Room:
             self.__impassible = change
             print('now impassible')               ####################### delete ###########################
 
-    def set_entrance(self, door):
-        if self.__entrance:
-            raise ValueError('Redundancy, Entrance has already been set')
-        else:
-            self.__entrance = door
-            print('entrance set')               ####################### delete ###########################
-
-    def set_exit(self, door):
-        if self.__exit:
-            raise ValueError('Redundancy, Exit has already been set')
-        else:
-            self.__exit = door
-            print('Exit set')               ####################### delete ###########################
-
-    def set_pit(self, object):
-        if self.__pit:
-            raise ValueError('Redundancy, pit has already been set')
-        else:
-            self.__pit = object
-            print('pit added')               ####################### delete ###########################
-
-    def set_pillar(self, pillar):
-        if self.__pillar:
-            raise ValueError('Redundancy, pillar has already been set')
-        else:
-            self.__pillar = pillar
-            print('pillar has been added')               ####################### delete ###########################
+    # @property
+    # def visited(self):
+    #     return self.__visited
+    #
+    # @visited.setter
+    # def visited(self, entered=False):
+    #     if isinstance(entered, bool):
+    #         if not entered:
+    #             raise ValueError('Only True boolean allowed')
+    #         self.__visited = True
+    #     else:
+    #         raise TypeError('Only boolean type allowed')
 
     def enter_room(self):
         """
         Player enters room, method checks impassible status.
         """
         if not self.__impassible:
+            # self.visited = True
             print(f'entered room (x: {self.__x_loc}, y: {self.__y_loc}):')
         else:
             raise ValueError('Room has been set impassible, you are trespassing!')
         print(self)
 
-    def obtain_items(self):
+    def touch_objects(self):
         """
         Allow player to obtain objects in room.
         For loop will update display of room for potions picked up.
@@ -72,30 +59,26 @@ class Room:
         ref_list = {'i': 'Entrance', 'O': 'Exit', 'X': 'Pit', 'V': 'Vision Potion', 'H': 'Healing Potion',
                     'A': 'Pillar of Abstraction!', 'E': 'Pillar of Encapsulation!', 'I': 'Pillar of Inheritance!',
                     'P': 'Pillar of Polymorphism'}
-        pickup = []
         if self.__objects:
             print('     This room contains:', ', '.join([ref_list[i.letter] for i in self.__objects]), '\n')
         else:
             print('     This room is empty.\n')
 
+        touched_objects = []
+        temp_for_removal = []
         for obj in self.__objects:
+            touched_objects.append(obj)
             if obj.letter in ['H', 'V']:
-                self.__objects.remove(obj)
-            pickup.append(obj)
-        return pickup
+                temp_for_removal.append(obj)
+
+        while temp_for_removal:
+            self.__objects.remove(temp_for_removal.pop())
+        return touched_objects
 
     def receive_from_factory(self, obj):
         """
-        No function called for potions, only goes to object list.
-        """
-        route = {'A': self.set_pillar, 'E': self.set_pillar, 'I': self.set_pillar, 'P': self.set_pillar,
-                 'i': self.set_entrance, 'O': self.set_exit, 'X': self.set_pit, 'H': None, 'V': None}
-        print('success receiving:', obj)            ####################### delete ###########################
 
-        if obj.letter in ['A', 'E', 'I', 'P']:
-            route[obj.letter](obj.letter)
-        elif obj.letter in ['i', 'O', 'X']:
-            route[obj.letter](obj)
+        """
         self.__objects.append(obj)
 
     def __str__(self):
@@ -114,6 +97,50 @@ class Room:
                '\n               ' + self.__map.hor[y + 1][x] + '+'
 
 '''
+    def receive_from_factory(self, obj):
+        """
+        
+        """
+        # route = {'A': self.set_pillar, 'E': self.set_pillar, 'I': self.set_pillar, 'P': self.set_pillar,
+        #          'X': self.set_pit, 'i': None, 'O': None, 'H': None, 'V': None}
+        # print('success receiving:', obj)            ####################### delete ###########################
+        #
+        # if obj.letter in ['A', 'E', 'I', 'P']:
+        #     route[obj.letter](obj.letter)
+        # if obj.letter == 'X':
+        #     self.set_pit
+            # route[obj.letter](obj)
+        self.__objects.append(obj)
+        
+    # def set_entrance(self, door):
+    #     if self.__entrance:
+    #         raise ValueError('Redundancy, Entrance has already been set')
+    #     else:
+    #         self.__entrance = door
+    #         print('entrance set')               ####################### delete ###########################
+    #
+    # def set_exit(self, door):
+    #     if self.__exit:
+    #         raise ValueError('Redundancy, Exit has already been set')
+    #     else:
+    #         self.__exit = door
+    #         print('Exit set')               ####################### delete ###########################
+    #
+    # def set_pit(self, object):
+    #     if self.__pit:
+    #         raise ValueError('Redundancy, pit has already been set')
+    #     else:
+    #         self.__pit = object
+    #         print('pit added')               ####################### delete ###########################
+    #
+    # def set_pillar(self, pillar):
+    #     if self.__pillar:
+    #         raise ValueError('Redundancy, pillar has already been set')
+    #     else:
+    #         self.__pillar = pillar
+    #         print('pillar has been added')               ####################### delete ###########################
+
+
     # def set_health_potion(self, remove=False):
     #     if not self.__health_potion and not remove:     # add potion
     #         self.__health_potion = True

@@ -26,6 +26,7 @@ class DungeonObject(ABC):
     def get_letter(self):
         return self.__letter
 
+    # super() in child classes does not support setter property
     name = property(get_name)
     letter = property(get_letter)
 
@@ -34,4 +35,7 @@ class DungeonObject(ABC):
         pass
 
     def __str__(self):
+        return self.__name
+
+    def __repr__(self):
         return self.__name

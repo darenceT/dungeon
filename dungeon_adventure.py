@@ -19,10 +19,10 @@ class DungeonAdventure:
               self.__player.name, end=' ')
         self.__map.room_index[location].enter_room()
 
-        items_list = self.__room_index[location].obtain_items()
-        print('before player pickup', items_list)
-        self.__player.pick_up(items_list)
-        print('after player pickup', items_list)
+        room_objects = self.__room_index[location].touch_objects()
+        print('before player interact', room_objects)
+        self.__player.interact_objects(room_objects)
+        print('after player interact', room_objects)
         # if user reached end
         if location == self.__exit_loc:
             print('You have reached the exit!')
