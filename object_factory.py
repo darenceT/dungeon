@@ -15,7 +15,7 @@ class ObjectFactory:
         self.__room_index = map.room_index
         self.__start_production()
 
-    def valid_random_loc(self):
+    def __valid_random_loc(self):
         """
         Generate random locations while avoiding impassible, entrance and exit rooms
         :return: random location
@@ -34,17 +34,21 @@ class ObjectFactory:
         self.__deliver_to_room(self.__map.entrance_loc, EntranceDoor())
         self.__deliver_to_room(self.__map.exit_loc, ExitDoor())
         self.__build_pillars()
-        self.__create_objects(HealthPotion())
         self.__create_objects(VisionPotion())
+        self.__create_objects(HealthPotion())
         self.__create_objects(Pit())
 
     def __create_objects(self, object):
-        loc_list = []
+        """
+        Temporary list of locations is used to avoid placing duplicate items in same room.
+        map height is used to create number of objects based on difficulty: Easy 4, Normal 8, Hard 12
+        """
+        temp_list = []
         index = 0
-        while index < self.__map.height:
-            loc = self.valid_random_loc()
-            if loc not in loc_list:
-                loc_list.append(loc)
+        while index < self.__map.height * 3:
+            loc = self.__valid_random_loc()
+            if loc not in temp_list:
+                temp_list.append(loc)
                 self.__deliver_to_room(loc, object)
                 index += 1
                 print(loc, object, 'created at object factory')             ################## delete ######

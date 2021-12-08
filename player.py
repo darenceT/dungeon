@@ -10,7 +10,7 @@ class Player:
         self.__healingpotions = []
         self.__visionpotioncount = 0
         self.__pillarsfound = []
-        self.__bag = []
+        self.__backpack = []
 
     @property
     def name(self):
@@ -32,22 +32,23 @@ class Player:
     def pillarsfound(self):
         return self.__pillarsfound
 
-    def pick_up(self, objects):
-        print('before loop', objects)
-        for obj in objects:
-            print('start for loop', obj)
-            if obj.letter == 'X':
+    def interact_objects(self, objects):
+        """
+        Interact with objects in Room, add potions to bag.
+        """
+        while objects:
+            obj = objects.pop()
+            if obj.letter in ['i', 'o']:
+                obj.function()
+            elif obj.letter == 'X':
                 self.__hitpoints -= obj.function()
-                obj.visited = True
-                continue
             elif obj.letter in ['H', 'V']:
-                print('in H & V', obj)
-                print(self.__name, 'picked up', obj, '\n')
             # elif obj.letter in ['A', ...] and not in self.__pillarsfound:
             #     self.__pillarsfound.append()
-            elif obj not in self.__bag:
+                self.__backpack.append(obj)
+            elif obj not in self.__backpack:
                 obj.function()
-            self.__bag.append(obj)
+                self.__backpack.append(obj)
 
     def potion_menu(self):
         print("potion menu: you have X potions, use healing or vision?")
