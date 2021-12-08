@@ -18,7 +18,17 @@ class Instructions:
         return self.__difficulty
 
     def instructions(self):
-        print("Add Instructions Here")
+        print("\nWelcome to the dungeon crawler!"
+              "\nYou are tasked with guiding the player character through a dangerous maze."
+              "\nThe player can move North, South, East or West by using the keys 'n', 's', 'e', and 'w' respectively."
+              "\nDepending on where you are in the randomly generated maze, you will be informed which directions it is possible to move in."
+              "\nThe goal is for the main character to make it through the maze alive while finding the four pillars of Object Oriented Programming: Encapsulation, Inheritance, Abstraction and Polymorphism."
+              "\nHowever, you must be careful, ase many of the chambers in the maze have traps and pits that will cause you to lose HP(Health Points)."
+              "\nLosing all HP will cause you to lose the game"
+              "\nThere are other items that can be found and used in the dungeon, such as health potions and vision portions."
+              "\nHealth potions restore lost HP and vision potions show small portions of the map that have not yet been explored."
+              "\nYou only win the game when you reach the end of the maze AFTER collecting all four pillars."
+              "\nGood Luck Explorer!")
 
     def menu(self):
         print("[1] Start New Game\n[2] Game Instructions\n[0] Exit Game")
