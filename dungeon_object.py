@@ -26,8 +26,8 @@ class DungeonObject(ABC):
     def get_letter(self):
         return self.__letter
 
-    name = property(get_name, set_name)
-    letter = property(get_letter, set_name)
+    name = property(get_name)
+    letter = property(get_letter)
 
     @abstractmethod
     def function(self):

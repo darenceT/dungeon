@@ -200,5 +200,5 @@ class BuildDungeon:
 
 # delete this later for submission
 if __name__ == '__main__':
-    p = BuildDungeon(2)
+    p = BuildDungeon(3)
     print(p)

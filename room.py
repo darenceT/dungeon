@@ -72,7 +72,7 @@ class Room:
         ref_list = {'i': 'Entrance', 'O': 'Exit', 'X': 'Pit', 'V': 'Vision Potion', 'H': 'Healing Potion',
                     'A': 'Pillar of Abstraction!', 'E': 'Pillar of Encapsulation!', 'I': 'Pillar of Inheritance!',
                     'P': 'Pillar of Polymorphism'}
-        pickup = self.__objects
+        pickup = []
         if self.__objects:
             print('     This room contains:', ', '.join([ref_list[i.letter] for i in self.__objects]), '\n')
         else:
@@ -81,6 +81,7 @@ class Room:
         for obj in self.__objects:
             if obj.letter in ['H', 'V']:
                 self.__objects.remove(obj)
+            pickup.append(obj)
         return pickup
 
     def receive_from_factory(self, obj):
