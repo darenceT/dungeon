@@ -1,5 +1,5 @@
 # Name: Manuel Duarte 
-
+from pillar import Pillar
 from random import randint
 
 
@@ -34,7 +34,7 @@ class Player:
 
     def interact_objects(self, objects):
         """
-        Interact with objects in Room, add potions & pillars to inventory.
+        Interact with objects in Room, add potions & pillars to backpack.
         """
         while objects:
             obj = objects.pop()
@@ -46,12 +46,13 @@ class Player:
                 self.__hitpoints -= obj.function()
             elif obj.letter in ['H', 'V']:
                 self.__backpack.append(obj)
+                print(f'  {self.name} added {obj} to backpack!')
             elif obj not in self.__backpack:        # for pillars
                 obj.function()
                 self.__backpack.append(obj)
 
     def potion_menu(self):
-        print("potion menu: you have X potions, use healing or vision?")
+        print("  potion menu: you have X potions, use healing or vision?")
         # Display: # health potions and # of vision potion
         # 1. use health potion (option to pick which health potion) obj.letter = "H"
         # 2. use vision potion
@@ -98,10 +99,20 @@ class Player:
         print(f"Took damage. Lost {pit.damage} points.")
 
     def __str__(self):
+        pillars = 0
+        health_pots = 0
+        vision_pots = 0
+        for obj in self.__backpack:
+            if obj.letter in ['A', 'E', 'I', 'P']:
+                pillars += 1
+            elif obj.letter == 'H':
+                health_pots += 1
+            elif obj.letter == 'V':
+                vision_pots += 1
         return (
             f"\nName: {self.__name}\n"
             f"Hit Points: {self.__hitpoints}\n"
-            f"Total Healing Potions: {len(self.__healingpotions)}\n"
-            f"Total Vision Potions: {self.__visionpotioncount}\n"
-            f"Pillars Keys Found: {', '.join(p.name for p in self.__pillarsfound)}\n"
+            f"Total Healing Potions: {health_pots}\n"
+            f"Total Vision Potions: {vision_pots}\n"
+            f"Pillars Keys Found: {pillars}\n"
         )

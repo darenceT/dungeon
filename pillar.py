@@ -11,10 +11,10 @@ class Pillar(DungeonObject):
         super().set_letter(letter)
 
     def function(self):
-        print(f'INSERT AMAZING {self.name.upper()} ART \n'
-              'You see a shiny button and you cannot help yourself but to push it...')
+        print(f'  INSERT AMAZING {self.name.upper()} ART \n'
+              '  You see a shiny button and you cannot help yourself but to push it...')
         time.sleep(2)
-        print(f'You have collected {self.name} key!')
+        print(f'  You have collected {self.name} key!')
 
 
 if __name__ == '__main__':          ############## DELETE #################

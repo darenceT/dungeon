@@ -192,13 +192,13 @@ class BuildDungeon:
         return False
 
     def __str__(self):
-        s = ""
+        s = "        "
         for a, b in zip(self.__hor, self.__ver):
-            s += ''.join(a + ['\n'] + b + ['\n'])
+            s += ''.join(a + ['\n        '] + b + ['\n        '])
         return s
 
 
 # delete this later for submission
 if __name__ == '__main__':
-    p = BuildDungeon(3)
+    p = BuildDungeon(1)
     print(p)

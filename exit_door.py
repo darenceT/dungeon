@@ -11,14 +11,14 @@ class ExitDoor(DungeonObject):
     def function(backpack):
         key_count = sum(isinstance(x, Pillar) for x in backpack)
         if key_count == 4:
-            print('You put in all 4 pillar keys and you hear some gears turning...')
+            print('  You put in all 4 pillar keys and you hear some gears turning...')
             time.sleep(2)
-            print('INSERT ART HERE\n'
-                  'You found your escape!')
+            print('  INSERT ART HERE\n'
+                  '  You found your escape!')
             exit()
         else:
-            print('You see some light...it\'s a door! There are 4 strange-key holes...\n'
-                  'You only have', key_count, 'keys...')
+            print('  You see some light...it\'s a door! There are 4 strange-key holes...\n'
+                  '  You only have', key_count, 'keys...')
 
 if __name__ == '__main__':          ############## DELETE #################
     p = ExitDoor()
