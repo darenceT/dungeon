@@ -17,16 +17,20 @@ class DungeonAdventure:
 
     def __current_loc(self, location):
         Instructions.clear()
-        print('  \n==============================================================\n\n    ',
+        print('  \n================================================================\n\n    ',
               self.__player.name, end=' ')
         self.__map.room_index[location].enter_room()
 
         room_objects = self.__room_index[location].touch_objects()
         self.__player.interact_objects(room_objects)
 
-        # if user reached end
-        # if location == self.__exit_loc:
-        # VisionPotion.function(self.__map, location)               #TURN ON VISION POTION HERE
+        #Print Map after winning game
+        for object in room_objects:
+            if object.letter == 'O' and object.freedom:
+                print(self.__map)
+                exit()
+
+        # otherwise, move to next room
         self.__move_options(location)
 
     def __move_options(self, location):
@@ -94,7 +98,6 @@ if __name__ == '__main__':
     b = Obj()
 
     b.difficulty = int(input('Select difficulty:\n1. Easy\n2. Normal\n3. Hard\nType 1, 2 or 3: '))
-    # except TypeError:
     b.player_name = 'jack'
     a = DungeonAdventure(b)
 
