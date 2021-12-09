@@ -16,7 +16,7 @@ class BuildDungeon:
         self.__pillars_loc = []
         self.__build_maze()
         self.__objects_for_traversal()
-        self.__factory = ObjectFactory(self)  # factory puts objects into maze
+        self.__factory = ObjectFactory(self)
 
     @property
     def width(self):
@@ -113,7 +113,7 @@ class BuildDungeon:
 
         __break_wall(self.__entrance_loc)
 
-    def __objects_for_traversal(self):                # need to clean up this code
+    def __objects_for_traversal(self):                # need to clean up this code ???
         while True:
             self.__create_impassible()
             self.__create_pillar_loc()
@@ -142,7 +142,7 @@ class BuildDungeon:
         Credit to Steph for help with debugging.
         """
         temp_list = []
-        # rooms per difficulty, Easy: 1, Normal: 2, Hard: 3
+        # Number of rooms per difficulty, Easy: 1, Normal: 2, Hard: 3
         for _ in range(self.__width // 8):
             while True:
                 x = randrange(0, self.__width)
@@ -165,7 +165,6 @@ class BuildDungeon:
         :return: True if path to exit is possible
         :rtype: boolean
         """
-        print('traverse')       ####################### delete ########################
         target_x, target_y = target_loc
         maze = [[0] * self.__width + [1] for _ in range(self.__height)] + [[1] * (self.__width + 1)]
         maze[target_y][target_x] = 'E'    # Target

@@ -34,8 +34,6 @@ class ObjectFactory:
         self.__deliver_to_room(self.__map.entrance_loc, EntranceDoor())
         self.__deliver_to_room(self.__map.exit_loc, ExitDoor())
         self.__build_pillars()
-
-
         self.__create_objects(VisionPotion)
         self.__create_objects(HealthPotion)
         self.__create_objects(Pit)
@@ -47,15 +45,12 @@ class ObjectFactory:
         """
         temp_list = []
         index = 0
-        while index < self.__map.height * 3:
+        while index < self.__map.height:
             loc = self.__valid_random_loc()
             if loc not in temp_list:
                 temp_list.append(loc)
                 self.__deliver_to_room(loc, object())
                 index += 1
-            #     print(loc, object(), 'created at object factory')             ################## delete ######
-            # else:                                                            ################## delete ######
-            #     print('object not created', object())                            ################## delete ######
 
     def __build_pillars(self):
         """
@@ -73,7 +68,6 @@ class ObjectFactory:
         """
         x, y = location
         self.__room_index[(x, y)].receive_from_factory(object)
-        print("success sending items", object, object.letter)       ####################### delete #####################
 
         if self.__map.ver[y][x][1] != ' ':
             self.__map.ver[y][x] = self.__map.ver[y][x][0] + 'M '
