@@ -1,6 +1,7 @@
 from build_dungeon import BuildDungeon
 from player import Player
 from vision_potion import VisionPotion              ############# delete #################
+from instructions import Instructions
 
 
 class DungeonAdventure:
@@ -15,7 +16,8 @@ class DungeonAdventure:
         self.__current_loc(self.__entrance_loc)
 
     def __current_loc(self, location):
-        print('\n============================================================\n\n    ',
+        Instructions.clear()
+        print('  \n==============================================================\n\n    ',
               self.__player.name, end=' ')
         self.__map.room_index[location].enter_room()
 
@@ -24,7 +26,7 @@ class DungeonAdventure:
 
         # if user reached end
         # if location == self.__exit_loc:
-
+        # VisionPotion.function(self.__map, location)               #TURN ON VISION POTION HERE
         self.__move_options(location)
 
     def __move_options(self, location):
@@ -40,9 +42,9 @@ class DungeonAdventure:
             open_path.append('East')
 
         while True:
-            print('Your options for moving to next room:', ', '.join(open_path))
-            choice = input('Input letter for your next action "n, s, e, w" for next room,\n'
-                           '"p" for potion, "i" for status: ').lower().strip()
+            print('\n  Your options for moving to next room:', ', '.join(open_path))
+            choice = input('  Input letter for your next action "n, s, e, w" for next room,\n'
+                           '  "p" for potion, "i" for status: ').lower().strip()
             menu = {'n': 'North', 's': 'South', 'e': 'East', 'w': 'West',
                     'i': 'Player Status', 'p': 'Potion Menu'}
             next_room = {'n': (x, y - 1), 's': (x, y + 1), 'e': (x + 1, y), 'w': (x - 1, y)}
@@ -54,13 +56,20 @@ class DungeonAdventure:
                 elif choice == 'p':
                     self.__player.potion_menu()
                 elif menu[choice] not in open_path:
-                    print('That path is not possible!')
+                    print('  That path is not possible!')
                 else:
                     self.__current_loc((next_room[choice][0], next_room[choice][1]))
                     break
 
-    def vision(self, x, y):                     ############# move to player class? #################
-        VisionPotion.use_vision(self, x, y)
+    @staticmethod
+    def clear():
+        if name == 'nt':
+            _ = system('cls')
+        else:
+            _ = system('clear')
+
+    # def vision(self, loc):                     ############# move to player class? #################
+        # VisionPotion.function(self.__map, loc)
 
 """
 
@@ -78,6 +87,7 @@ DungeonAdventure
     • At the conclusion of the game, display the entire Dungeon
 """
 
+
 if __name__ == '__main__':
     class Obj:
         pass
@@ -87,4 +97,5 @@ if __name__ == '__main__':
     # except TypeError:
     b.player_name = 'jack'
     a = DungeonAdventure(b)
+
 

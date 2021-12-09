@@ -5,7 +5,7 @@ import time
 class Potion(DungeonObject):
 
     @staticmethod
-    def timer():
+    def timer(self):
         print("\n*** Using potion in ...", end='')
         count = [' 3,', ' 2,', ' 1!']
         for i in count:
@@ -13,8 +13,7 @@ class Potion(DungeonObject):
             print(i, end='')
         time.sleep(1)
 
-    # print('\nOnly 8 rooms revealed, not bottom right which is covered by :::\n')
-    # @abstractmethod
-    def function(self):
+    @staticmethod
+    def function():
         pass
         "use potion"

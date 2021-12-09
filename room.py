@@ -20,9 +20,13 @@ class Room:
         else:
             self.__impassible = change
 
+    @property
+    def objects(self):
+        return self.__objects
+
     def enter_room(self):
         """
-        Player enters room, method checks impassible status.
+        Player enters room, method checks impassible status. Print room.
         """
         if not self.__impassible:
             print(f'entered room (x: {self.__x_loc}, y: {self.__y_loc}):')
@@ -67,6 +71,9 @@ class Room:
         self.__objects.append(obj)
 
     def __str__(self):
+        '''
+        Create print of room with letter representing objects, M for multiple.
+        '''
         display = ' '
         if len(self.__objects) == 1:
             display = self.__objects[0].letter
@@ -77,9 +84,9 @@ class Room:
         y = self.__y_loc
         self.__map.ver[y][x] = self.__map.ver[y][x][0] + display + ' '
 
-        return '\n               ' + self.__map.hor[y][x] + \
-               '+\n               ' + self.__map.ver[y][x] + self.__map.ver[y][x + 1][0] + \
-               '\n               ' + self.__map.hor[y + 1][x] + '+'
+        return '\n                 ' + self.__map.hor[y][x] + \
+               '+\n                 ' + self.__map.ver[y][x] + self.__map.ver[y][x + 1][0] + \
+               '\n                 ' + self.__map.hor[y + 1][x] + '+\n'
 
 '''
         

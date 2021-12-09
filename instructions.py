@@ -1,3 +1,4 @@
+from os import system, name
 
 
 class Instructions:
@@ -28,33 +29,44 @@ class Instructions:
         self.__difficulty = num
 
     @staticmethod
+    def clear():
+        """
+        Function clears screen after each input for improve game play.
+        Credit to https://www.geeksforgeeks.org/clear-screen-python/
+        """
+        if name == 'nt':
+            _ = system('cls')
+        else:
+            _ = system('clear')
+
+    @staticmethod
     def instructions():
-        print("\n               Welcome to the dungeon crawler!\n"
-              "You are tasked with guiding the player character through\n"
-              "a dangerous maze. The player can move North, South, East\n"
-              "or West by using the keys 'n', 's', 'e', and 'w' respectively.\n"
-              "Depending on where you are in the randomly generated maze,\n"
-              "you will be informed which directions it is possible to move\n"
-              "in. The goal is for the main character to make it through the\n"
-              "maze alive while finding the four pillars of Object Oriented\n"
-              "Programming: Encapsulation, Inheritance, Abstraction and\n"
-              "Polymorphism. However, you must be careful, ase many of the\n"
-              "chambers in the maze have traps and pits that will cause you\n"
-              "to lose HP(Health Points). Losing all HP will cause you to\n"
-              "lose the game. There are other items that can be found and\n"
-              "used in the dungeon, such as health potions and vision portions.\n"
-              "Health potions restore lost HP and vision potions show small\n"
-              "portions of the map that have not yet been explored. You only\n"
-              "win the game when you reach the end of the maze AFTER collecting\n"
-              "all four pillars. Good Luck Explorer!")
+        Instructions.clear()
+        print("\n               Welcome to the Dungeon Crawler!\n\n"
+              "  You are tasked with guiding the player character through a\n"
+              "  dangerous maze. The player can move North, South, East or West\n"
+              "  by using the keys 'n', 's', 'e', and 'w' respectively. Make it\n "
+              " through the maze alive while finding the four pillars of Object\n"
+              "  Oriented Programming: Encapsulation, Inheritance, Abstraction\n"
+              "  and Polymorphism. However, be careful of pits that will cause\n"
+              "  you to lose health. Losing all health will cause you to lose the\n"
+              "  game. There are other items that can be found, such as health\n"
+              "  potions and vision portions. Health potions restore lost HP and\n"
+              "  vision potions reveal 8 rounds around you. You only Win the game\n"
+              "  when you reach the end of the maze AFTER collecting all four\n"
+              "  pillars. Good Luck Explorer!")
+        if input('\n               Press Enter to return to menu'):
+            return
 
     def menu(self):
         option = -1
         while option != 0:
-            print("[1] Start New Game\n"
-                  "[2] Game Instructions\n"
-                  "[0] Exit Game")
-            option = int(input("Enter the option you would like to choose: "))
+            self.clear()
+            print("\n\n\n\n                     DUNGEON CRAWLER\n\n\n"
+                  "                     [1] Start New Game\n"
+                  "                     [2] Game Instructions\n"
+                  "                     [0] Exit Game\n\n")
+            option = int(input("                    Enter your option: "))
             if option == 1:
                 self.make_player_name()
                 self.pick_difficulty()
@@ -64,22 +76,22 @@ class Instructions:
                 print()
                 continue
             else:
-                print("Invalid Option! Please choose again.\n")
+                print("  Invalid Option! Please choose again.\n")
                 continue
 
-        print("Thank you for playing!")
+        print("\n  Thank you for playing!")
         exit()
 
     def make_player_name(self):
-        name = input("Enter a character name: ").capitalize()
+        name = input("\n  Enter a character name: ").capitalize().strip()
         while name.isalpha() is False:
-            name = input("Please input an appropriate name: ")
+            name = input("  Please input an appropriate name: ")
         self.player_name = name
 
     def pick_difficulty(self):
-        difficulty = input("Enter a game difficulty level between 1 and 3: ")
+        difficulty = input("  Enter a game difficulty level between 1 and 3: ").strip()
         while difficulty.isnumeric() is False or int(difficulty) < 1 or int(difficulty) > 3:
-            difficulty = input("Please only enter a game difficulty level between 1 and 3: ")
+            difficulty = input("  Please only enter a game difficulty level between 1 and 3: ")
         self.difficulty = int(difficulty)
 
 

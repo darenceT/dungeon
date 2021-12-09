@@ -47,7 +47,7 @@ class ObjectFactory:
         """
         temp_list = []
         index = 0
-        while index < self.__map.height:
+        while index < self.__map.height * 3:
             loc = self.__valid_random_loc()
             if loc not in temp_list:
                 temp_list.append(loc)
