@@ -31,7 +31,10 @@ class PauseMenu:
                 Instructions.instructions()
                 continue
             elif option == 3:
+                ClearScreen()
                 print(map)
+                if input('\n               Press Enter to return to menu'):
+                    return
                 continue
             else:
                 print("Invalid Option! Please choose again.\n")
