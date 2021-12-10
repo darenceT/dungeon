@@ -41,11 +41,8 @@ class Room:
         :return: objects
         :rtype: list of characters
         """
-        ref_list = {'i': 'Entrance', 'O': 'Exit', 'X': 'Pit', 'V': 'Vision Potion', 'H': 'Healing Potion',
-                    'A': 'Pillar of Abstraction!', 'E': 'Pillar of Encapsulation!', 'I': 'Pillar of Inheritance!',
-                    'P': 'Pillar of Polymorphism'}
         if self.__objects:
-            print('     This room contains:', ', '.join([ref_list[i.letter] for i in self.__objects]), '\n')
+            print('     This room contains:', ', '.join([str(x) for x in self.__objects]), '\n')
         else:
             print('     This room is empty.\n')
 
