@@ -44,12 +44,15 @@ class Player:
             elif obj.letter == 'X':
                 self.__hitpoints -= obj.function()
             elif obj.letter in ['H', 'V']:
+                if obj.letter == 'H':
+                    obj.function()
                 self.__backpack.append(obj)
                 print(f'  {self.name} added {obj} to backpack!')
             elif obj not in self.__backpack:        # for pillars
                 obj.function()
                 self.__backpack.append(obj)
 
+# TO DO MANNY
     def potion_menu(self):
         print("  potion menu: you have X potions, use healing or vision?")
         # Display: # health potions and # of vision potion
