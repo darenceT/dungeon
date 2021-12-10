@@ -65,13 +65,6 @@ class DungeonAdventure:
                     self.__current_loc((next_room[choice][0], next_room[choice][1]))
                     break
 
-    @staticmethod
-    def clear():
-        if name == 'nt':
-            _ = system('cls')
-        else:
-            _ = system('clear')
-
     # def vision(self, loc):                     ############# move to player class? #################
         # VisionPotion.function(self.__map, loc)
 

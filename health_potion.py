@@ -24,13 +24,8 @@ class HealthPotion(DungeonObject):
         return self.__health_points
 
 
-if __name__ == '__main__':          ############## DELETE #################
+if __name__ == '__main__':
     p = HealthPotion()
     print(p.name)
     print(p.letter)
     print(p.function())
-
-
-#
-# Healing Potion - heals 5-15 hit points (this amount will be randomly generated
-#         -- you can modify the range)
