@@ -1,12 +1,17 @@
+import pygame
+from pygame import mixer
 from build_dungeon import BuildDungeon
 from player import Player
 from vision_potion import VisionPotion              ############# delete #################
-from instructions import Instructions
+from pause_menu import PauseMenu
 
+pygame.init()
 
 class DungeonAdventure:
 
     def __init__(self, input):
+        mixer.music.load('Subterranean Howl - ELPHNT.mp3')
+        mixer.music.play(-1)
         self.__map = BuildDungeon(input.difficulty)
         print(self.__map)                   ################### delete
         self.__room_index = self.__map.room_index
@@ -16,21 +21,16 @@ class DungeonAdventure:
         self.__current_loc(self.__entrance_loc)
 
     def __current_loc(self, location):
-        Instructions.clear()
-        print('  \n================================================================\n\n    ',
+        print('\n============================================================\n\n    ',
               self.__player.name, end=' ')
         self.__map.room_index[location].enter_room()
 
         room_objects = self.__room_index[location].touch_objects()
         self.__player.interact_objects(room_objects)
 
-        #Print Map after winning game
-        for object in room_objects:
-            if object.letter == 'O' and object.freedom:
-                print(self.__map)
-                exit()
+        # if user reached end
+        # if location == self.__exit_loc:
 
-        # otherwise, move to next room
         self.__move_options(location)
 
     def __move_options(self, location):
@@ -46,11 +46,11 @@ class DungeonAdventure:
             open_path.append('East')
 
         while True:
-            print('\n  Your options for moving to next room:', ', '.join(open_path))
-            choice = input('  Input letter for your next action "n, s, e, w" for next room,\n'
-                           '  "p" for potion, "i" for status: ').lower().strip()
+            print('Your options for moving to next room:', ', '.join(open_path))
+            choice = input('Input letter for your next action "n, s, e, w" for next room,\n'
+                           '"p" for potion, "i" for status, "m" for pause menu: ').lower().strip()
             menu = {'n': 'North', 's': 'South', 'e': 'East', 'w': 'West',
-                    'i': 'Player Status', 'p': 'Potion Menu'}
+                    'i': 'Player Status', 'p': 'Potion Menu', 'm': 'Pause Menu'}
             next_room = {'n': (x, y - 1), 's': (x, y + 1), 'e': (x + 1, y), 'w': (x - 1, y)}
             if choice not in menu.keys():
                 print('Invalid input!')
@@ -59,21 +59,16 @@ class DungeonAdventure:
                     print(self.__player)
                 elif choice == 'p':
                     self.__player.potion_menu()
+                elif choice == 'm':
+                    PauseMenu()
                 elif menu[choice] not in open_path:
-                    print('  That path is not possible!')
+                    print('That path is not possible!')
                 else:
                     self.__current_loc((next_room[choice][0], next_room[choice][1]))
                     break
 
-    @staticmethod
-    def clear():
-        if name == 'nt':
-            _ = system('cls')
-        else:
-            _ = system('clear')
-
-    # def vision(self, loc):                     ############# move to player class? #################
-        # VisionPotion.function(self.__map, loc)
+    def vision(self, x, y):                     ############# move to player class? #################
+        VisionPotion.use_vision(self, x, y)
 
 """
 
@@ -91,14 +86,13 @@ DungeonAdventure
     • At the conclusion of the game, display the entire Dungeon
 """
 
-
 if __name__ == '__main__':
     class Obj:
         pass
     b = Obj()
 
     b.difficulty = int(input('Select difficulty:\n1. Easy\n2. Normal\n3. Hard\nType 1, 2 or 3: '))
+    # except TypeError:
     b.player_name = 'jack'
     a = DungeonAdventure(b)
-
 
