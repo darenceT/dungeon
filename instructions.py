@@ -1,8 +1,6 @@
-from os import system, name
-import pygame
-from pygame import mixer
+from clear_screen import ClearScreen
+from sound_fx import SoundFx
 
-pygame.init()
 
 class Instructions:
 
@@ -31,20 +29,20 @@ class Instructions:
             raise ValueError('Secondary line of error caught, number is not between 1 and 3')
         self.__difficulty = num
 
-    @staticmethod
-    def clear():
-        """
-        Function clears screen after each input for improve game play.
-        Credit to https://www.geeksforgeeks.org/clear-screen-python/
-        """
-        if name == 'nt':
-            _ = system('cls')
-        else:
-            _ = system('clear')
+    # @staticmethod
+    # def clear():
+    #     """
+    #     Function clears screen after each input for improve game play.
+    #     Credit to https://www.geeksforgeeks.org/clear-screen-python/
+    #     """
+    #     if name == 'nt':
+    #         _ = system('cls')
+    #     else:
+    #         _ = system('clear')
 
     @staticmethod
     def instructions():
-        Instructions.clear()
+        ClearScreen()
         print("\n               Welcome to the Dungeon Crawler!\n\n"
               "  You are tasked with guiding the player character through a\n"
               "  dangerous maze. The player can move North, South, East or West\n"
@@ -62,12 +60,10 @@ class Instructions:
             return
 
     def menu(self):
-        instuct_m = mixer.Sound('sound\Mysterious Strange Things - Yung Logos.mp3')
-        instuct_m.set_volume(0.6)
-        instuct_m.play(-1)
+        SoundFx.intro()
         option = -1
         while option != 0:
-            self.clear()
+            ClearScreen()
             print("\n\n\n\n                     DUNGEON CRAWLER\n\n\n"
                   "                     [1] Start New Game\n"
                   "                     [2] Game Instructions\n"
@@ -76,7 +72,6 @@ class Instructions:
             if option == 1:
                 self.make_player_name()
                 self.pick_difficulty()
-                instuct_m.stop()
                 return
             elif option == 2:
                 self.instructions()
