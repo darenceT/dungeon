@@ -1,8 +1,8 @@
 Team 6
 
-Darence Thong: Build maze, rooms, dungeonAdventure, vision potion
-Manuel Duarte: Player, healing potions, pit
-Pranav Ramakrishnan: Intro, instructions, story
+Darence Thong: Build maze, rooms, dungeonAdventure, potions, pillars
+Manuel Duarte: Player, potion menu, pit, Tkinter
+Pranav Ramakrishnan: Intro, instructions, pause menu, music, story
 
 
 
