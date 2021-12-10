@@ -112,9 +112,9 @@ class Player:
             elif obj.letter == 'V':
                 vision_pots += 1
         return (
-            f"\nName: {self.__name}\n"
-            f"Hit Points: {self.__hitpoints}\n"
-            f"Total Healing Potions: {health_pots}\n"
-            f"Total Vision Potions: {vision_pots}\n"
-            f"Pillars Keys Found: {pillars}\n"
+            f"\n  Name: {self.__name}\n"
+            f"  Hit Points: {self.__hitpoints}\n"
+            f"  Total Healing Potions: {health_pots}\n"
+            f"  Total Vision Potions: {vision_pots}\n"
+            f"  Pillars Keys Found: {pillars}\n"
         )

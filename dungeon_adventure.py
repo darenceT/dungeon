@@ -1,21 +1,16 @@
 from build_dungeon import BuildDungeon
 from player import Player
 from vision_potion import VisionPotion              ############# delete #################
-from instructions import Instructions
 from pause_menu import PauseMenu
-import pygame
-from pygame import mixer
+from clear_screen import ClearScreen
+from sound_fx import SoundFx
 
-pygame.init()
 
 class DungeonAdventure:
 
     def __init__(self, input):
-        mixer.music.load('sound\Subterranean Howl - ELPHNT.mp3')
-        mixer.music.set_volume(0.7)
-        mixer.music.play(-1)
+        SoundFx.in_game()
         self.__map = BuildDungeon(input.difficulty)
-        print(self.__map)                   ################### delete
         self.__room_index = self.__map.room_index
         self.__player = Player(input.player_name)
         self.__entrance_loc = self.__map.entrance_loc
@@ -23,7 +18,7 @@ class DungeonAdventure:
         self.__current_loc(self.__entrance_loc)
 
     def __current_loc(self, location):
-        Instructions.clear()
+        ClearScreen()
         print('  \n================================================================\n\n    ',
               self.__player.name, end=' ')
         self.__map.room_index[location].enter_room()
@@ -67,7 +62,8 @@ class DungeonAdventure:
                 elif choice == 'p':
                     self.__player.potion_menu()
                 elif choice == 'm':
-                    PauseMenu()
+                    PauseMenu(self.__map)
+                    self.__current_loc(location)
                 elif ref[choice] not in open_path:
                     print('  That path is not possible!')
                 else:
