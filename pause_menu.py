@@ -32,7 +32,7 @@ class PauseMenu:
               "all four pillars. Good Luck Explorer!")
 
     def pause_menu(self):
-        mixer.music.load('Mind And Eye Journey - Emily A. Sprague.mp3')
+        mixer.music.load('sound\Mind And Eye Journey - Emily A. Sprague.mp3')
         mixer.music.play(-1)
         option = -1
         while option != 0:
