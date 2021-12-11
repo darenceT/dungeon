@@ -45,8 +45,8 @@ class Instructions:
               "  vision potions reveal 8 rounds around you. You only Win the game\n"
               "  when you reach the end of the maze AFTER collecting all four\n"
               "  pillars. Good Luck Explorer!")
-        if input('\n               Press Enter to return to menu'):
-            return
+        input('\n               Press Enter to return to menu')
+        return
     
     def menu(self):
         SoundFx.intro()

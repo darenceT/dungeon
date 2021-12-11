@@ -95,8 +95,8 @@ class VisionPotion(DungeonObject):
         print(vision)
 
 
-if __name__ == '__main__':
-    p = BuildDungeon(1)
-    print(p)
-    v = VisionPotion()
-    v.function(p, 6, 5)
+# if __name__ == '__main__':
+#     p = BuildDungeon(1)
+#     print(p)
+#     v = VisionPotion()
+#     v.function(p, 6, 5)

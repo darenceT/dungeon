@@ -4,7 +4,21 @@ from dungeon_adventure import DungeonAdventure
 
 class Main:
     def __init__(self):
+        """
+        Restart code credit https://www.dreamincode.net/forums/topic/96312-restarting-a-program/
+        """
         DungeonAdventure(Instructions())
+
+        while True:
+            restart = input('\n Would you like to play again? (yes/no):').lower().strip()
+            if restart in ['y', 'yes']:
+                DungeonAdventure(Instructions())
+            elif restart in ['n', 'no'] :
+                print("\n    Thanks for playing!\n")
+                exit()
+            else:
+                print('  Enter yes or no only')
+                continue
 
 
 if __name__ == '__main__':

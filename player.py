@@ -136,15 +136,15 @@ class Player:
         for obj in self.__backpack:
             if obj.letter in ['A', 'E', 'I', 'P']:
                 pillars += 1
-            elif obj.letter == 'H':
-                health_pots += 1
-            elif obj.letter == 'V':
-                vision_pots += 1
+            # elif obj.letter == 'H':
+            #     health_pots += 1
+            # elif obj.letter == 'V':
+            #     vision_pots += 1
         return (
             f"\n  Name: {self.__name}\n"
             f"  Hit Points: {self.__hitpoints}\n"
-            f"  Total Healing Potions: {health_pots}\n"
-            f"  Total Vision Potions: {vision_pots}\n"
+            f"  Total Healing Potions: {self.health_potions}\n"
+            f"  Total Vision Potions: {self.vision_potions}\n"
             f"  Pillars Keys Found: {pillars}\n"
         )
 

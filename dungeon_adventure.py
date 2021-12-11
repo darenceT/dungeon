@@ -1,7 +1,7 @@
 from build_dungeon import BuildDungeon
 from player import Player
 from vision_potion import VisionPotion              ############# delete #################
-from pause_menu import PauseMenu
+from pause_game import PauseGame
 from clear_screen import ClearScreen
 from sound_fx import SoundFx
 
@@ -10,6 +10,7 @@ class DungeonAdventure:
 
     def __init__(self, input):
         SoundFx.in_game()
+        # self.__restart_game = input.menu
         self.__map = BuildDungeon(input.difficulty)
         self.__room_index = self.__map.room_index
         self.__player = Player(input.player_name)
@@ -30,10 +31,13 @@ class DungeonAdventure:
         for object in room_objects:
             if object.letter == 'O' and object.freedom:
                 print(self.__map)
-                exit()
+                # exit()
+                return
 
         # otherwise, move to next room
         self.__move_options(location)
+        print('need to get here to go back to main()')
+        return
 
     def __move_options(self, location):
         x, y = location
@@ -55,7 +59,7 @@ class DungeonAdventure:
                    'i': 'Player Status', 'p': 'Potion Menu', 'm': 'Pause Menu'}
             next_room = {'n': (x, y - 1), 's': (x, y + 1), 'e': (x + 1, y), 'w': (x - 1, y)}
             if choice not in ref.keys():
-                print('Invalid input!')
+                print('  Invalid input!')
             else:
                 if choice == 'i':
                     print(self.__player)
@@ -65,13 +69,17 @@ class DungeonAdventure:
                     else:
                         self.__player.potion_menu()
                 elif choice == 'm':
-                    PauseMenu(self.__map)
-                    self.__current_loc(location)
+                    if not PauseGame.menu(self.__map):
+                        self.__current_loc(location)
+                    else:
+                        return
                 elif ref[choice] not in open_path:
                     print('  That path is not possible!')
                 else:
-                    self.__current_loc((next_room[choice][0], next_room[choice][1]))
                     break
+                
+        self.__current_loc((next_room[choice][0], next_room[choice][1]))
+                    
 
     # def vision(self, loc):                     ############# move to player class? #################
         # VisionPotion.function(self.__map, loc)
