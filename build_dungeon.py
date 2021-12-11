@@ -191,7 +191,7 @@ class BuildDungeon:
         return False
 
     def __str__(self):
-        s = "\n        "
+        s = "\n\n        "
         for a, b in zip(self.__hor, self.__ver):
             s += ''.join(a + ['\n        '] + b + ['\n        '])
         return s

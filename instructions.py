@@ -25,20 +25,20 @@ class Instructions:
 
     @difficulty.setter
     def difficulty(self, num):
-        if 1 >= num >= 3:
+        if 1 > num > 3:
             raise ValueError('Secondary line of error caught, number is not between 1 and 3')
         self.__difficulty = num
 
-    # @staticmethod
-    # def clear():
-    #     """
-    #     Function clears screen after each input for improve game play.
-    #     Credit to https://www.geeksforgeeks.org/clear-screen-python/
-    #     """
-    #     if name == 'nt':
-    #         _ = system('cls')
-    #     else:
-    #         _ = system('clear')
+    def __pick_option(self):
+        while True:
+            pick = input("                    Enter your pick: ").strip()
+            if not pick.isnumeric():
+                print("Only integers 0 or greater accepted")
+                continue
+            if int(pick) > 3:
+                print('Only integers between 0 to 3 accepted')
+                continue
+            return int(pick)
 
     @staticmethod
     def instructions():
@@ -61,26 +61,25 @@ class Instructions:
 
     def menu(self):
         SoundFx.intro()
-        option = -1
-        while option != 0:
+        pick = -1
+        while pick != 0:
             ClearScreen()
             print("\n\n\n\n                     DUNGEON CRAWLER\n\n\n"
                   "                     [1] Start New Game\n"
                   "                     [2] Game Instructions\n"
                   "                     [0] Exit Game\n\n")
-            option = int(input("                    Enter your option: "))
-            if option == 1:
+            pick = self.__pick_option()
+            if pick == 1:
                 self.make_player_name()
                 self.pick_difficulty()
                 return
-            elif option == 2:
+            elif pick == 2:
                 self.instructions()
                 print()
                 continue
-            else:
-                print("  Invalid Option! Please choose again.\n")
-                continue
-            # add menu for music options
+            elif pick == 0:
+                break
+            # add menu for music picks
 
         print("\n  Thank you for playing!")
         exit()

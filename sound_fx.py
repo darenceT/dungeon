@@ -18,6 +18,8 @@ class SoundFx:
 
     @staticmethod
     def pause_menu(resume=False):
+        # mixer.music.load('sound\Mind And Eye Journey - Emily A. Sprague.mp3')
+        # mixer.music.play(-1)
         if resume:
             mixer.music.unpause()
         else:
