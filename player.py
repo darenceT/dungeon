@@ -24,6 +24,21 @@ class Player:
     def hitpoints(self):
         return self.__hitpoints
 
+    @property
+    def health_potions(self):
+        count = 0
+        for o in self.__backpack:
+            if o.letter == 'H':
+                count += 1
+        return count
+
+    @property
+    def vision_potions(self):
+        count = 0
+        for o in self.__backpack:
+            if o.letter == 'V':
+                count += 1
+        return count
     # @property
     # def visionpotioncount(self):
     #     return self.__visionpotioncount
@@ -52,8 +67,33 @@ class Player:
                 obj.function()
                 self.__backpack.append(obj)
 
-# TO DO MANNY
     def potion_menu(self):
+        selection = None
+        options = ['r']
+        if self.health_potions != 0:
+            options.append('h')
+        if self.vision_potions != 0:
+            options.append('r')
+        while selection not in ["h", "v", "r"]:
+            print(f'\n  You have {self.health_potions} health potion(s),'
+                  f'and {self.vision_potions} vision potion(s):')
+            if self.health_potions != 0:
+                print(f'\t [h] Use a health potion')
+            if self.vision_potions != 0:
+                print(f'\t [v] Use a vision potion')
+            print(f'\n\t [r] Return')
+            selection = input('\n  Your selection: ')
+            if selection == 'h':
+                self.use_health_potion()
+                break
+            elif selection == 'v':
+                self.use_vision_potion()
+                break
+            elif selection == 'c':
+                break
+
+# TO DO MANNY
+    def potion_menu2(self):
         print("  potion menu: you have X potions, use healing or vision?")
         # Display: # health potions and # of vision potion
         # 1. use health potion (option to pick which health potion) obj.letter = "H"

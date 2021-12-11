@@ -1,3 +1,4 @@
+# from main import Main
 from instructions import Instructions
 from clear_screen import ClearScreen
 from sound_fx import SoundFx
@@ -11,32 +12,39 @@ class PauseMenu:
 
     def pause_menu(self, map):
         SoundFx.pause_menu()
-        option = -1
-        while option != 0:
+        selection = None
+        spaces = "                   "
+        while selection not in ["1", "2", "3" "0"]:
             ClearScreen()
-            print("\n\n                     DUNGEON CRAWLER\n\n\n"
-                  "                     [1] Resume Game\n"
-                  "                     [2] Game Instructions\n"
-                  "                     [3] **** Cheat ****\n"
-                  "                     [0] Exit Game\n")
+            print("\n\n\n" 
+                  f"{spaces} DUNGEON CRAWLER\n\n\n"
+                  f"{spaces}  * GAME PAUSED *\n\n\n"
+                  f"{spaces} [1] Resume Game\n"
+                  f"{spaces} [2] Game Instructions\n"
+                  f"{spaces} [3] Sound options\n"       # in progress
+                  f"{spaces} [4] *Cheat* Remove display later but will still work\n"
+                # f"{spaces} [5] Restart Game\n"
+                  f"{spaces} [0] Exit Game\n")
                   # restart game
-                  # sound options
-            option = int(input("           Enter your option: ").strip())
-            if option == 1:
+ 
+            if selection is not None and selection not in ["1", "2", "0"]:
+                print(f"{spaces}Invalid selection! Please choose again.\n")
+            selection = input(f"{spaces}Enter your selection: ").strip()
+            if selection == "1":
                 SoundFx.pause_menu(resume=True)
                 return
-            elif option == 2:
+            elif selection == "2":
                 Instructions.instructions()
+                selection = None
                 continue
-            elif option == 3:
+            elif selection == "4":
                 ClearScreen()
-                print(map)
-                if input('\n          Press Enter to return to menu'):
+                print(f'\n\n{spaces}You found the hidden map!\n\n{map}')
+                if input('\n       Press Enter to return to menu'):
                     return
                 continue
-            elif option !=0:
-                print("Invalid Option! Please choose again.\n")
-                continue
-
-        print("\nThank you for playing!\n")
-        exit()
+            # elif selection == "5":
+            #     Main()
+            elif selection == "0":
+                print(f"\n{spaces}Thank you for playing!\n\n")
+                exit()
