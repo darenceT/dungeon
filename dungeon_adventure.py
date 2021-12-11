@@ -52,7 +52,7 @@ class DungeonAdventure:
             choice = input('  Input letter for your next action "n, s, e, w" for next room,\n'
                            '  "p" for potion, "i" for status, "m" for menu: ').lower().strip()
             ref = {'n': 'North', 's': 'South', 'e': 'East', 'w': 'West', 
-                   'i': 'Player Status', 'p': 'Potion Menu', 'm': 'pause menu'}
+                   'i': 'Player Status', 'p': 'Potion Menu', 'm': 'Pause Menu'}
             next_room = {'n': (x, y - 1), 's': (x, y + 1), 'e': (x + 1, y), 'w': (x - 1, y)}
             if choice not in ref.keys():
                 print('Invalid input!')
@@ -60,7 +60,10 @@ class DungeonAdventure:
                 if choice == 'i':
                     print(self.__player)
                 elif choice == 'p':
-                    self.__player.potion_menu()
+                    if self.__player.vision_potions:
+                        self.__player.potion_menu(self.__map, location)
+                    else:
+                        self.__player.potion_menu()
                 elif choice == 'm':
                     PauseMenu(self.__map)
                     self.__current_loc(location)

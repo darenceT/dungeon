@@ -67,7 +67,7 @@ class Player:
                 obj.function()
                 self.__backpack.append(obj)
 
-    def potion_menu(self):
+    def potion_menu(self, map=None, loc=None):
         selection = None
         options = ['r']
         if self.health_potions != 0:
@@ -87,56 +87,45 @@ class Player:
                 self.use_health_potion()
                 break
             elif selection == 'v':
-                self.use_vision_potion()
+                self.use_vision_potion(map, loc)
                 break
             elif selection == 'c':
                 break
 
-# TO DO MANNY
-    def potion_menu2(self):
-        print("  potion menu: you have X potions, use healing or vision?")
-        # Display: # health potions and # of vision potion
-        # 1. use health potion (option to pick which health potion) obj.letter = "H"
-        # 2. use vision potion
-        # 3. return to game
-        #         if 1:
-        #             self.__hitpoints += obj.function()
-        #         elif 2:
-        #         self.__bag.delete(obj)
-        #         elif 3:
-        #             return
+    def use_health_potion(self):
+        if self.health_potions == 0:
+            raise Exception("You do not any health potion to use")
 
-    # def add_healing_potion(self, potion):
-    #     self.__healingpotions.append(potion)
-    #     print("Added healing potion to inventory.")
+        for o in self.__backpack:
+            if o.letter == "H":
+                # potion = o
+                self.__backpack.remove(o)
+        print(f'  You used a {o}!')
 
-    def takehealing_potion(self):
-        if len(self.__healingpotions) == 0:
-            print("You are all out of healing potions.")
-        else:
-            potion = self.__healingpotions.pop(0)
-            # Does not allow hitpoints to go over 100
-            # Remove if going over 100 is allowed
-            # self.__hitpoints += potion.points
-            totalhitpoints = self.__hitpoints + potion.points
-            if totalhitpoints <= 100:
-                self.__hitpoints = totalhitpoints
-            else:
-                self.__hitpoints = 100
-            print(f"Took healing potion. Hit points restored to {self.__hitpoints}")
+        # Does not allow hitpoints to go over 100
+        # Remove if going over 100 is allowed
+        # self.__hitpoints += potion.points
 
-    def addvisionpotion(self):
-        self.__visionpotions += 1
-        print("Added vision potion to inventory.")
+        # totalhitpoints = self.__hitpoints + potion.points
+        # if totalhitpoints <= 100:
+        #     self.__hitpoints = totalhitpoints
+        # else:
+        #     self.__hitpoints = 100
 
-    def take_vision_potion(self):
-        if self.__visionpotioncount == 0:
-            print("You are all out of vision potions.")
-        else:
-            self.__visionpotions -= 1
-            # I don't think the maze code will be called from within the player class
+        self.__hitpoints = 100
+        print(f"  Took healing potion. Hit points restored to {self.__hitpoints}")
 
-    def takedamage(self, pit):
+    def use_vision_potion(self, map, loc):
+        if self.vision_potions == 0:
+            raise Exception("You do not any vision potion to use")
+
+        for o in self.__backpack:
+            if o.letter == "V":
+                o.function(map, loc)
+                self.__backpack.remove(o)
+        print('  You used a vision potion BACKPACK') ################
+
+    def use_damage(self, pit):
         self.__hitpoints -= pit.damage
         print(f"Took damage. Lost {pit.damage} points.")
 
@@ -158,3 +147,28 @@ class Player:
             f"  Total Vision Potions: {vision_pots}\n"
             f"  Pillars Keys Found: {pillars}\n"
         )
+
+
+
+    # def add_healing_potion(self, potion):
+    #     self.__healingpotions.append(potion)
+    #     print("Added healing potion to inventory.")
+
+    # def takehealing_potion(self):
+    #     if len(self.__healingpotions) == 0:
+    #         print("You are all out of healing potions.")
+    #     else:
+    #         potion = self.__healingpotions.pop(0)
+    #         # Does not allow hitpoints to go over 100
+    #         # Remove if going over 100 is allowed
+    #         # self.__hitpoints += potion.points
+    #         totalhitpoints = self.__hitpoints + potion.points
+    #         if totalhitpoints <= 100:
+    #             self.__hitpoints = totalhitpoints
+    #         else:
+    #             self.__hitpoints = 100
+    #         print(f"Took healing potion. Hit points restored to {self.__hitpoints}")
+
+    # def addvisionpotion(self):
+    #     self.__visionpotions += 1
+    #     print("Added vision potion to inventory.")
