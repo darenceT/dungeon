@@ -25,20 +25,9 @@ class Instructions:
 
     @difficulty.setter
     def difficulty(self, num):
-        if 1 >= num >= 3:
+        if 1 > num > 3:
             raise ValueError('Secondary line of error caught, number is not between 1 and 3')
         self.__difficulty = num
-
-    # @staticmethod
-    # def clear():
-    #     """
-    #     Function clears screen after each input for improve game play.
-    #     Credit to https://www.geeksforgeeks.org/clear-screen-python/
-    #     """
-    #     if name == 'nt':
-    #         _ = system('cls')
-    #     else:
-    #         _ = system('clear')
 
     @staticmethod
     def instructions():
@@ -58,33 +47,33 @@ class Instructions:
               "  pillars. Good Luck Explorer!")
         if input('\n               Press Enter to return to menu'):
             return
-
+    
     def menu(self):
         SoundFx.intro()
-        option = -1
-        while option != 0:
+        selection = None
+        spaces = "                   "
+        while selection not in ["1", "2", "0"]:
             ClearScreen()
-            print("\n\n\n\n                     DUNGEON CRAWLER\n\n\n"
-                  "                     [1] Start New Game\n"
-                  "                     [2] Game Instructions\n"
-                  "                     [0] Exit Game\n\n")
-            option = int(input("                    Enter your option: "))
-            if option == 1:
+            print("\n\n\n\n"
+                  f"{spaces} DUNGEON CRAWLER\n\n\n"
+                  f"{spaces} [1] Start New Game\n"
+                  f"{spaces} [2] Game Instructions\n"
+                  f"{spaces} [0] Exit Game\n\n")
+            if selection is not None and selection not in ["1", "2", "0"]:
+                print(f"{spaces}Invalid selection! Please choose again.\n")
+            selection = input(f"{spaces}Enter your selection: ").strip()
+            if selection == "1":
                 self.make_player_name()
                 self.pick_difficulty()
                 return
-            elif option == 2:
+            elif selection == "2":
                 self.instructions()
-                print()
+                selection = None
                 continue
-            else:
-                print("  Invalid Option! Please choose again.\n")
-                continue
-            # add menu for music options
-
-        print("\n  Thank you for playing!")
-        exit()
-
+            elif selection == "0":
+                print(f"\n{spaces}Thank you for playing!\n\n")
+                exit()
+    
     def make_player_name(self):
         name = input("\n  Enter a character name: ").capitalize().strip()
         while name.isalpha() is False:
@@ -103,3 +92,43 @@ if __name__ == '__main__':
     m = Instructions()
     print(m.difficulty)
     print(m.player_name)
+
+
+# def __pick_option(self):
+#     while True:
+#         pick = input("                    Enter your pick: ").strip()
+#         if not pick.isnumeric():
+#             print("Only integers 0 or greater accepted")
+#             continue
+#         if int(pick) > 3:
+#             print('Only integers between 0 to 3 accepted')
+#             continue
+#         return int(pick)
+
+#  def menu2(self):
+#         SoundFx.intro()
+#         pick = -1
+#         while pick != 0:
+#             ClearScreen()
+#             print("\n\n\n\n                     DUNGEON CRAWLER\n\n\n"
+#                   "                     [1] Start New Game\n"
+#                   "                     [2] Game Instructions\n"
+#                   "                     [3] Sound options\n"
+#                   "                     [0] Exit Game\n\n")
+#             pick = self.__pick_option()
+#             if pick == 1:
+#                 self.make_player_name()
+#                 self.pick_difficulty()
+#                 return
+#             elif pick == 2:
+#                 self.instructions()
+#                 print()
+#                 continue
+#             elif pick == 3:
+#                 SoundFx.options()
+#                 continue
+#             elif pick == 0:
+#                 break
+
+#         print("\n  Thank you for playing!")
+#         exit()
