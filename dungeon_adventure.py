@@ -10,7 +10,6 @@ class DungeonAdventure:
 
     def __init__(self, input):
         SoundFx.in_game()
-        # self.__restart_game = input.menu
         self.__map = BuildDungeon(input.difficulty)
         self.__room_index = self.__map.room_index
         self.__player = Player(input.player_name)
@@ -40,10 +39,10 @@ class DungeonAdventure:
 
             # Lose game
             if self.__player.hitpoints <= 0:
+                SoundFx.lose()
                 ClearScreen()
-                #SoundFx.lose()
-                print('\n\n\n\n     ** GAME OVER **\n\n'
-                      '\n\n\n  Your health reached 0!\n\n')
+                print('\n\n\n\n          ** GAME OVER **\n\n'
+                      '\n\n\n        Your health reached 0!\n\n')
                 time.sleep(2)
                 print('****should go back to main()****')                  # DELETE
                 return
@@ -51,9 +50,9 @@ class DungeonAdventure:
             # Win game
             for object in room_objects:
                 if object.letter == 'O' and object.freedom:
-                    #SoundFx.win()
-                    print(self.__map)
+                    SoundFx.win()
                     time.sleep(2)
+                    print(self.__map)
                     print('****should go back to main()****')              # DELETE
                     return
 
