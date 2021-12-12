@@ -6,7 +6,7 @@ from random import randint
 class Player:
     def __init__(self, name="Player 1"):
         self.__name = name
-        self.__hitpoints = randint(75, 100)
+        self.__hitpoints = randint(50, 80)
         # self.__healingpotions = []
         # self.__visionpotioncount = 0
         # self.__pillarsfound = []
@@ -93,20 +93,13 @@ class Player:
         for o in self.__backpack:
             if o.letter == "H":
                 self.__backpack.remove(o)
-        print(f'  You used a {o}, {o.health_points} health replenished!')
-
+                print(f'  You used a {o}, {o.health_points} health replenished!')
+                self.__hitpoints += o.health_points
+                break
         # Does not allow hitpoints to go over 100
-        # Remove if going over 100 is allowed
-        # self.__hitpoints += potion.points
-
-        # totalhitpoints = self.__hitpoints + potion.points
-        # if totalhitpoints <= 100:
-        #     self.__hitpoints = totalhitpoints
-        # else:
-        #     self.__hitpoints = 100
-
-        self.__hitpoints = 100
-        print(f"  Took healing potion. Hit points restored to {self.__hitpoints}")
+        if self.__hitpoints > 100:
+            self.__hitpoints = 100
+        print(f"  {self.__name}'s health is now {self.__hitpoints} health points")
 
     def use_vision_potion(self, map, loc):
         if self.vision_potions == 0:
