@@ -19,8 +19,8 @@ class SoundFx:
     @staticmethod
     def intro(stop=False):
         pygame.init()
-        mixer.music.load(Path('sound/Mysterious Strange Things - Yung Logos.mp3'))
-        mixer.music.set_volume(0.3)
+        mixer.music.load(Path('sound/Mysterious Strange Things - Yung Logos_short.mp3'))
+        mixer.music.set_volume(0.7)
         mixer.music.play(-1)
 
     @staticmethod
@@ -38,7 +38,7 @@ class SoundFx:
 
     @staticmethod
     def in_game(stop=False):
-        mixer.music.load(Path('sound/Subterranean Howl - ELPHNT.mp3'))
+        mixer.music.load(Path('sound/Subterranean Howl - ELPHNT_short.mp3'))
         mixer.music.play(-1)
 
     @staticmethod
@@ -50,3 +50,14 @@ class SoundFx:
         else:
             mixer.music.pause()
 
+    @staticmethod
+    def lose():
+        pass
+        # mixer.music.load(Path('sound/{insert here}.mp3'))
+        # mixer.music.play(-1)
+
+    @staticmethod
+    def win():
+        pass
+        # mixer.music.load(Path('sound/{insert here}.mp3'))
+        # mixer.music.play(-1)
