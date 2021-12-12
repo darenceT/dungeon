@@ -22,4 +22,8 @@ class Main:
 
 
 if __name__ == '__main__':
-    Main()
+    try:
+        Main()
+    except KeyboardInterrupt:
+        print('\n                   Thank you for playing!\n\n')
+        exit(0)
