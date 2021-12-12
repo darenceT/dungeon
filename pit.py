@@ -7,7 +7,7 @@ class Pit(DungeonObject):
     def __init__(self):
         super().set_name('Pit')
         super().set_letter('X')
-        self.__damage = randint(1, 20)
+        self.__damage = randint(20, 40)
         self.__deactivate = False
 
     @property

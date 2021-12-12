@@ -1,4 +1,3 @@
-# from main import Main
 from instructions import Instructions
 from clear_screen import ClearScreen
 from sound_fx import SoundFx
@@ -15,7 +14,8 @@ class PauseGame:
         SoundFx.pause_menu()
         selection = None
         spaces = "                   "
-        while selection not in ["1", "2", "3", "4", "5", "0"]:
+        options = ["1", "2", "3", "4", "5", "0"]
+        while selection not in options:
             ClearScreen()
             print("\n\n\n" 
                   f"{spaces} DUNGEON CRAWLER\n\n\n"
@@ -27,7 +27,7 @@ class PauseGame:
                   f"{spaces} [5] Restart Game\n"
                   f"{spaces} [0] Exit Game\n")
  
-            if selection is not None and selection not in ['1', '2', '3', '4', '5', '0']:
+            if selection is not None and selection not in options:
                 print(f"{spaces}Invalid selection! Please choose again.\n")
             selection = input(f"{spaces}Enter your selection: ").strip()
             if selection == "1":

@@ -4,7 +4,7 @@ from vision_potion import VisionPotion              ############# delete #######
 from pause_game import PauseGame
 from clear_screen import ClearScreen
 from sound_fx import SoundFx
-
+import time
 
 class DungeonAdventure:
 
@@ -38,15 +38,28 @@ class DungeonAdventure:
             room_objects = self.__room_index[location].touch_objects()
             self.__player.interact_objects(room_objects)
 
-            #Print Map after winning game
+            # Lose game
+            if self.__player.hitpoints <= 0:
+                ClearScreen()
+                #SoundFx.lose()
+                print('\n\n\n\n     ** GAME OVER **\n\n'
+                      '\n\n\n  Your health reached 0!\n\n')
+                time.sleep(2)
+                print('****should go back to main()****')                  # DELETE
+                return
+
+            # Win game
             for object in room_objects:
                 if object.letter == 'O' and object.freedom:
+                    #SoundFx.win()
                     print(self.__map)
+                    time.sleep(2)
+                    print('****should go back to main()****')              # DELETE
                     return
 
-            # move to next room
+            # Move to next room
             location = self.__move_options(location)
-        print('need to get here to go back to main()')
+        print('****need to get here to go back to main() by pause Menu***')  # DELETE
 
     def __move_options(self, location):
         x, y = location
@@ -90,10 +103,6 @@ class DungeonAdventure:
             
         # self.__play((next_room[choice][0], next_room[choice][1]))
                     
-
-    # def vision(self, loc):                     ############# move to player class? #################
-        # VisionPotion.function(self.__map, loc)
-
 """
 
 DungeonAdventure
