@@ -3,6 +3,7 @@ from player import Player
 from pause_game import PauseGame
 from clear_screen import ClearScreen
 from sound_fx import SoundFx
+from art import Art
 import time
 
 class DungeonAdventure:
@@ -43,10 +44,8 @@ class DungeonAdventure:
         :return: None. Exit loop to return to Main(), to exit or restart
         """
         while location is not None:
-            ClearScreen()
-            print('  \n================================='
-                  '===============================\n\n    ',
-                  self.__player.name, end=' ')
+            Art.in_game3()
+            print(f'\n\n     {self.__player.name}', end=' ')
             self.__map.room_index[location].enter_room()
 
             room_objects = self.__room_index[location].touch_objects()
@@ -80,6 +79,8 @@ class DungeonAdventure:
         Player status includes inventory information
         Potion menu allows consumption of potions
         Pause menu allows additional options including hidden map, reset game, & exit
+        :param location: room location of player
+        :type location: tuple(x-coord, y-coord)
         """
         x, y = location
         open_path = []

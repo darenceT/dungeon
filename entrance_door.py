@@ -22,7 +22,8 @@ class EntranceDoor(DungeonObject):
 
     def function(self):
         if not self.__deactivate:
-            print('  You found an iphone.\n  It contains a "Torch" app you can use as a flashlight!\n')
+            print('  You found an iphone.\n'
+                  '  It contains a "Torch" app you can use as a flashlight!\n')
             self.deactivate = True
 
 

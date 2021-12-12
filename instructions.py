@@ -1,6 +1,6 @@
 from clear_screen import ClearScreen
 from sound_fx import SoundFx
-
+from art import Art
 
 class Instructions:
 
@@ -50,6 +50,7 @@ class Instructions:
     
     def menu(self):
         SoundFx.intro()
+        Art.intro()
         selection = None
         spaces = "                   "
         while selection not in ["1", "2", "0"]:
