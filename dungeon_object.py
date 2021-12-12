@@ -2,7 +2,16 @@ from abc import ABC, abstractmethod
 
 
 class DungeonObject(ABC):
+    """
+    Abstract class for all objects in dungeon: pillars, potions, pit, entrance & exit door
+    Abstract method of function for each object
+    Parent properties of __name, __letter, and methods getters/setters, __str/__repr
+    will be inherited by child class objects. 
+    """
     def __init__(self):
+        """
+        Name and letter for each object
+        """
         self.__name = "Error for seeing abstract name"
         self.__letter = 'Error for seeing abstract letter'
 
@@ -32,6 +41,9 @@ class DungeonObject(ABC):
 
     @abstractmethod
     def function(self):
+        """
+        Require that every object in child class have a function method
+        """
         pass
 
     def __str__(self):
