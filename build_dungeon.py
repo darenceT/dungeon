@@ -4,19 +4,38 @@ from random import shuffle, randrange
 
 
 class BuildDungeon:
+    """
+    Create map of dungeon while simutaneously creating each room.
+    Entrance location is randomized, exit location is always at bottom right corner
+    Location of pillars are randomized and checked with traversal method to ensure 
+    that they are obtainable, then passed to ObjectFactory to create Pillars.
+    """
     def __init__(self, mode):
+        """
+        Difficulty method establishes size of dungeon, assigning __width & __height,
+        and assigns entrance and exit locations.
+        __hor and __ver are rows & colums strings that can print out the map.
+        __room_index is dictionary of Rooms with keys as tuple(x-coord, y-coord).
+        __pillars_loc is list of locations where Pillars will be placed
+        __build_maze creates map and rooms
+        __objects_for_traversal checks critical items and exit are obtainable
+        ObjectFactory() turns on factory to create objects for each room,
+        passing in this instance for location information.
+        :param mode: difficulty level passed from DungeonAdventure (origin from Instructions())
+        :type mode: int
+        """
         self.__width = 0
         self.__height = 0
-        self.__ver = []
-        self.__hor = []
         self.__entrance_loc = ()
+        self.__exit_loc = ()
+        self.__hor = []
+        self.__ver = []
         self.__difficulty(mode)
-        self.__exit_loc = (self.__width - 1, self.__height - 1)
         self.__room_index = {}
         self.__pillars_loc = []
         self.__build_maze()
         self.__objects_for_traversal()
-        self.__factory = ObjectFactory(self)
+        ObjectFactory(self)
 
     @property
     def width(self):
@@ -35,10 +54,6 @@ class BuildDungeon:
         return self.__hor
 
     @property
-    def factory(self):
-        return self.__factory
-
-    @property
     def entrance_loc(self):
         return self.__entrance_loc
 
@@ -55,6 +70,12 @@ class BuildDungeon:
         return self.__pillars_loc
 
     def __difficulty(self, mode):
+        """
+        Create size of dungeon per mode selected at Instructions()
+        Entrance location is randomized but limited to top left quarter of dungeon
+        so that entrance will not spawn too close to exit.
+        Exit location always set at bottom right corner of dungeon.
+        """
         if mode == 1:
             self.__width = 8
             self.__height = 4
@@ -67,7 +88,8 @@ class BuildDungeon:
         else:
             raise ValueError('Input is not between 1 to 3 for difficulty mode')
 
-        self.__entrance_loc = (randrange(0, self.__width // 2,), randrange(0, self.__height // 2))
+        self.__entrance_loc = randrange(0, self.__width // 2,), randrange(0, self.__height // 2)
+        self.__exit_loc = self.__width - 1, self.__height - 1
 
     def __build_maze(self):
         """
@@ -85,9 +107,12 @@ class BuildDungeon:
 
         def __break_wall(location):
             """
-            Path of maze created using visited grid. In each room, neighbors ("d" list) are approached
-            randomly by using time.shuffle.
-            Room objects created during wall-breaking process, indexed into dictionary "__room_index"
+            Path of maze created using visited grid. 
+            In each room, neighbors ("d" list) are approached randomly by using time.shuffle.
+            Room objects created during wall-breaking process, 
+            indexed into dictionary "__room_index".
+            :param location: location of current room to break wall to create path
+            :type location: tuple(x-coord, y-coord)
             """
             x, y = location
             # create room and map index, reset so room is passable
@@ -113,7 +138,11 @@ class BuildDungeon:
 
         __break_wall(self.__entrance_loc)
 
-    def __objects_for_traversal(self):                # need to clean up this code ???
+    def __objects_for_traversal(self):
+        """
+        Ensures pillar locations and exit are obtainable after creating
+        impassible rooms. Recreate maze if not obtainable
+        """                
         while True:
             self.__create_impassible()
             self.__create_pillar_loc()
@@ -128,28 +157,31 @@ class BuildDungeon:
                 break
 
     def __create_pillar_loc(self):
+        """
+        Random locations for pillars. List will be passed to factory to create Pillars
+        """
         while len(self.__pillars_loc) < 4:
             x = randrange(0, self.__width)
             y = randrange(0, self.__height)
             if (x, y) != self.__entrance_loc and (x, y) != self.__exit_loc \
                     and (x, y) not in self.__pillars_loc:
                 self.__pillars_loc.append((x, y))
-                print()
 
     def __create_impassible(self):
         """
-        Append to list of impassible rooms to avoid putting objects into these rooms
-        Credit to Steph for help with debugging.
+        Create impassible rooms at random locations to make maze more complex.
+        Temp list used to avoid duplicates.
+        Number of rooms per difficulty, Easy: 1, Normal: 2, Hard: 3
+        Credit to Steph Liu for help with debugging.
         """
         temp_list = []
-        # Number of rooms per difficulty, Easy: 1, Normal: 2, Hard: 3
         for _ in range(self.__width // 8):
             while True:
                 x = randrange(0, self.__width)
                 y = randrange(0, self.__height)
                 if (x, y) == self.__entrance_loc or (x, y) == self.__entrance_loc:
                     continue
-                elif (x, y) not in temp_list:     # avoid duplicates
+                elif (x, y) not in temp_list:     
                     temp_list.append((x, y))
                     self.room_index[(x, y)].impassible = True
                     self.__hor[y][x] = "+--"
@@ -161,8 +193,10 @@ class BuildDungeon:
     def __traverse_dungeon(self, target_loc):
         """
         Traverse maze just after walls broken and path created, ensure path from (0, 0)
-        to exit, 'E' is possible.
-        :return: True if path to exit is possible
+        to target, 'E' is possible.
+        :param target_loc: target location to traverse from entrance
+        :type target_loc: tuple(x-coord, y-coord) of pillars and exit location
+        :return: True if path is possible
         :rtype: boolean
         """
         target_x, target_y = target_loc
@@ -191,6 +225,12 @@ class BuildDungeon:
         return False
 
     def __str__(self):
+        """
+        Print out map of dungeon using __hor and __ver properties.
+        This will reveal all objects even after they have been picked up by player.
+        :return: map of dungeon
+        :rtype: str
+        """
         s = "\n\n        "
         for a, b in zip(self.__hor, self.__ver):
             s += ''.join(a + ['\n        '] + b + ['\n        '])

@@ -6,8 +6,24 @@ from sound_fx import SoundFx
 import time
 
 class DungeonAdventure:
-
+    """
+    This runs the game, creates dungeon and player, allow player to interact with
+    objects in dungeon rooms. Allow player to move to different rooms, lose
+    game by losing all of player health or win by collecting 4 pillars & reaching
+    exit.
+    """
     def __init__(self, player_input):
+        """
+        Obtained player name and difficulty choice from Instructions() as param.
+        Create dungeon and player, then start __play method.
+        :param player_input: obtained from Instructions() for user's input of player
+        name and difficulty level
+        :type player_input: Instructions class object
+        :property __map: map of dungeon from BuildDungeon
+        :property __room_index: list of rooms (x-coord, y-coord) created in BuildDungeon
+        :property __entrance_loc: Entrance location from created in BuildDungeon
+        :property __exit_loc: Exit location from BuildDungeon, always at bottom right corner 
+        """
         SoundFx.in_game()
         self.__map = BuildDungeon(player_input.difficulty)
         self.__room_index = self.__map.room_index
@@ -58,6 +74,13 @@ class DungeonAdventure:
                 location = self.__move_options(location)
 
     def __move_options(self, location):
+        """
+        Menu of options for player at each room
+        List of paths created for options.
+        Player status includes inventory information
+        Potion menu allows consumption of potions
+        Pause menu allows additional options including hidden map, reset game, & exit
+        """
         x, y = location
         open_path = []
         if self.__map.hor[y][x] == "+  ":
@@ -99,7 +122,6 @@ class DungeonAdventure:
                     return next_room[choice][0], next_room[choice][1]
                     
 """
-
 DungeonAdventure
     • Contains the main logic for playing the game
     • Introduces the game describing what the game is about and how to play
@@ -113,13 +135,3 @@ DungeonAdventure
         what the menu option is in your documentation for the DungeonAdventure class
     • At the conclusion of the game, display the entire Dungeon
 """
-
-
-if __name__ == '__main__':
-    class Obj:
-        pass
-    b = Obj()
-
-    b.difficulty = int(input('Select difficulty:\n1. Easy\n2. Normal\n3. Hard\nType 1, 2 or 3: '))
-    b.player_name = 'jack'
-    a = DungeonAdventure(b)
