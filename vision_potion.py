@@ -1,4 +1,5 @@
 from dungeon_object import DungeonObject
+from clear_screen import ClearScreen
 import time
 
 
@@ -10,8 +11,27 @@ class VisionPotion(DungeonObject):
 
     @staticmethod
     def function(dungeon_map, loc):
-        print("  *** Potion effects in ...3, 2, 1!", end='')
-        time.sleep(2)
+        """
+        Prints out surround 8 rooms of player's current room.
+        Less than 8 rooms revealed if player is next to dungeon border.
+        Timer count down credit https://www.geeksforgeeks.org/how-to-create-a-countdown-timer-using-python/
+        :param dungeon_map: map instance passed from DungeonAdventure
+        :type dungeon_map: BuildDungeon
+        :param loc: location of player's current room
+        :type loc: tuple(x-coordinate, y-coordinate)
+        :return: map of current and surround 8 rooms
+        :rtype: str
+        """
+        ClearScreen()
+        print('\n================================='
+              '===============================\n\n   '
+              '*** Using potion in ...', end='')
+        count = [' 3,', ' 2,', ' 1!']
+        for i in count:
+            time.sleep(1)
+            print(i, end='', flush=True)
+
+        # SoundFx.vision()
 
         def __get_letter(xx, yy):
             objects = dungeon_map.room_index[(xx, yy)].objects
@@ -89,5 +109,6 @@ class VisionPotion(DungeonObject):
             vision += hor[y+2][x+1] + f'+\n{spaces}'
         elif y+1 < dungeon_map.height:
             vision += '+\n'
-
-        print(vision)
+        
+        print(vision, '\n  Rooms surrounding you are revealed!\n'
+              '  (Up to 9 including current room)')

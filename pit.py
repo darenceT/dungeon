@@ -1,4 +1,5 @@
 from dungeon_object import DungeonObject
+from sound_fx import SoundFx
 from random import randint
 import time
 
@@ -7,7 +8,7 @@ class Pit(DungeonObject):
     def __init__(self):
         super().set_name('Pit')
         super().set_letter('X')
-        self.__damage = randint(20, 40)
+        self.__damage = randint(15, 30)
         self.__deactivate = False
 
     @property
@@ -31,6 +32,7 @@ class Pit(DungeonObject):
         if not self.__deactivate:
             print('\n  Walk slow or run too fast, you still fell into a pit!\n')
             time.sleep(1)
+            SoundFx.pit()
             print('  You lose', self.__damage, 'health.\n')
             self.deactivate = True
             return self.__damage

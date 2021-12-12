@@ -1,4 +1,5 @@
-
+from sound_fx import SoundFx
+import time
 
 class Room:
 
@@ -28,11 +29,21 @@ class Room:
         """
         Player enters room, method checks impassible status. Print room.
         """
+        SoundFx.enter_room()
         if not self.__impassible:
             print(f'entered room (x: {self.__x_loc}, y: {self.__y_loc}):')
         else:
             raise ValueError('Room has been set impassible, you are trespassing!')
         print(self)
+        # for obj in self.__objects:
+        #     if obj.letter in ['A', 'E', 'I', 'P']:
+        #         time.sleep(1)
+        #         SoundFx.pillar()
+        #         break
+        #     elif obj.letter == 'X' and not obj.deactivate:
+        #         time.sleep(1)
+        #         SoundFx.pit()
+        #         break
 
     def touch_objects(self):
         """
