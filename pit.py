@@ -29,7 +29,7 @@ class Pit(DungeonObject):
 
     def function(self):
         if not self.__deactivate:
-            print('  Walk slow or run too fast, you still fell into a pit!\n')
+            print('\n  Walk slow or run too fast, you still fell into a pit!\n')
             time.sleep(1)
             print('  You lose', self.__damage, 'health.\n')
             self.deactivate = True

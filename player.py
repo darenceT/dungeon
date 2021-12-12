@@ -39,13 +39,6 @@ class Player:
             if o.letter == 'V':
                 count += 1
         return count
-    # @property
-    # def visionpotioncount(self):
-    #     return self.__visionpotioncount
-    #
-    # @property
-    # def pillarsfound(self):
-    #     return self.__pillarsfound
 
     def interact_objects(self, objects):
         """
@@ -73,8 +66,8 @@ class Player:
         if self.health_potions != 0:
             options.append('h')
         if self.vision_potions != 0:
-            options.append('r')
-        while selection not in ["h", "v", "r"]:
+            options.append('v')
+        while selection not in options:
             print(f'\n  You have {self.health_potions} health potion(s),'
                   f'and {self.vision_potions} vision potion(s):')
             if self.health_potions != 0:
@@ -82,14 +75,15 @@ class Player:
             if self.vision_potions != 0:
                 print(f'\t [v] Use a vision potion')
             print(f'\n\t [r] Return')
-            selection = input('\n  Your selection: ')
-            if selection == 'h':
+            print_options = ', '.join(options)
+            selection = input(f'\n  Enter your option(s) [{print_options}]: ').strip().lower()
+            if selection == 'h' and 'h' in options:
                 self.use_health_potion()
                 break
-            elif selection == 'v':
+            elif selection == 'v' and 'v' in options:
                 self.use_vision_potion(map, loc)
                 break
-            elif selection == 'c':
+            elif selection == 'r':
                 break
 
     def use_health_potion(self):
@@ -98,9 +92,8 @@ class Player:
 
         for o in self.__backpack:
             if o.letter == "H":
-                # potion = o
                 self.__backpack.remove(o)
-        print(f'  You used a {o}!')
+        print(f'  You used a {o}, {o.health_points} health replenished!')
 
         # Does not allow hitpoints to go over 100
         # Remove if going over 100 is allowed
@@ -123,6 +116,7 @@ class Player:
             if o.letter == "V":
                 o.function(map, loc)
                 self.__backpack.remove(o)
+                break
         print('  You used a vision potion BACKPACK') ################
 
     def use_damage(self, pit):
@@ -131,24 +125,33 @@ class Player:
 
     def __str__(self):
         pillars = 0
-        health_pots = 0
-        vision_pots = 0
         for obj in self.__backpack:
             if obj.letter in ['A', 'E', 'I', 'P']:
                 pillars += 1
-            elif obj.letter == 'H':
-                health_pots += 1
-            elif obj.letter == 'V':
-                vision_pots += 1
         return (
             f"\n  Name: {self.__name}\n"
             f"  Hit Points: {self.__hitpoints}\n"
-            f"  Total Healing Potions: {health_pots}\n"
-            f"  Total Vision Potions: {vision_pots}\n"
-            f"  Pillars Keys Found: {pillars}\n"
-        )
+            f"  Total Healing Potions: {self.health_potions}\n"
+            f"  Total Vision Potions: {self.vision_potions}\n"
+            f"  Pillars Keys Found: {pillars}\n")
 
+    # def __str__(self):
+    #     pillars = 0
+    #     for obj in self.__backpack:
+    #         if obj.letter in ['A', 'E', 'I', 'P']:
+    #             pillars += 1
+            # elif obj.letter == 'H':
+            #     health_pots += 1
+            # elif obj.letter == 'V':
+            #     vision_pots += 1
 
+    # @property
+    # def visionpotioncount(self):
+    #     return self.__visionpotioncount
+    #
+    # @property
+    # def pillarsfound(self):
+    #     return self.__pillarsfound
 
     # def add_healing_potion(self, potion):
     #     self.__healingpotions.append(potion)

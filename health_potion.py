@@ -10,6 +10,10 @@ class HealthPotion(DungeonObject):
         super().set_name(self.type[self.__health_points])
         super().set_letter('H')
 
+    @property
+    def health_points(self):
+        return self.__health_points
+
     def __set_health_points(self, num):
         if isinstance(num, int):
             if num in [5, 10, 15]:
