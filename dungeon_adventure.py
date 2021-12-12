@@ -8,14 +8,15 @@ import time
 
 class DungeonAdventure:
 
-    def __init__(self, input):
+    def __init__(self, player_input):
         SoundFx.in_game()
-        self.__map = BuildDungeon(input.difficulty)
+        self.__map = BuildDungeon(player_input.difficulty)
         self.__room_index = self.__map.room_index
-        self.__player = Player(input.player_name)
+        self.__player = Player(player_input.player_name)
         self.__entrance_loc = self.__map.entrance_loc
         self.__exit_loc = self.__map.exit_loc
         self.__play(self.__entrance_loc)
+        print('returning to main')
 
     def __play(self, location):
         """
@@ -44,21 +45,25 @@ class DungeonAdventure:
                 print('\n\n\n\n          ** GAME OVER **\n\n'
                       '\n\n\n        Your health reached 0!\n\n')
                 time.sleep(2)
-                print('****should go back to main()****')                  # DELETE
-                return
+                print('****LOSE should go back to main()****')                  # DELETE
+                location = None
 
             # Win game
-            for object in room_objects:
-                if object.letter == 'O' and object.freedom:
+            # for object in room_objects:
+            if room_objects:
+                if room_objects[0].letter == 'O' and room_objects[0].freedom:
                     SoundFx.win()
                     time.sleep(2)
                     print(self.__map)
-                    print('****should go back to main()****')              # DELETE
-                    return
+                    print('****WIN should go back to main()****')              # DELETE
+                    location = None
 
             # Move to next room
-            location = self.__move_options(location)
-        print('****need to get here to go back to main() by pause Menu***')  # DELETE
+            if location is not None:
+                location = self.__move_options(location)
+            # break
+        print('**** should not need to get here to go back to main()***')  # DELETE
+        return
 
     def __move_options(self, location):
         x, y = location
