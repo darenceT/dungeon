@@ -1,7 +1,7 @@
 from clear_screen import ClearScreen
 import pygame
 from pygame import mixer
-import os
+from pathlib import Path
 
 class SoundFx:
 
@@ -19,7 +19,7 @@ class SoundFx:
     @staticmethod
     def intro(stop=False):
         pygame.init()
-        mixer.music.load(os.path.join('sound', 'Mysterious Strange Things - Yung Logos.mp3'))
+        mixer.music.load(Path('sound/Mysterious Strange Things - Yung Logos.mp3'))
         mixer.music.set_volume(0.3)
         mixer.music.play(-1)
 
@@ -38,7 +38,7 @@ class SoundFx:
 
     @staticmethod
     def in_game(stop=False):
-        mixer.music.load(os.path.join('sound', 'Subterranean Howl - ELPHNT.mp3'))
+        mixer.music.load(Path('sound/Subterranean Howl - ELPHNT.mp3'))
         mixer.music.play(-1)
 
     @staticmethod

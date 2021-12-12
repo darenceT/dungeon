@@ -39,13 +39,6 @@ class Player:
             if o.letter == 'V':
                 count += 1
         return count
-    # @property
-    # def visionpotioncount(self):
-    #     return self.__visionpotioncount
-    #
-    # @property
-    # def pillarsfound(self):
-    #     return self.__pillarsfound
 
     def interact_objects(self, objects):
         """
@@ -123,6 +116,7 @@ class Player:
             if o.letter == "V":
                 o.function(map, loc)
                 self.__backpack.remove(o)
+                break
         print('  You used a vision potion BACKPACK') ################
 
     def use_damage(self, pit):
@@ -131,24 +125,33 @@ class Player:
 
     def __str__(self):
         pillars = 0
-        # health_pots = 0
-        # vision_pots = 0
         for obj in self.__backpack:
             if obj.letter in ['A', 'E', 'I', 'P']:
                 pillars += 1
-            # elif obj.letter == 'H':
-            #     health_pots += 1
-            # elif obj.letter == 'V':
-            #     vision_pots += 1
         return (
             f"\n  Name: {self.__name}\n"
             f"  Hit Points: {self.__hitpoints}\n"
             f"  Total Healing Potions: {self.health_potions}\n"
             f"  Total Vision Potions: {self.vision_potions}\n"
-            f"  Pillars Keys Found: {pillars}\n"
-        )
+            f"  Pillars Keys Found: {pillars}\n")
 
+    # def __str__(self):
+    #     pillars = 0
+    #     for obj in self.__backpack:
+    #         if obj.letter in ['A', 'E', 'I', 'P']:
+    #             pillars += 1
+            # elif obj.letter == 'H':
+            #     health_pots += 1
+            # elif obj.letter == 'V':
+            #     vision_pots += 1
 
+    # @property
+    # def visionpotioncount(self):
+    #     return self.__visionpotioncount
+    #
+    # @property
+    # def pillarsfound(self):
+    #     return self.__pillarsfound
 
     # def add_healing_potion(self, potion):
     #     self.__healingpotions.append(potion)
