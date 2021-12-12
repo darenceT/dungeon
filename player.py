@@ -113,7 +113,6 @@ class Player:
 
     def use_pit(self, pit):
         self.__hitpoints -= pit.function()
-        # print(f"Took damage. Lost {pit.damage} points.")
 
     def __str__(self):
         pillars = 0

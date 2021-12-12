@@ -5,10 +5,6 @@ from sound_fx import SoundFx
 
 class PauseGame:
 
-    # def __init__(self, map):
-    #     self.__map = map
-    #     self.pause_menu(self.__map)
-
     @staticmethod
     def menu(map):
         SoundFx.pause_menu()

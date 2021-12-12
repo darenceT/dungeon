@@ -1,5 +1,5 @@
 from sound_fx import SoundFx
-import time
+
 
 class Room:
 
@@ -35,15 +35,6 @@ class Room:
         else:
             raise ValueError('Room has been set impassible, you are trespassing!')
         print(self)
-        # for obj in self.__objects:
-        #     if obj.letter in ['A', 'E', 'I', 'P']:
-        #         time.sleep(1)
-        #         SoundFx.pillar()
-        #         break
-        #     elif obj.letter == 'X' and not obj.deactivate:
-        #         time.sleep(1)
-        #         SoundFx.pit()
-        #         break
 
     def touch_objects(self):
         """
@@ -91,10 +82,10 @@ class Room:
         x = self.__x_loc
         y = self.__y_loc
         self.__map.ver[y][x] = self.__map.ver[y][x][0] + display + ' '
-
-        return '\n                 ' + self.__map.hor[y][x] + \
-               '+\n                 ' + self.__map.ver[y][x] + self.__map.ver[y][x + 1][0] + \
-               '\n                 ' + self.__map.hor[y + 1][x] + '+\n'
+        spaces = '                 '
+        return f'\n{spaces}' + self.__map.hor[y][x] + \
+               f'+\n{spaces}' + self.__map.ver[y][x] + self.__map.ver[y][x + 1][0] + \
+               f'\n{spaces}' + self.__map.hor[y + 1][x] + '+\n'
 
 '''
         
@@ -133,17 +124,6 @@ Room
             ▪ H-HealingPotion
             ▪ <space>-EmptyRoom
             ▪ A, E, I, P - Pillars
-
-Example: Room 1,1 might look like 
-* - *
-| P |
-* - *
-
-Room 0,0 might look like 
-* * *
-* E |
-* - *
-
 
 
 '''

@@ -1,6 +1,5 @@
 from build_dungeon import BuildDungeon
 from player import Player
-from vision_potion import VisionPotion              ############# delete #################
 from pause_game import PauseGame
 from clear_screen import ClearScreen
 from sound_fx import SoundFx
@@ -16,17 +15,16 @@ class DungeonAdventure:
         self.__entrance_loc = self.__map.entrance_loc
         self.__exit_loc = self.__map.exit_loc
         self.__play(self.__entrance_loc)
-        print('returning to main')
 
     def __play(self, location):
         """
         This method runs the game, enter room, interact with objects.
         Lose game if player health is <= 0.
         Win game if at exit with 4 pillars, then display map.
-        Move to next room (if location is not None from restart option in PauseMenu)
+        Move to next room 
         :param location: room location of player
         :param type: set(x-coordinate: int, y-coordinate: int)
-        :return: None. Allows game to return to Main() to exit or restart game
+        :return: None. Exit loop to return to Main(), to exit or restart
         """
         while location is not None:
             ClearScreen()
@@ -45,25 +43,19 @@ class DungeonAdventure:
                 print('\n\n\n\n          ** GAME OVER **\n\n'
                       '\n\n\n        Your health reached 0!\n\n')
                 time.sleep(2)
-                print('****LOSE should go back to main()****')                  # DELETE
                 location = None
 
             # Win game
-            # for object in room_objects:
             if room_objects:
                 if room_objects[0].letter == 'O' and room_objects[0].freedom:
                     SoundFx.win()
                     time.sleep(2)
                     print(self.__map)
-                    print('****WIN should go back to main()****')              # DELETE
                     location = None
 
             # Move to next room
             if location is not None:
                 location = self.__move_options(location)
-            # break
-        print('**** should not need to get here to go back to main()***')  # DELETE
-        return
 
     def __move_options(self, location):
         x, y = location
@@ -96,16 +88,15 @@ class DungeonAdventure:
                         self.__player.potion_menu()
                 elif choice == 'm':
                     if not PauseGame.menu(self.__map):
+                        # PausGame.menu() resume game returns False, then re-print room
                         self.__play(location)
                     else:
-                        print('check for loops')
+                        # Restart game when PauseGame.menu() returns True
                         return
                 elif ref[choice] not in open_path:
                     print('  That path is not possible!')
                 else:
                     return next_room[choice][0], next_room[choice][1]
-            
-        # self.__play((next_room[choice][0], next_room[choice][1]))
                     
 """
 

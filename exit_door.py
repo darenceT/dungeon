@@ -34,6 +34,7 @@ class ExitDoor(DungeonObject):
             print('  You see some light...it\'s a door! There are 4 strange-key holes...\n'
                   '  You only have', key_count, 'keys...')
 
+
 if __name__ == '__main__':          ############## DELETE #################
     p = ExitDoor()
     print(p.name)

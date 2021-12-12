@@ -8,12 +8,11 @@ class Main:
         Restart code credit https://www.dreamincode.net/forums/topic/96312-restarting-a-program/
         """
         DungeonAdventure(Instructions())
-        print('in main going to reset')
         while True:
-            restart = input('\n\n    Play again? (yes/no):').lower().strip()
-            if restart in ['y', 'yes']:
+            choice = input('\n\n    Play again? (yes/no):').lower().strip()
+            if choice in ['y', 'yes']:
                 DungeonAdventure(Instructions())
-            elif restart in ['n', 'no'] :
+            elif choice in ['n', 'no'] :
                 print("\n    Thanks for playing!\n")
                 exit()
             else:
