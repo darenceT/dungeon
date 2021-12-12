@@ -99,9 +99,8 @@ class Player:
 
         for o in self.__backpack:
             if o.letter == "H":
-                # potion = o
                 self.__backpack.remove(o)
-        print(f'  You used a {o}!')
+        print(f'  You used a {o}, {o.health_points} health replenished!')
 
         # Does not allow hitpoints to go over 100
         # Remove if going over 100 is allowed
@@ -132,8 +131,8 @@ class Player:
 
     def __str__(self):
         pillars = 0
-        health_pots = 0
-        vision_pots = 0
+        # health_pots = 0
+        # vision_pots = 0
         for obj in self.__backpack:
             if obj.letter in ['A', 'E', 'I', 'P']:
                 pillars += 1

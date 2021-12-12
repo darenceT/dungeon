@@ -25,5 +25,5 @@ if __name__ == '__main__':
     try:
         Main()
     except KeyboardInterrupt:
-        print('\n                   Thank you for playing!\n\n')
+        print('\n\n                   Thank you for playing!\n\n')
         exit(0)
