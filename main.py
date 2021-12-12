@@ -10,7 +10,7 @@ class Main:
         DungeonAdventure(Instructions())
 
         while True:
-            restart = input('\n Would you like to play again? (yes/no):').lower().strip()
+            restart = input('\n\n    Play again? (yes/no):').lower().strip()
             if restart in ['y', 'yes']:
                 DungeonAdventure(Instructions())
             elif restart in ['n', 'no'] :

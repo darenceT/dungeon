@@ -16,28 +16,37 @@ class DungeonAdventure:
         self.__player = Player(input.player_name)
         self.__entrance_loc = self.__map.entrance_loc
         self.__exit_loc = self.__map.exit_loc
-        self.__current_loc(self.__entrance_loc)
+        self.__play(self.__entrance_loc)
 
-    def __current_loc(self, location):
-        ClearScreen()
-        print('  \n================================================================\n\n    ',
-              self.__player.name, end=' ')
-        self.__map.room_index[location].enter_room()
+    def __play(self, location):
+        """
+        This method runs the game, enter room, interact with objects.
+        Lose game if player health is <= 0.
+        Win game if at exit with 4 pillars, then display map.
+        Move to next room (if location is not None from restart option in PauseMenu)
+        :param location: room location of player
+        :param type: set(x-coordinate: int, y-coordinate: int)
+        :return: None. Allows game to return to Main() to exit or restart game
+        """
+        while location is not None:
+            ClearScreen()
+            print('  \n================================='
+                  '===============================\n\n    ',
+                  self.__player.name, end=' ')
+            self.__map.room_index[location].enter_room()
 
-        room_objects = self.__room_index[location].touch_objects()
-        self.__player.interact_objects(room_objects)
+            room_objects = self.__room_index[location].touch_objects()
+            self.__player.interact_objects(room_objects)
 
-        #Print Map after winning game
-        for object in room_objects:
-            if object.letter == 'O' and object.freedom:
-                print(self.__map)
-                # exit()
-                return
+            #Print Map after winning game
+            for object in room_objects:
+                if object.letter == 'O' and object.freedom:
+                    print(self.__map)
+                    return
 
-        # otherwise, move to next room
-        self.__move_options(location)
+            # move to next room
+            location = self.__move_options(location)
         print('need to get here to go back to main()')
-        return
 
     def __move_options(self, location):
         x, y = location
@@ -70,15 +79,16 @@ class DungeonAdventure:
                         self.__player.potion_menu()
                 elif choice == 'm':
                     if not PauseGame.menu(self.__map):
-                        self.__current_loc(location)
+                        self.__play(location)
                     else:
+                        print('check for loops')
                         return
                 elif ref[choice] not in open_path:
                     print('  That path is not possible!')
                 else:
-                    break
-                
-        self.__current_loc((next_room[choice][0], next_room[choice][1]))
+                    return next_room[choice][0], next_room[choice][1]
+            
+        # self.__play((next_room[choice][0], next_room[choice][1]))
                     
 
     # def vision(self, loc):                     ############# move to player class? #################

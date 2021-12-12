@@ -73,8 +73,8 @@ class Player:
         if self.health_potions != 0:
             options.append('h')
         if self.vision_potions != 0:
-            options.append('r')
-        while selection not in ["h", "v", "r"]:
+            options.append('v')
+        while selection not in options:
             print(f'\n  You have {self.health_potions} health potion(s),'
                   f'and {self.vision_potions} vision potion(s):')
             if self.health_potions != 0:
@@ -82,14 +82,15 @@ class Player:
             if self.vision_potions != 0:
                 print(f'\t [v] Use a vision potion')
             print(f'\n\t [r] Return')
-            selection = input('\n  Your selection: ')
-            if selection == 'h':
+            print_options = ', '.join(options)
+            selection = input(f'\n  Enter your option(s) [{print_options}]: ').strip().lower()
+            if selection == 'h' and 'h' in options:
                 self.use_health_potion()
                 break
-            elif selection == 'v':
+            elif selection == 'v' and 'v' in options:
                 self.use_vision_potion(map, loc)
                 break
-            elif selection == 'c':
+            elif selection == 'r':
                 break
 
     def use_health_potion(self):
