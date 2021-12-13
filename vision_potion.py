@@ -1,5 +1,6 @@
 from dungeon_object import DungeonObject
 from clear_screen import ClearScreen
+from art import Art
 import time
 
 
@@ -22,10 +23,8 @@ class VisionPotion(DungeonObject):
         :return: map of current and surround 8 rooms
         :rtype: str
         """
-        ClearScreen()
-        print('\n================================='
-              '===============================\n\n   '
-              '*** Using potion in ...', end='')
+        Art.in_game3()
+        print('  *** Using potion in ...', end='')
         count = [' 3,', ' 2,', ' 1!']
         for i in count:
             time.sleep(1)

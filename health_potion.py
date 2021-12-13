@@ -24,9 +24,10 @@ class HealthPotion(DungeonObject):
             raise TypeError('Integer only allowed')
 
     def function(self):
-        print(f'  Your health is replenished by {self.name} for {self.__health_points} points!\n')
         return self.__health_points
 
+    def inspect(self):
+        print(f'  This {self.name} can heal {self.__health_points} points!\n')
 
 if __name__ == '__main__':
     p = HealthPotion()

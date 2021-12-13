@@ -45,7 +45,7 @@ class DungeonAdventure:
         """
         while location is not None:
             Art.in_game3()
-            print(f'\n\n     {self.__player.name}', end=' ')
+            print(f'     {self.__player.name}', end=' ')
             self.__map.room_index[location].enter_room()
 
             room_objects = self.__room_index[location].touch_objects()
@@ -59,26 +59,22 @@ class DungeonAdventure:
                       '\n\n\n        Your health reached 0!\n\n')
                 time.sleep(2)
                 location = None
-
             # Win game
-            if room_objects:
-                if room_objects[0].letter == 'O' and room_objects[0].freedom:
-                    SoundFx.win()
-                    time.sleep(2)
-                    print(self.__map)
-                    location = None
-
-            # Move to next room
-            if location is not None:
+            if location == self.__exit_loc and room_objects[0].freedom:
+                SoundFx.win()
+                time.sleep(2)
+                print(self.__map)
+                location = None
+            elif location is not None:  # move to next room
                 location = self.__move_options(location)
 
     def __move_options(self, location):
         """
-        Menu of options for player at each room
+        Menu of options for player at each room.
         List of paths created for options.
-        Player status includes inventory information
-        Potion menu allows consumption of potions
-        Pause menu allows additional options including hidden map, reset game, & exit
+        Player status includes inventory information.
+        Potion menu allows consumption of potions.
+        Pause menu allows additional options including hidden map, reset game, & exit.
         :param location: room location of player
         :type location: tuple(x-coord, y-coord)
         """

@@ -48,10 +48,9 @@ class Player:
                 obj.function(self.__backpack)
             elif obj.letter == 'X':
                 self.use_pit(obj)
-                # self.__hitpoints -= obj.function()
             elif obj.letter in ['H', 'V']:
                 if obj.letter == 'H':
-                    obj.function()
+                    obj.inspect()
                 self.__backpack.append(obj)
                 print(f'  {self.name} added {obj} to backpack!')
             elif obj not in self.__backpack:       
