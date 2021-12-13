@@ -82,7 +82,7 @@ class Room:
         x = self.__x_loc
         y = self.__y_loc
         self.__map.ver[y][x] = self.__map.ver[y][x][0] + display + ' '
-        spaces = '                 '
+        spaces = '                            '
         return f'\n{spaces}' + self.__map.hor[y][x] + \
                f'+\n{spaces}' + self.__map.ver[y][x] + self.__map.ver[y][x + 1][0] + \
                f'\n{spaces}' + self.__map.hor[y + 1][x] + '+\n'

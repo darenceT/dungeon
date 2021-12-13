@@ -9,14 +9,14 @@ class Main:
         """
         DungeonAdventure(Instructions())
         while True:
-            choice = input('\n\n    Play again? (yes/no):').lower().strip()
+            choice = input('\n    Play again? (yes/no):').lower().strip()
             if choice in ['y', 'yes']:
                 DungeonAdventure(Instructions())
             elif choice in ['n', 'no'] :
                 print("\n    Thanks for playing!\n")
                 exit()
             else:
-                print('  Enter yes or no only')
+                print('\n    Enter yes or no only')
                 continue
 
 

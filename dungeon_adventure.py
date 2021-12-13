@@ -6,6 +6,7 @@ from sound_fx import SoundFx
 from art import Art
 import time
 
+
 class DungeonAdventure:
     """
     This runs the game, creates dungeon and player, allow player to interact with
@@ -40,12 +41,12 @@ class DungeonAdventure:
         Win game if at exit with 4 pillars, then display map.
         Move to next room 
         :param location: room location of player
-        :param type: set(x-coordinate: int, y-coordinate: int)
+        :param type: tuple(x-coordinate: int, y-coordinate: int)
         :return: None. Exit loop to return to Main(), to exit or restart
         """
         while location is not None:
             Art.in_game3()
-            print(f'\n\n     {self.__player.name}', end=' ')
+            print(f'             {self.__player.name}', end=' ')
             self.__map.room_index[location].enter_room()
 
             room_objects = self.__room_index[location].touch_objects()
@@ -55,30 +56,25 @@ class DungeonAdventure:
             if self.__player.hitpoints <= 0:
                 SoundFx.lose()
                 ClearScreen()
-                print('\n\n\n\n          ** GAME OVER **\n\n'
-                      '\n\n\n        Your health reached 0!\n\n')
+                Art.lose(self.__player.name)
                 time.sleep(2)
                 location = None
-
             # Win game
-            if room_objects:
-                if room_objects[0].letter == 'O' and room_objects[0].freedom:
-                    SoundFx.win()
-                    time.sleep(2)
-                    print(self.__map)
-                    location = None
-
-            # Move to next room
-            if location is not None:
+            if location == self.__exit_loc and room_objects[0].freedom:
+                SoundFx.win()
+                time.sleep(2)
+                print(self.__map)
+                location = None
+            elif location is not None:  # move to next room
                 location = self.__move_options(location)
 
     def __move_options(self, location):
         """
-        Menu of options for player at each room
+        Menu of options for player at each room.
         List of paths created for options.
-        Player status includes inventory information
-        Potion menu allows consumption of potions
-        Pause menu allows additional options including hidden map, reset game, & exit
+        Player status includes inventory information.
+        Potion menu allows consumption of potions.
+        Pause menu allows additional options including hidden map, reset game, & exit.
         :param location: room location of player
         :type location: tuple(x-coord, y-coord)
         """
