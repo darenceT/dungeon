@@ -6,6 +6,7 @@ from sound_fx import SoundFx
 from art import Art
 import time
 
+
 class DungeonAdventure:
     """
     This runs the game, creates dungeon and player, allow player to interact with
@@ -40,12 +41,12 @@ class DungeonAdventure:
         Win game if at exit with 4 pillars, then display map.
         Move to next room 
         :param location: room location of player
-        :param type: set(x-coordinate: int, y-coordinate: int)
+        :param type: tuple(x-coordinate: int, y-coordinate: int)
         :return: None. Exit loop to return to Main(), to exit or restart
         """
         while location is not None:
             Art.in_game3()
-            print(f'     {self.__player.name}', end=' ')
+            print(f'             {self.__player.name}', end=' ')
             self.__map.room_index[location].enter_room()
 
             room_objects = self.__room_index[location].touch_objects()
@@ -55,8 +56,7 @@ class DungeonAdventure:
             if self.__player.hitpoints <= 0:
                 SoundFx.lose()
                 ClearScreen()
-                print('\n\n\n\n          ** GAME OVER **\n\n'
-                      '\n\n\n        Your health reached 0!\n\n')
+                Art.lose(self.__player.name)
                 time.sleep(2)
                 location = None
             # Win game

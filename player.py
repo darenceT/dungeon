@@ -1,5 +1,4 @@
 # Manuel Duarte
-from sound_fx import SoundFx
 from random import randint
 
 
@@ -54,7 +53,6 @@ class Player:
                 self.__backpack.append(obj)
                 print(f'  {self.name} added {obj} to backpack!')
             elif obj not in self.__backpack:       
-                SoundFx.pillar()
                 obj.function()
                 self.__backpack.append(obj)
 
@@ -76,7 +74,6 @@ class Player:
             print_options = ', '.join(options)
             selection = input(f'\n  Enter your option(s) [{print_options}]: ').strip().lower()
             if selection == 'h' and 'h' in options:
-                # SoundFx.health()
                 self.use_health_potion()
                 break
             elif selection == 'v' and 'v' in options:
