@@ -5,6 +5,9 @@ class Art:
 
     @staticmethod
     def intro():
+        """
+        https://patorjk.com/software/taag
+        """
         ClearScreen()
         print(
             '\n ▓█████▄  █    ██  ███▄    █   ▄████ ▓█████  ▒█████   ███▄    █ \n'
@@ -24,12 +27,15 @@ class Art:
             ' ░ ░▒ ▒  ░ ▒▓ ░▒▓░▒▒   ▓▒█░░ ▓░▒ ▒  ░ ▒░▓  ░░░ ▒░ ░░ ▒▓ ░▒▓░\n' 
             ' ░  ▒    ░▒ ░ ▒░ ▒   ▒▒ ░  ▒ ░ ░  ░ ░ ▒  ░ ░ ░  ░  ░▒ ░ ▒░ \n'
             ' ░         ░░   ░  ░   ▒     ░   ░    ░ ░      ░     ░░   ░\n' 
-            ' ░ ░        ░          ░  ░    ░        ░  ░   ░  ░   ░'
-        )
-        input('\n               Press Enter to return to menu')
+            ' ░ ░        ░          ░  ░    ░        ░  ░   ░  ░   ░\n'
+            '    For best experience run in Terminal/CMD in full screen')
+        input('\n              Press Enter to return to menu')
 
     @staticmethod
     def intro2():
+        """
+        https://patorjk.com/software/taag
+        """
         ClearScreen()
         print(
             '\n\n  ██████  ██    ██ ███    ██  ██████  ███████  ██████  ███    ██ \n'
@@ -41,11 +47,15 @@ class Art:
             '  ██      ██   ██ ██   ██ ██     ██ ██      ██      ██   ██\n'      
             '  ██      ██████  ███████ ██  █  ██ ██      █████   ██████\n'       
             '  ██      ██   ██ ██   ██ ██ ███ ██ ██      ██      ██   ██\n'      
-            '  ██████ ██   ██ ██   ██  ███ ███  ███████ ███████ ██   ██')
-        input('\n               Press Enter to return to menu')
+            '  ██████ ██   ██ ██   ██  ███ ███  ███████ ███████ ██   ██\n'
+            '     For best experience run in Terminal/CMD in full screen')
+        input('\n              Press Enter to return to menu')
 
     @staticmethod
     def intro3():
+        """
+        https://patorjk.com/software/taag
+        """
         ClearScreen()
         print(    
             '   _ .-\')_                 .-\') _             (\'-.                  .-\') _\n'  
@@ -64,13 +74,14 @@ class Art:
             '  /_) |OO   |  |_.\' | | |_.\'  |  |.\'.|  | |  |`-\' (|  \'--.|  |_.\' |\n'           
             '   || |`-\'\' |  .  \'.\' |  .-.  |         |(|  \'---.\'|  .--\'|  .  \'.\'\n'           
             '  (_\' \'--\'\ |  |\  \  |  | |  |   ,\'.   | |      | |  `---|  |\  \\\n'            
-            '    `-----\' `--\' \'--\' `--\' `--\'--\'   \'--\' `------\' `------`--\' \'--\'\n') 
-        input('                  Press Enter to return to menu')
+            '    `-----\' `--\' \'--\' `--\' `--\'--\'   \'--\' `------\' `------`--\' \'--\'\n'
+            '            For best experience run in Terminal/CMD in full screen') 
+        input('                 Press Enter to return to menu')
 
     @staticmethod
     def in_game():
         """
-        https://patorjk.com/software/taag/#p=display&f=Digital&t=Dungeon%20Crawler
+        https://patorjk.com/software/taag
         """
         spaces ='             ' 
         ClearScreen()
@@ -82,7 +93,7 @@ class Art:
     @staticmethod
     def in_game2():
         """
-        https://patorjk.com/software/taag/#p=display&f=Digital&t=Dungeon%20Crawler
+        https://patorjk.com/software/taag
         """
         spaces ='             ' 
         ClearScreen()
@@ -95,7 +106,7 @@ class Art:
 
     def in_game3():
         """
-        https://patorjk.com/software/taag/#p=display&f=Digital&t=Dungeon%20Crawler
+        https://patorjk.com/software/taag
         """
         spaces ='              ' 
         stars = '************'
