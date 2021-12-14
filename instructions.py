@@ -6,9 +6,9 @@ from art import Art
 class Instructions:
 
     def __init__(self):
-        self.__sound = SoundFx()
         self.__player_name = ""
         self.__difficulty = 0
+        self.__sound = SoundFx()
         self.menu()
 
     @property
@@ -37,9 +37,6 @@ class Instructions:
 
     @staticmethod
     def instructions():
-        """
-        This introduces how the game works
-        """
         ClearScreen()
         print("\n               Welcome to the Dungeon Crawler!\n\n"
               "  You are tasked with guiding the player character through a\n"
@@ -69,7 +66,7 @@ class Instructions:
                   f"{spaces} DUNGEON CRAWLER\n\n\n"
                   f"{spaces} [1] Start New Game\n"
                   f"{spaces} [2] Game Instructions\n"
-                  f"{spaces} [3] Sound options\n"
+                  f"{spaces} [3] Sound option\n"
                   f"{spaces} [0] Exit Game\n\n")
             if selection is not None and selection not in choices:
                 print(f"{spaces}Invalid selection! Please choose again.\n")

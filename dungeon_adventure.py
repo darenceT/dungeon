@@ -2,7 +2,6 @@ from build_dungeon import BuildDungeon
 from player import Player
 from pause_game import PauseGame
 from clear_screen import ClearScreen
-from sound_fx import SoundFx
 from art import Art
 import time
 
@@ -20,7 +19,7 @@ class DungeonAdventure:
         Create dungeon and player, then start __play method.
         :param player_input: obtained from Instructions() for user's input of player
         name and difficulty level
-        :type player_input: Instruction class object
+        :type player_input: Instructions class object
         :property __map: map of dungeon from BuildDungeon
         :property __room_index: list of rooms (x-coord, y-coord) created in BuildDungeon
         :property __entrance_loc: Entrance location from created in BuildDungeon

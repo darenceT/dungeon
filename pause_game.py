@@ -19,8 +19,8 @@ class PauseGame:
                   f"{spaces} [1] Resume Game\n"
                   f"{spaces} [2] Game Instructions\n"
                   f"{spaces} [3] Sound options\n"       
-                  f"{spaces} [4] Restart Game\n"
-                  f"{spaces} [5] *Cheat* Remove display later but will still work\n"
+                  f"{spaces} [4] *Cheat* Remove display later but will still work\n"
+                  f"{spaces} [5] Restart Game\n"
                   f"{spaces} [0] Exit Game\n")
  
             if selection is not None and selection not in options:
@@ -36,12 +36,12 @@ class PauseGame:
                 SoundOption.change(sound, in_game=True)
                 selection = None
             elif selection == "4":
-                return True
-            elif selection == "5":
                 ClearScreen()
                 print(f'\n\n{spaces}You found the hidden map!\n\n{map}')
                 input('\n       Press Enter to return to menu')
                 selection = None
+            elif selection == "5":
+                return True
             elif selection == "0":
                 print(f"\n{spaces}Thank you for playing!\n\n")
                 exit()

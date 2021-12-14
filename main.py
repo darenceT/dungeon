@@ -1,6 +1,6 @@
 from instructions import Instructions
 from dungeon_adventure import DungeonAdventure
-import pygame
+
 
 class Main:
     def __init__(self):
@@ -14,7 +14,6 @@ class Main:
                 DungeonAdventure(Instructions())
             elif choice in ['n', 'no'] :
                 print("\n    Thanks for playing!\n")
-                pygame.quit()
                 exit()
             else:
                 print('\n    Enter yes or no only')
@@ -26,5 +25,4 @@ if __name__ == '__main__':
         Main()
     except KeyboardInterrupt:
         print('\n\n                   Thank you for playing!\n\n')
-        pygame.quit
         exit(0)

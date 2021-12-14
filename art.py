@@ -29,7 +29,7 @@ class Art:
             ' ░         ░░   ░  ░   ▒     ░   ░    ░ ░      ░     ░░   ░\n' 
             ' ░ ░        ░          ░  ░    ░        ░  ░   ░  ░   ░\n'
             '          Run in Terminal/CMD for best experience!')
-        input('\n             Press Enter to return to menu')
+        input('\n              Press Enter to return to menu')
 
     def in_game():
         """

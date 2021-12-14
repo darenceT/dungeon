@@ -14,7 +14,7 @@ class SoundOption:
                 change_switch = 'on'
             spaces = "                     "
             print(f'\n\n\n\n{spaces}DUNGEON CRAWLER\n\n\n'
-                  f'{spaces}       * Sound Options *\n\n\n'
+                  f'{spaces}* Sound Options *\n\n\n'
                   f'{spaces}[1] Turn sound {change_switch}\n'
                   f'{spaces}[2] in progress \n'
                   f'{spaces}[3] in progress\n'
