@@ -9,8 +9,13 @@ class SoundFx:
     to turn off and on the sound & music.
     """
     def __init__(self):
+        """
+        is_running keeps track of whether music & sound is on to 
+        allow sound option to turn off or on.
+        """
         self.__is_running = True
         pygame.init()
+        mixer.music.set_volume(0.4)
         mixer.Channel(0).set_volume(0.75)
 
     @property
@@ -32,6 +37,7 @@ class SoundFx:
         if isinstance(in_game, bool):
             self.__is_running = True
             mixer.init()
+            mixer.music.set_volume(0.4)
             if in_game:
                 self.in_game()
             else:
@@ -57,13 +63,13 @@ class SoundFx:
     def intro(self):
         if self.__is_running:
             mixer.music.load(Path('sound/Mysterious Strange Things - Yung Logos_short.mp3'))
-            mixer.music.set_volume(0.5)
+            # mixer.music.set_volume(0.5)
             mixer.music.play(-1)
 
     def in_game(self):
         if self.__is_running:
             mixer.music.load(Path('sound/Subterranean Howl - ELPHNT_short.mp3'))
-            mixer.music.set_volume(0.5)
+            # mixer.music.set_volume(0.5)
             mixer.music.play(-1)
 
     def pause_menu(self, resume=False):

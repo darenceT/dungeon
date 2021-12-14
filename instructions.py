@@ -89,9 +89,16 @@ class Instructions:
                 exit()
     
     def make_player_name(self):
-        name = input("\n  Enter a character name: ").capitalize().strip()
-        while name.isalpha() is False:
-            name = input("  Please input an appropriate name: ")
+        """
+        User can only enter letter and space containing names
+        Credit https://stackoverflow.com/questions/29460405/checking-if-string-is-only-letters-and-spaces-python 
+        """
+        while True:
+            name = input("\n  Enter your player name: ").capitalize().strip()
+            if all(x.isalpha() or x.isspace() for x in name):
+                break
+            else:
+                print("  Please enter an appropriate name.")
         self.player_name = name
 
     def pick_difficulty(self):
