@@ -3,7 +3,7 @@ from random import randint
 
 
 class Player:
-    def __init__(self, name="Player 1", sound=any):
+    def __init__(self, name="Player 1", sound=None):
         self.__name = name
         self.__sound = sound
         self.__hitpoints = randint(60, 80)
