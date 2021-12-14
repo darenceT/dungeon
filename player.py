@@ -13,8 +13,8 @@ class Player:
     def name(self):
         """
         Gets the current name
-        :return:
-        :rtype:
+        :return: player name
+        :rtype: str
         """
         return self.__name
 
@@ -34,8 +34,8 @@ class Player:
     def hitpoints(self):
         """
         Get current hitpoints
-        :return:
-        :rtype:
+        :return: amount of player health
+        :rtype: int
         """
         return self.__hitpoints
 
@@ -43,8 +43,8 @@ class Player:
     def health_potions(self):
         """
         Gets current count health_points
-        :return:
-        :rtype:
+        :return: amount of health potions
+        :rtype: int
         """
         count = 0
         for o in self.__backpack:
@@ -55,9 +55,9 @@ class Player:
     @property
     def vision_potions(self):
         """
-        Get the current count vision_potions
-        :return:
-        :rtype:
+        Get the current count vision potions
+        :return: amount of vision potions
+        :rtype: int
         """
         count = 0
         for o in self.__backpack:

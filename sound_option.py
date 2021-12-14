@@ -2,9 +2,19 @@ from clear_screen import ClearScreen
 
 
 class SoundOption:
-    
+    """
+    Sound menu for changes to music and sounds, turn off, on or change volume.
+    Accessed at intro or in-game
+    """
     @staticmethod
     def change(sound, in_game=False):
+        """
+        Menu of sound changes
+        :param sound: passing instance of SoundFx to know if sound is on (is_running attribute)
+        :type sound: SoundFx
+        :param in_game: notify if accessed in intro or in-game
+        :type in_game: bool
+        """
         selection = None
         choices = ['1', '2', '3', '4', '0']
         change_switch = 'off'

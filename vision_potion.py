@@ -6,6 +6,9 @@ import time
 class VisionPotion(DungeonObject):
     """
     Inherit from abstract base class DungeonObject.
+    Whether you want to avoid pits or got stuck, vision potion can give you
+    a small advantage, player. Reveal 8 rooms around current room, less if player
+    is at border of dungeon.
     """
     def __init__(self):
         super().set_name('Vision Potion')
@@ -48,7 +51,7 @@ class VisionPotion(DungeonObject):
         spaces = '              '
         vision = f'\n\n{spaces}'
         vert_top = f'\n{spaces}'
-        
+
         # top row
         if x-1 >= 0 and y-1 >= 0:                       # top left
             vision += hor[y-1][x-1]

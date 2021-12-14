@@ -4,9 +4,20 @@ from sound_option import SoundOption
 
 
 class PauseGame:
-
+    """
+    In-game menu to access sound menu, game instructions, restart and exit game
+    """
     @staticmethod
     def menu(map, sound):
+        """
+        Take user's input for choices in menu
+        NOTE: hidden map by entering '5'
+        :param map: map information
+        :type map: BuildDungeon
+        :return: brings boolean to DungeonAdventure, allowing to continue game
+        or exit game
+        :rtype: bool 
+        """
         sound.pause_menu()
         selection = None
         spaces = "                   "

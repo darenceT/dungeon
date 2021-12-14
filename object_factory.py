@@ -9,8 +9,17 @@ from random import randrange
 
 
 class ObjectFactory:
-
+    """
+    Simple factory design pattern for creating all objects in dungeon, then delivery to
+    each room
+    """
     def __init__(self, map):
+        """
+        Obtain map of dungeon and container of rooms to deliver objects.
+        Start production starts the building process
+        :param map: map of dungeon
+        :type map: BuildDungeon
+        """
         self.__map = map
         self.__room_index = map.room_index
         self.__start_production()
@@ -19,7 +28,7 @@ class ObjectFactory:
         """
         Generate random locations while avoiding impassible, entrance and exit rooms
         :return: random location
-        :rtype: tuple
+        :rtype: tuple(int, int)
         """
         while True:
             x = randrange(0, self.__map.width)
@@ -31,6 +40,9 @@ class ObjectFactory:
                     return x, y
 
     def __start_production(self):
+        """
+        Power on the factory with list of objects to create
+        """
         self.__deliver_to_room(self.__map.entrance_loc, EntranceDoor())
         self.__deliver_to_room(self.__map.exit_loc, ExitDoor())
         self.__build_pillars()
@@ -42,6 +54,9 @@ class ObjectFactory:
         """
         Temporary list of locations is used to avoid placing duplicate items in same room.
         map height is used to create number of objects based on difficulty: Easy 4, Normal 8, Hard 12
+        :param object: objects for each room
+        :param type: DungeonObject
+
         """
         temp_list = []
         index = 0
