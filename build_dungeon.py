@@ -39,34 +39,74 @@ class BuildDungeon:
 
     @property
     def width(self):
+        """
+        Getter for width of dungeon
+        :return: width of dungeon
+        :rtype: int
+        """
         return self.__width
 
     @property
     def height(self):
+        """
+        Getter for height of dungeon
+        :return: height of dungeon
+        :rtype: int
+        """
         return self.__height
 
     @property
     def ver(self):
+        """
+        Getter for vertical walls and object of map
+        :return: vertical walls and object of map
+        :rtype: str
+        """
         return self.__ver
 
     @property
     def hor(self):
+        """
+        Getter for horizontal walls of map
+        :return: horizontal walls of map
+        :rtype: str
+        """
         return self.__hor
 
     @property
     def entrance_loc(self):
+        """
+        Getter for entrance location
+        :return: entrance location
+        :rtype: tuple(x-coord: int, y-coord: int)
+        """
         return self.__entrance_loc
 
     @property
     def exit_loc(self):
+        """
+        Getter for exit location of dungeon
+        :return: exit location
+        :rtype: tuple(x-coord: int, y-coord: int)
+        """
         return self.__exit_loc
 
     @property
     def room_index(self):
+        """
+        Getter for container of rooms
+        :return: container of rooms
+        :rtype: dict {tuple(x-coord, y-coord): Room}
+        """
         return self.__room_index
 
     @property
     def pillars_loc(self):
+        """
+        Getter for locations of where pillars that will be used by object factory
+        :return: list of locations for pillars
+        :rtype: tuple(x-coord, y-coord)
+        """
         return self.__pillars_loc
 
     def __difficulty(self, mode):
@@ -75,6 +115,9 @@ class BuildDungeon:
         Entrance location is randomized but limited to top left quarter of dungeon
         so that entrance will not spawn too close to exit.
         Exit location always set at bottom right corner of dungeon.
+        :param mode: difficulty level selected at begining of game, Instructions()
+        :type mode: int
+        :raises: if value is not between 1 and 3
         """
         if mode == 1:
             self.__width = 8
@@ -142,6 +185,7 @@ class BuildDungeon:
         """
         Ensures pillar locations and exit are obtainable after creating
         impassible rooms. Recreate maze if not obtainable
+        :return: None
         """                
         while True:
             self.__create_impassible()

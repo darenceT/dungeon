@@ -4,6 +4,9 @@ import time
 
 
 class Pit(DungeonObject):
+    """
+    Inherit from abstract base class DungeonObject.
+    """
     def __init__(self):
         super().set_name('Pit')
         super().set_letter('X')

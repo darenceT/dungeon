@@ -6,7 +6,8 @@ class Art:
     @staticmethod
     def intro():
         """
-        https://patorjk.com/software/taag
+        Display art at beggining of game before menu
+        Credit to https://patorjk.com/software/taag
         """
         ClearScreen()
         print(
@@ -33,7 +34,8 @@ class Art:
 
     def in_game():
         """
-        https://patorjk.com/software/taag
+        Display art at top of screen during game
+        Credit to https://patorjk.com/software/taag
         """
         spaces ='              ' 
         stars = '************'
@@ -45,7 +47,8 @@ class Art:
 
     def pillar(letter):
         """
-        Credit https://www.asciiart.eu/logos/caduceus
+        Display art when obtaining each pillar key
+        Credit to https://www.asciiart.eu/logos/caduceus
         """
         if letter == 'A':
             print(
@@ -120,6 +123,7 @@ class Art:
 
     def lose(name):
         """
+        Graphic for losing game, displays user's name and today's date
         Credit https://ascii.co.uk/art/rip
         """
         name = '{0: ^19}'.format(name)

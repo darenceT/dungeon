@@ -13,26 +13,49 @@ class Instructions:
 
     @property
     def player_name(self):
+        """
+        Getter for player name
+        :return: 
+        :rtype:
+        """
         return self.__player_name
 
     @player_name.setter
     def player_name(self, name):
+        """
+        Setter for 
+        :raises:
+        """
         if not isinstance(name, str):
             raise TypeError('Only string accepted for name')
         self.__player_name = name
 
     @property
     def difficulty(self):
+        """
+        Getter for 
+        :return:
+        :rtype:
+        """
         return self.__difficulty
 
     @difficulty.setter
     def difficulty(self, num):
+        """
+        Setter for 
+        :raises:
+        """
         if 1 > num > 3:
             raise ValueError('Secondary line of error caught, number is not between 1 and 3')
         self.__difficulty = num
 
     @property
     def sound(self):
+        """
+        Getter for 
+        :return:
+        :rtype:
+        """
         return self.__sound
 
     @staticmethod

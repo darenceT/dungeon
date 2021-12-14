@@ -16,14 +16,33 @@ class DungeonObject(ABC):
         self.__letter = 'Error for seeing abstract letter'
 
     def set_name(self, name):
+        """
+        Setter for object name
+        :param name: object name
+        :type name: str
+        :raises: if param is not str
+        """
         if not isinstance(name, str):
             raise TypeError('Only string accepted for name')
-        self.__name = name
+        else:
+            self.__name = name
 
     def get_name(self):
+        """
+        Getter for object name
+        :return: object name
+        :rtype: str
+        """
         return self.__name
 
     def set_letter(self, letter):
+        """
+        Setter for object's letter
+        :param letter: object's letter
+        :type letter: str
+        :raises: TypeError(non-str type), ValueError(non-alphabet value),
+                ValueError(more than 1 letter)
+        """
         if not isinstance(letter, str):
             raise TypeError('Only string accepted')
         elif not letter.isalpha():
@@ -33,6 +52,11 @@ class DungeonObject(ABC):
         self.__letter = letter
 
     def get_letter(self):
+        """
+        Getter for object's letter
+        :return: object's letter
+        :rtype: str
+        """
         return self.__letter
 
     # super() in child classes does not support setter property
@@ -47,7 +71,13 @@ class DungeonObject(ABC):
         pass
 
     def __str__(self):
+        """
+        Change default object print to name of object
+        """
         return self.__name
 
     def __repr__(self):
+        """
+        Change default object print to name of object
+        """
         return self.__name

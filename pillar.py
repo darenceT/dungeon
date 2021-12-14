@@ -3,6 +3,9 @@ import time
 from art import Art
 
 class Pillar(DungeonObject):
+    """
+    Inherit from abstract base class DungeonObject.
+    """
     ref = {'A': 'Pillar of Abstraction', 'E': 'Pillar of Encapsulation',
            'I': 'Pillar of Inheritance', 'P': 'Pillar of Polymorphism'}
 

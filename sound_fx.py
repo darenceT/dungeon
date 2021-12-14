@@ -106,4 +106,12 @@ class SoundFx:
     def pit(self):
         if self.__is_running:
             mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'pit.mp3')), maxtime=600)
+
+    def health_potion(self):
+        if self.__is_running:
+            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'health_potion.mp3')), maxtime=600)
+
+    def vision_potion(self):
+        if self.__is_running:
+            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'vision_potion.mp3')), maxtime=600)
             

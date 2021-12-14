@@ -3,8 +3,14 @@ from dungeon_adventure import DungeonAdventure
 
 
 class Main:
+    """
+    Initialize game by running DungeonAdventure class, passing in information obtained
+    from running Instructions class, including player name and difficulty.
+    Built in restart game option
+    """
     def __init__(self):
         """
+        Start game, then option for restart after leaving, losing, or winning game.
         Restart code credit https://www.dreamincode.net/forums/topic/96312-restarting-a-program/
         """
         DungeonAdventure(Instructions())

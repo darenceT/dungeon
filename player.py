@@ -11,12 +11,20 @@ class Player:
 
     @property
     def name(self):
+        """
+        Gets the current name
+        :return:
+        :rtype:
+        """
         return self.__name
 
     @name.setter
     def name(self, name):
         """
-        set the name and makes sure that an str is passed
+        Set the name and makes sure that an str is passed
+        :param name: name of player obtained from Instructions()
+        :type name: str
+        :raises: if input is not a string
         """
         if not name.isalpha():
             raise Exception ('Name must be a string')
@@ -24,10 +32,20 @@ class Player:
 
     @property
     def hitpoints(self):
+        """
+        Get current hitpoints
+        :return:
+        :rtype:
+        """
         return self.__hitpoints
 
     @property
     def health_potions(self):
+        """
+        Gets current count health_points
+        :return:
+        :rtype:
+        """
         count = 0
         for o in self.__backpack:
             if o.letter == 'H':
@@ -36,6 +54,11 @@ class Player:
 
     @property
     def vision_potions(self):
+        """
+        Get the current count vision_potions
+        :return:
+        :rtype:
+        """
         count = 0
         for o in self.__backpack:
             if o.letter == 'V':
@@ -45,6 +68,8 @@ class Player:
     def interact_objects(self, objects):
         """
         Interact with objects in Room, add potions & pillars to backpack.
+        :param objects: objects in each room 
+        :type objects: DungeonObject
         """
         for obj in objects:
             if obj.letter == 'i':
@@ -65,6 +90,13 @@ class Player:
                 self.__backpack.append(obj)
 
     def potion_menu(self, map=None, loc=None):
+        """
+        Displays the current counts of potions available to the player
+        :param map: map of dungeon, needed for vision potion
+        :type map: BuildDungeon
+        :param loc: location of player, needed for vision potion
+        :type loc: tuple(x-coord, y-coord)
+        """
         selection = None
         options = ['r']
         if self.health_potions != 0:
@@ -91,12 +123,17 @@ class Player:
                 break
 
     def __use_health_potion(self):
+        """
+        Replenish health using potions
+        :raises: if player is out of potions
+        """
         if self.health_potions == 0:
             raise Exception("You do not any health potion to use")
 
         for o in self.__backpack:
             if o.letter == "H":
                 self.__backpack.remove(o)
+                self.__sound.health_potion()
                 print(f'\n  You used a {o}, {o.health_points} health replenished!')
                 self.__hitpoints += o.health_points
                 break
@@ -106,22 +143,39 @@ class Player:
         print(f"  {self.__name}'s health is now {self.__hitpoints} health points")
 
     def __use_vision_potion(self, map, loc):
+        """
+        Reveal surround 8 rooms, less if at border of maze.
+        :param map: map of dungeon, needed for potion's function
+        :type map: BuildDungeon
+        :param loc: location of player, needed for potion's function
+        :type loc: tuple(x-coord, y-coord)
+        :raises: if player is out of potions
+        """
         if self.vision_potions == 0:
             raise Exception("You do not have any vision potion to use")
 
         for o in self.__backpack:
             if o.letter == "V":
                 o.function(map, loc)
+                self.__sound.health_potion()
                 self.__backpack.remove(o)
                 break
 
     def __fall_pit(self, pit):
+        """
+        Call pit function to affect player's health
+        :param pit: pit object
+        :type pit: Pit
+        """
         damage = pit.function()
         if damage > 0:
             self.__sound.pit()
             self.__hitpoints -= damage
 
     def __str__(self):
+        """
+        Overides default Oject print and includes print out of player's information and inventory
+        """
         pillars = 0
         for obj in self.__backpack:
             if obj.letter in ['A', 'E', 'I', 'P']:

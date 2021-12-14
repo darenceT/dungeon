@@ -1,11 +1,12 @@
 from dungeon_object import DungeonObject
-from clear_screen import ClearScreen
 from art import Art
 import time
 
 
 class VisionPotion(DungeonObject):
-
+    """
+    Inherit from abstract base class DungeonObject.
+    """
     def __init__(self):
         super().set_name('Vision Potion')
         super().set_letter('V')
@@ -23,14 +24,12 @@ class VisionPotion(DungeonObject):
         :return: map of current and surround 8 rooms
         :rtype: str
         """
-        Art.in_game3()
+        Art.in_game()
         print('  *** Using potion in ...', end='')
         count = [' 3,', ' 2,', ' 1!']
         for i in count:
             time.sleep(1)
             print(i, end='', flush=True)
-
-        # SoundFx.vision()
 
         def __get_letter(xx, yy):
             objects = dungeon_map.room_index[(xx, yy)].objects
@@ -49,6 +48,7 @@ class VisionPotion(DungeonObject):
         spaces = '              '
         vision = f'\n\n{spaces}'
         vert_top = f'\n{spaces}'
+        
         # top row
         if x-1 >= 0 and y-1 >= 0:                       # top left
             vision += hor[y-1][x-1]
