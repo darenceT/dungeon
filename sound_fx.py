@@ -2,8 +2,12 @@ import pygame
 from pygame import mixer
 from pathlib import Path
 
-class SoundFx:
 
+class SoundFx:
+    """
+    Constructor/instance included so that a tracker can be used for sound options,
+    to turn off and on the sound & music.
+    """
     def __init__(self):
         self.__is_running = True
         pygame.init()
@@ -80,3 +84,4 @@ class SoundFx:
     def pit(self):
         if self.__is_running:
             mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'pit.mp3')), maxtime=600)
+            

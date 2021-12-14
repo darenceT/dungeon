@@ -6,9 +6,9 @@ from art import Art
 class Instructions:
 
     def __init__(self):
+        self.__sound = SoundFx()
         self.__player_name = ""
         self.__difficulty = 0
-        self.__sound = SoundFx()
         self.menu()
 
     @property
@@ -37,6 +37,9 @@ class Instructions:
 
     @staticmethod
     def instructions():
+        """
+        This introduces how the game works
+        """
         ClearScreen()
         print("\n               Welcome to the Dungeon Crawler!\n\n"
               "  You are tasked with guiding the player character through a\n"
