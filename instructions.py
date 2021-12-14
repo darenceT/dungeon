@@ -1,13 +1,14 @@
 from clear_screen import ClearScreen
 from sound_fx import SoundFx
+from sound_option import SoundOption
 from art import Art
 
 class Instructions:
 
     def __init__(self):
+        self.__sound = SoundFx()
         self.__player_name = ""
         self.__difficulty = 0
-        self.__sound = SoundFx()
         self.menu()
 
     @property
@@ -36,6 +37,9 @@ class Instructions:
 
     @staticmethod
     def instructions():
+        """
+        This introduces how the game works
+        """
         ClearScreen()
         print("\n               Welcome to the Dungeon Crawler!\n\n"
               "  You are tasked with guiding the player character through a\n"
@@ -51,20 +55,21 @@ class Instructions:
               "  when you reach the end of the maze AFTER collecting all four\n"
               "  pillars. Good Luck Explorer!")
         input('\n               Press Enter to return to menu')
+        return
     
     def menu(self):
-        # SoundFx.intro()
         self.__sound.intro()
         Art.intro()
         selection = None
         spaces = "                   "
-        choices = ["1", "2", "0"]
+        choices = ["1", "2", "3", "0"]
         while selection not in choices:
             ClearScreen()
             print("\n\n\n\n"
                   f"{spaces} DUNGEON CRAWLER\n\n\n"
                   f"{spaces} [1] Start New Game\n"
                   f"{spaces} [2] Game Instructions\n"
+                  f"{spaces} [3] Sound options\n"
                   f"{spaces} [0] Exit Game\n\n")
             if selection is not None and selection not in choices:
                 print(f"{spaces}Invalid selection! Please choose again.\n")
@@ -75,6 +80,9 @@ class Instructions:
                 return
             elif selection == "2":
                 self.instructions()
+                selection = None
+            elif selection == "3":
+                SoundOption.change(self.__sound)
                 selection = None
             elif selection == "0":
                 print(f"\n{spaces}Thank you for playing!\n\n")

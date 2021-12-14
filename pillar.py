@@ -1,6 +1,5 @@
 from dungeon_object import DungeonObject
 import time
-from sound_fx import SoundFx
 from art import Art
 
 class Pillar(DungeonObject):
@@ -12,7 +11,6 @@ class Pillar(DungeonObject):
         super().set_letter(letter)
 
     def function(self):
-        SoundFx.pillar()
         Art.pillar(self.letter)
         time.sleep(2)
         print(f'  You have collected {self.name} key!')

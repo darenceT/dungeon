@@ -1,66 +1,83 @@
-from clear_screen import ClearScreen
 import pygame
 from pygame import mixer
 from pathlib import Path
 
-class SoundFx:
 
+class SoundFx:
+    """
+    Constructor/instance included so that a tracker can be used for sound options,
+    to turn off and on the sound & music.
+    """
     def __init__(self):
         pygame.init()
-        self.__is_running = False
+        self.__is_running = True
 
     @property
     def is_running(self):
         return self.__is_running
     
     @is_running.setter
-    def is_running(self, bool):
-        self.is_running = bool
-
-    # @staticmethod
-    def intro(self):
-        self.__is_running = True
-        mixer.music.load(Path('sound/Mysterious Strange Things - Yung Logos_short.mp3'))
-        mixer.music.set_volume(0.6)
-        mixer.music.play(-1)
-
-    @staticmethod
-    def in_game():
-        mixer.music.load(Path('sound/Subterranean Howl - ELPHNT_short.mp3'))
-        mixer.music.play(-1)
-
-    @staticmethod
-    def pause_menu(resume=False):
-        if resume:
-            mixer.music.unpause()
+    def is_running(self, change):
+        if isinstance(change, bool):
+            self.is_running = change
         else:
-            mixer.music.pause()
+            raise TypeError("Only boolean value accepted")
 
-    @staticmethod
-    def lose():
-        mixer.music.load(Path('sound/gameover.mp3'))
-        mixer.music.play(-1)
+    def turn_off(self):
+        self.__is_running = False
+        mixer.quit()
 
-    @staticmethod
-    def win():
-        mixer.music.load(Path('sound/win.mp3'))
-        mixer.music.play(-1)
+    def turn_on(self, in_game=False):
+        self.__is_running = True
+        mixer.init()
+        if in_game:
+            self.in_game()
+        else:
+            self.intro()
 
-    
-    @staticmethod
-    def enter_room():
+    def intro(self):
+        if self.__is_running:
+            mixer.music.load(Path('sound/Mysterious Strange Things - Yung Logos_short.mp3'))
+            mixer.music.set_volume(0.5)
+            mixer.music.play(-1)
+
+    def in_game(self):
+        if self.__is_running: 
+            mixer.music.load(Path('sound/Subterranean Howl - ELPHNT_short.mp3'))
+            mixer.music.set_volume(0.5)
+            mixer.music.play(-1)
+
+    def pause_menu(self, resume=False):
+        if self.__is_running: 
+            if resume:
+                mixer.music.unpause()
+            else:
+                mixer.music.pause()
+
+    def lose(self):
+        if self.__is_running: 
+            mixer.music.load(Path('sound/gameover.mp3'))
+            mixer.music.play(-1)
+
+    def win(self):
+        if self.__is_running: 
+            mixer.music.load(Path('sound/win.mp3'))
+            mixer.music.play(-1)
+
+    def enter_room(self):
         """
         Sound for entering each room
         Credit https://stackoverflow.com/questions/53617967/play-music-and-sound-effects-on-top-of-each-other-pygame
         """
-        # play a sound on channel 0 with a max time of 600 milliseconds
-        mixer.Channel(0).play(pygame.mixer.Sound(Path('sound', 'enter_room.mp3')), maxtime=600)
-        # channel.set_volume(0.5)  # play at 50% volume
+        if self.__is_running: 
+            # play a sound on channel 0 with a max time of 600 milliseconds
+            mixer.Channel(0).play(pygame.mixer.Sound(Path('sound', 'enter_room.mp3')), maxtime=600)
+            # channel.set_volume(0.5)  # play at 50% volume
 
-    @staticmethod
-    def pillar():
-        mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'pillar.mp3')), maxtime=600)
+    def pillar(self):
+        if self.__is_running: 
+            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'pillar.mp3')), maxtime=600)
     
-    @staticmethod
-    def pit():
-        mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'pit.mp3')), maxtime=600)
+    def pit(self):
+        if self.__is_running: 
+            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'pit.mp3')), maxtime=600)

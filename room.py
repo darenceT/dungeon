@@ -1,4 +1,3 @@
-from sound_fx import SoundFx
 
 
 class Room:
@@ -29,7 +28,6 @@ class Room:
         """
         Player enters room, method checks impassible status. Print room.
         """
-        SoundFx.enter_room()
         if not self.__impassible:
             print(f'entered room (x: {self.__x_loc}, y: {self.__y_loc}):')
         else:

@@ -3,8 +3,9 @@ from random import randint
 
 
 class Player:
-    def __init__(self, name="Player 1"):
+    def __init__(self, name="Player 1", sound=any):
         self.__name = name
+        self.__sound = sound
         self.__hitpoints = randint(60, 80)
         self.__backpack = []
 
@@ -46,13 +47,15 @@ class Player:
             elif obj.letter == 'O':
                 obj.function(self.__backpack)
             elif obj.letter == 'X':
-                self.fall_pit(obj)
+                self.__fall_pit(obj)
             elif obj.letter in ['H', 'V']:
                 if obj.letter == 'H':
                     obj.inspect()
                 self.__backpack.append(obj)
                 print(f'  {self.name} added {obj} to backpack!')
-            elif obj not in self.__backpack:       
+            elif obj not in self.__backpack:
+                if obj.letter in ['A', 'E', 'I', 'P']:
+                    self.__sound.pillar()
                 obj.function()
                 self.__backpack.append(obj)
 
@@ -74,15 +77,15 @@ class Player:
             print_options = ', '.join(options)
             selection = input(f'\n  Enter your option(s) [{print_options}]: ').strip().lower()
             if selection == 'h' and 'h' in options:
-                self.use_health_potion()
+                self.__use_health_potion()
                 break
             elif selection == 'v' and 'v' in options:
-                self.use_vision_potion(map, loc)
+                self.__use_vision_potion(map, loc)
                 break
             elif selection == 'r':
                 break
 
-    def use_health_potion(self):
+    def __use_health_potion(self):
         if self.health_potions == 0:
             raise Exception("You do not any health potion to use")
 
@@ -97,7 +100,7 @@ class Player:
             self.__hitpoints = 100
         print(f"  {self.__name}'s health is now {self.__hitpoints} health points")
 
-    def use_vision_potion(self, map, loc):
+    def __use_vision_potion(self, map, loc):
         if self.vision_potions == 0:
             raise Exception("You do not have any vision potion to use")
 
@@ -107,8 +110,11 @@ class Player:
                 self.__backpack.remove(o)
                 break
 
-    def fall_pit(self, pit):
-        self.__hitpoints -= pit.function()
+    def __fall_pit(self, pit):
+        damage = pit.function()
+        if damage > 0:
+            self.__sound.pit()
+            self.__hitpoints -= damage
 
     def __str__(self):
         pillars = 0

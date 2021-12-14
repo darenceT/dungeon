@@ -20,22 +20,20 @@ class DungeonAdventure:
         Create dungeon and player, then start __play method.
         :param player_input: obtained from Instructions() for user's input of player
         name and difficulty level
-        :type player_input: Instructions class object
+        :type player_input: Instruction class object
         :property __map: map of dungeon from BuildDungeon
         :property __room_index: list of rooms (x-coord, y-coord) created in BuildDungeon
         :property __entrance_loc: Entrance location from created in BuildDungeon
         :property __exit_loc: Exit location from BuildDungeon, always at bottom right corner 
         """
-        # SoundFx.in_game()
         self.__sound = player_input.sound
         self.__sound.in_game()
         self.__map = BuildDungeon(player_input.difficulty)
         self.__room_index = self.__map.room_index
-        self.__player = Player(player_input.player_name)
+        self.__player = Player(player_input.player_name, self.__sound)
         self.__entrance_loc = self.__map.entrance_loc
         self.__exit_loc = self.__map.exit_loc
         self.__play(self.__entrance_loc)
-
 
     def __play(self, location):
         """
@@ -49,6 +47,7 @@ class DungeonAdventure:
         """
         while location is not None:
             Art.in_game()
+            self.__sound.enter_room()
             print(f'             {self.__player.name}', end=' ')
             self.__map.room_index[location].enter_room()
 
@@ -57,14 +56,14 @@ class DungeonAdventure:
 
             # Lose game
             if self.__player.hitpoints <= 0:
-                SoundFx.lose()
+                self.__sound.lose()
                 ClearScreen()
                 Art.lose(self.__player.name)
                 time.sleep(2)
                 location = None
             # Win game
             if location == self.__exit_loc and room_objects[0].freedom:
-                SoundFx.win()
+                self.__sound.win()
                 time.sleep(2)
                 print(self.__map)
                 location = None
