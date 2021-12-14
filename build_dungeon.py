@@ -185,7 +185,6 @@ class BuildDungeon:
         """
         Ensures pillar locations and exit are obtainable after creating
         impassible rooms. Recreate maze if not obtainable
-        :return: None
         """                
         while True:
             self.__create_impassible()
@@ -193,11 +192,15 @@ class BuildDungeon:
             if self.__traverse_dungeon(self.__exit_loc):
                 for loc in self.__pillars_loc:
                     if not self.__traverse_dungeon(loc):
+                        self.__pillars_loc = []
                         self.__build_maze()
-                        return
+                        self.__objects_for_traversal()
+                        break
                 break
             else:
+                self.__pillars_loc = []
                 self.__build_maze()
+                self.__objects_for_traversal()
                 break
 
     def __create_pillar_loc(self):
@@ -283,5 +286,5 @@ class BuildDungeon:
 
 # delete this later for submission
 if __name__ == '__main__':
-    p = BuildDungeon(1)
+    p = BuildDungeon(2)
     print(p)
