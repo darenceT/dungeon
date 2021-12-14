@@ -150,7 +150,7 @@ class BuildDungeon:
                 for loc in self.__pillars_loc:
                     if not self.__traverse_dungeon(loc):
                         self.__build_maze()
-                        return
+                        break
                 break
             else:
                 self.__build_maze()

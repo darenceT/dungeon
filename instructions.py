@@ -7,6 +7,7 @@ class Instructions:
     def __init__(self):
         self.__player_name = ""
         self.__difficulty = 0
+        self.__sound = SoundFx()
         self.menu()
 
     @property
@@ -29,6 +30,10 @@ class Instructions:
             raise ValueError('Secondary line of error caught, number is not between 1 and 3')
         self.__difficulty = num
 
+    @property
+    def sound(self):
+        return self.__sound
+
     @staticmethod
     def instructions():
         ClearScreen()
@@ -46,21 +51,22 @@ class Instructions:
               "  when you reach the end of the maze AFTER collecting all four\n"
               "  pillars. Good Luck Explorer!")
         input('\n               Press Enter to return to menu')
-        return
     
     def menu(self):
-        SoundFx.intro()
+        # SoundFx.intro()
+        self.__sound.intro()
         Art.intro()
         selection = None
         spaces = "                   "
-        while selection not in ["1", "2", "0"]:
+        choices = ["1", "2", "0"]
+        while selection not in choices:
             ClearScreen()
             print("\n\n\n\n"
                   f"{spaces} DUNGEON CRAWLER\n\n\n"
                   f"{spaces} [1] Start New Game\n"
                   f"{spaces} [2] Game Instructions\n"
                   f"{spaces} [0] Exit Game\n\n")
-            if selection is not None and selection not in ["1", "2", "0"]:
+            if selection is not None and selection not in choices:
                 print(f"{spaces}Invalid selection! Please choose again.\n")
             selection = input(f"{spaces}Enter your selection: ").strip()
             if selection == "1":
@@ -70,7 +76,6 @@ class Instructions:
             elif selection == "2":
                 self.instructions()
                 selection = None
-                continue
             elif selection == "0":
                 print(f"\n{spaces}Thank you for playing!\n\n")
                 exit()

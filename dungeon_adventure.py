@@ -26,13 +26,16 @@ class DungeonAdventure:
         :property __entrance_loc: Entrance location from created in BuildDungeon
         :property __exit_loc: Exit location from BuildDungeon, always at bottom right corner 
         """
-        SoundFx.in_game()
+        # SoundFx.in_game()
+        self.__sound = player_input.sound
+        self.__sound.in_game()
         self.__map = BuildDungeon(player_input.difficulty)
         self.__room_index = self.__map.room_index
         self.__player = Player(player_input.player_name)
         self.__entrance_loc = self.__map.entrance_loc
         self.__exit_loc = self.__map.exit_loc
         self.__play(self.__entrance_loc)
+
 
     def __play(self, location):
         """
@@ -45,7 +48,7 @@ class DungeonAdventure:
         :return: None. Exit loop to return to Main(), to exit or restart
         """
         while location is not None:
-            Art.in_game3()
+            Art.in_game()
             print(f'             {self.__player.name}', end=' ')
             self.__map.room_index[location].enter_room()
 
@@ -107,7 +110,7 @@ class DungeonAdventure:
                     else:
                         self.__player.potion_menu()
                 elif choice == 'm':
-                    if not PauseGame.menu(self.__map):
+                    if not PauseGame.menu(self.__map, self.__sound):
                         # PausGame.menu() resume game returns False, then re-print room
                         self.__play(location)
                     else:

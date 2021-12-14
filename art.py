@@ -28,8 +28,8 @@ class Art:
             ' ░  ▒    ░▒ ░ ▒░ ▒   ▒▒ ░  ▒ ░ ░  ░ ░ ▒  ░ ░ ░  ░  ░▒ ░ ▒░ \n'
             ' ░         ░░   ░  ░   ▒     ░   ░    ░ ░      ░     ░░   ░\n' 
             ' ░ ░        ░          ░  ░    ░        ░  ░   ░  ░   ░\n'
-            '    For best experience run in Terminal/CMD in full screen')
-        input('\n              Press Enter to return to menu')
+            '          Run in Terminal/CMD for best experience') 
+        input('\n              Press Enter to continue')
 
     @staticmethod
     def intro2():
@@ -48,8 +48,8 @@ class Art:
             '  ██      ██████  ███████ ██  █  ██ ██      █████   ██████\n'       
             '  ██      ██   ██ ██   ██ ██ ███ ██ ██      ██      ██   ██\n'      
             '  ██████ ██   ██ ██   ██  ███ ███  ███████ ███████ ██   ██\n'
-            '     For best experience run in Terminal/CMD in full screen')
-        input('\n              Press Enter to return to menu')
+            '           Run in Terminal/CMD for best experience') 
+        input('\n              Press Enter to continue')
 
     @staticmethod
     def intro3():
@@ -75,36 +75,10 @@ class Art:
             '   || |`-\'\' |  .  \'.\' |  .-.  |         |(|  \'---.\'|  .--\'|  .  \'.\'\n'           
             '  (_\' \'--\'\ |  |\  \  |  | |  |   ,\'.   | |      | |  `---|  |\  \\\n'            
             '    `-----\' `--\' \'--\' `--\' `--\'--\'   \'--\' `------\' `------`--\' \'--\'\n'
-            '            For best experience run in Terminal/CMD in full screen') 
-        input('                 Press Enter to return to menu')
+            '                  Run in Terminal/CMD for best experience') 
+        input('                 Press Enter to return to continue')
 
-    @staticmethod
     def in_game():
-        """
-        https://patorjk.com/software/taag
-        """
-        spaces ='             ' 
-        ClearScreen()
-        print(
-            f'\n{spaces}+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+\n'
-            f'{spaces}|D|u|n|g|e|o|n| |C|r|a|w|l|e|r|\n'
-            f'{spaces}+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+')
-
-    @staticmethod
-    def in_game2():
-        """
-        https://patorjk.com/software/taag
-        """
-        spaces ='             ' 
-        ClearScreen()
-        print(
-            f'\n{spaces}+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+\n'
-            f'{spaces}|D|u|n|g|e|o|n| |C|r|a|w|l|e|r|\n'
-            f'{spaces}+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+\n'
-            '================================='
-            '===============================',)
-
-    def in_game3():
         """
         https://patorjk.com/software/taag
         """

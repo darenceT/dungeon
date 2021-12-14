@@ -46,7 +46,7 @@ class Player:
             elif obj.letter == 'O':
                 obj.function(self.__backpack)
             elif obj.letter == 'X':
-                self.use_pit(obj)
+                self.fall_pit(obj)
             elif obj.letter in ['H', 'V']:
                 if obj.letter == 'H':
                     obj.inspect()
@@ -107,7 +107,7 @@ class Player:
                 self.__backpack.remove(o)
                 break
 
-    def use_pit(self, pit):
+    def fall_pit(self, pit):
         self.__hitpoints -= pit.function()
 
     def __str__(self):
