@@ -11,6 +11,7 @@ class SoundFx:
     def __init__(self):
         self.__is_running = True
         pygame.init()
+        mixer.Channel(0).set_volume(0.75)
 
     @property
     def is_running(self):
@@ -37,6 +38,21 @@ class SoundFx:
                 self.intro()
         else:
             raise TypeError("Only boolean param accepted")
+
+    def low_volume(self):
+        if self.__is_running:
+            mixer.music.set_volume(0.1)
+            mixer.Channel(0).set_volume(0.25)  # play at 100% volume
+
+    def normal_volume(self):
+        if self.__is_running:
+            mixer.music.set_volume(0.4)
+            mixer.Channel(0).set_volume(0.75)  # play at 50% volume
+
+    def high_volume(self):
+        if self.__is_running:
+            mixer.music.set_volume(0.7)
+            mixer.Channel(0).set_volume(1)  # play at 50% volume
 
     def intro(self):
         if self.__is_running:

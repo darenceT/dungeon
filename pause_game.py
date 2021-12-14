@@ -33,6 +33,7 @@ class PauseGame:
                 Instructions.instructions()
                 selection = None
             elif selection == "3":
+                sound.pause_menu(resume=True)
                 SoundOption.change(sound, in_game=True)
                 selection = None
             elif selection == "4":
