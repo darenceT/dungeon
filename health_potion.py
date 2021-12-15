@@ -57,7 +57,6 @@ class HealthPotion(DungeonObject):
         return self.__health_points
 
 
-
 if __name__ == '__main__':
     p = HealthPotion()
     print(p.name)

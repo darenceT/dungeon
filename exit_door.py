@@ -41,15 +41,14 @@ class ExitDoor(DungeonObject):
         else:
             raise TypeError('Only boolean type allowed')
 
-    def function(self, backpack):
+    def function(self, keys):
         """
         Allow player to open door, setting freedom to True if player has collect
         4 pillar keys.
-        :param backpack: player's inventory
-        :type backpack: list
+        :param keys: player's inventory of pillar keys
+        :type keys: Pillar []
         """
-        key_count = sum(isinstance(x, Pillar) for x in backpack)
-        if key_count == 4:
+        if len(keys) == 4:
             print('  You put in all 4 pillar keys and you hear some gears turning...')
             time.sleep(2)
             print('  INSERT ART HERE\n'
@@ -57,7 +56,7 @@ class ExitDoor(DungeonObject):
             self.freedom = True
         else:
             print('  You see some light...it\'s a door! There are 4 strange-key holes...\n'
-                  '  You only have', key_count, 'keys...')
+                  '  You only have', len(keys), 'keys...')
 
 
 if __name__ == '__main__':          ############## DELETE #################

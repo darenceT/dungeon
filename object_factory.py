@@ -54,13 +54,16 @@ class ObjectFactory:
         """
         Temporary list of locations is used to avoid placing duplicate items in same room.
         map height is used to create number of objects based on difficulty: Easy 4, Normal 8, Hard 12
+        
+        ***Note: To change # of objects, modify self.__map.height e.g. self.__map.height x 2 to double 
+        all the objects (potions & pits)
+        
         :param object: objects for each room
         :param type: DungeonObject
-
         """
         temp_list = []
         index = 0
-        while index < self.__map.height:
+        while index < self.__map.height:    # change self.__map.height to change # of objects
             loc = self.__valid_random_loc()
             if loc not in temp_list:
                 temp_list.append(loc)
