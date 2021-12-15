@@ -286,7 +286,6 @@ class BuildDungeon:
         return map_print
 
 
-# delete this later for submission
-if __name__ == '__main__':
-    p = BuildDungeon(2)
-    print(p)
+# if __name__ == '__main__':
+#     p = BuildDungeon(1)
+#     print(p)

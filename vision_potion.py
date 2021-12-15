@@ -11,6 +11,7 @@ class VisionPotion(DungeonObject):
     is at border of dungeon.
     """
     def __init__(self):
+        "Create vision potion with its appropriate name and letter"
         super().set_name('Vision Potion')
         super().set_letter('V')
 

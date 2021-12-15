@@ -9,7 +9,7 @@ win & lose output
 Time spent: 12
 
 Pranav Ramakrishnan: Intro, instructions, pause menu, sound, exit art
-Time spent:
+Time spent: 20
 
 No shortcomings
 

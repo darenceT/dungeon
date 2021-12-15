@@ -2,12 +2,28 @@
 
 <pre>
 
-Darence: maze, DungeonAdventure, room, all objects, 
-UML, sound & pause menu, art
+Darence: maze, DungeonAdventure, Room, gameplay, all objects, UML, sound & pause menu, art
 Manny: player, potion menu, pit, UML
-Pranav: intro, instructions, pause menu, music, storyboard
+Pranav: intro, instructions, pause menu, music
 
-<a href=https://docs.google.com/document/d/1_fHq2u9l7wrHIi3lbca_GFkGuPdS3TVKLNKEBCa02TU/edit>summary of classes</a>
+
+This assignment satisfies all 10 course objectives! 
+    C1: Use fundamental concepts of object-oriented design to write modular, extensible code
+    C2: Use common design patterns to increase testability, readability, and maintainability of code
+    C3: Apply skills to systematically test and debug applications
+    C4: Recognize code smells and refactor code accordingly
+    C5: Use data structures and algorithms from TCSS 501 in programming applications
+    C6: Use the space time/characteristics of different search and sorting algorithms learned in TCSS 501
+        to choose the appropriate methods to implement.
+    C7: Design, implement, document and debug a medium complexity program with an object hierarchy that
+        includes interfaces and/or abstract classes and a graphical user interface, given some guidance 
+        on the design.
+    C8: Design and implement unit tests for a medium complexity program with an object hierarchy that
+        includes interfaces and/or abstract classes.
+    C9: Utilize modern software engineering tools (e.g., IDEs, static checkers, unit testing frameworks,
+        revision control systems) during the implementation of a medium complexity program.
+    C10: Correctly employ programming language features by reading and interpreting the associated published
+        API documentation.
 
 DUNGEON ADVENTURE
 
