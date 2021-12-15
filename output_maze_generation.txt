@@ -1,0 +1,172 @@
+
+C:\Users\Darence.DESKTOP-0TUJKIK\PycharmProjects\dungeon>py build_dungeon.py
+*** test: Impassible rooms created at: [(5, 2)]
+
+
+        +--+--+--+--+--+--+--+--+
+        |                 |     |
+        +  +--+--+--+--+  +  +--+
+        |  |              |     |
+        +  +--+--+--+--+--+--+  +
+        |  |        |  |  |  |  |
+        +  +--+  +  +--+--+  +  +
+        |        |        |     |
+        +--+--+--+--+--+--+--+--+
+
+
+*** test: maze traversed and did NOT reach target: (7, 3)
+
+
+        +--+--+--+--+--+--+--+--+
+        |                 |     |
+        +  +--+--+--+--+  +  +--+
+        |  |              |     |
+        +  +--+--+--+--+--+--+  +
+        |  |        |  |  |  |  |
+        +  +--+  +  +--+--+  +  +
+        |        |        |     |
+        +--+--+--+--+--+--+--+--+
+
+
+*** test: 2. One of pillars or exit cannot be traversed, rebuild maze
+*** test: Impassible rooms created at: [(2, 2)]
+
+
+        +--+--+--+--+--+--+--+--+
+        |                       |
+        +  +--+--+--+--+--+  +  +
+        |  |  |           |  |  |
+        +  +  +--+--+--+  +--+  +
+        |  |  |  |     |  |     |
+        +  +  +--+  +--+  +  +  +
+        |  |     |           |  |
+        +--+--+--+--+--+--+--+--+
+
+
+*** test: maze traversed and did NOT reach target: (7, 3)
+
+
+        +--+--+--+--+--+--+--+--+
+        |                       |
+        +  +--+--+--+--+--+  +  +
+        |  |  |           |  |  |
+        +  +  +--+--+--+  +--+  +
+        |  |  |  |     |  |     |
+        +  +  +--+  +--+  +  +  +
+        |  |     |           |  |
+        +--+--+--+--+--+--+--+--+
+
+
+*** test: 2. One of pillars or exit cannot be traversed, rebuild maze
+*** test: Impassible rooms created at: [(5, 2)]
+
+
+        +--+--+--+--+--+--+--+--+
+        |                    |  |
+        +  +--+--+  +--+  +  +  +
+        |  |     |     |  |     |
+        +  +--+  +--+--+--+--+  +
+        |  |  |  |     |  |  |  |
+        +  +  +  +  +--+--+  +  +
+        |     |     |           |
+        +--+--+--+--+--+--+--+--+
+
+
+*** test: maze traversed and did NOT reach target: (7, 3)
+
+
+        +--+--+--+--+--+--+--+--+
+        |                    |  |
+        +  +--+--+  +--+  +  +  +
+        |  |     |     |  |     |
+        +  +--+  +--+--+--+--+  +
+        |  |  |  |     |  |  |  |
+        +  +  +  +  +--+--+  +  +
+        |     |     |           |
+        +--+--+--+--+--+--+--+--+
+
+
+*** test: 2. One of pillars or exit cannot be traversed, rebuild maze
+*** test: Impassible rooms created at: [(3, 3)]
+*** test: maze traversed reached target: (7, 3)
+*** test: maze traversed reached target: (2, 0)
+
+
+        +--+--+--+--+--+--+--+--+
+        |                    |  |
+        +  +--+--+--+--+--+  +  +
+        |     |           |     |
+        +--+--+  +  +--+--+--+  +
+        |        |  |           |
+        +  +--+--+--+  +--+--+--+
+        |        |  |           |
+        +--+--+--+--+--+--+--+--+
+
+
+*** test: maze traversed and did NOT reach target: (2, 1)
+*** test: 1. One of pillars or exit cannot be traversed, rebuild maze
+*** test: Impassible rooms created at: [(7, 1)]
+*** test: maze traversed reached target: (7, 3)
+
+
+        +--+--+--+--+--+--+--+--+
+        |     |  |        |     |
+        +  +  +  +  +  +--+  +--+
+        |  |  |     |        |  |
+        +  +--+--+--+--+--+--+--+
+        |  |     |           |  |
+        +  +  +  +  +--+--+  +  +
+        |     |     |           |
+        +--+--+--+--+--+--+--+--+
+
+
+*** test: maze traversed and did NOT reach target: (7, 1)
+*** test: 1. One of pillars or exit cannot be traversed, rebuild maze
+*** test: Impassible rooms created at: [(7, 1)]
+*** test: maze traversed reached target: (7, 3)
+
+
+        +--+--+--+--+--+--+--+--+
+        |  |        |           |
+        +  +  +--+  +--+--+--+--+
+        |  |  |  |           |  |
+        +  +--+  +--+--+--+  +--+
+        |        |     |     |  |
+        +  +--+--+  +  +  +--+  +
+        |           |           |
+        +--+--+--+--+--+--+--+--+
+
+
+*** test: maze traversed and did NOT reach target: (5, 0)
+*** test: 1. One of pillars or exit cannot be traversed, rebuild maze
+*** test: Impassible rooms created at: [(3, 0)]
+*** test: maze traversed reached target: (7, 3)
+*** test: maze traversed reached target: (5, 2)
+*** test: maze traversed reached target: (2, 3)
+*** test: maze traversed reached target: (6, 0)
+*** test: maze traversed reached target: (7, 1)
+
+
+        +--+--+--+--+--+--+--+--+
+        |     |  |  |           |
+        +  +  +  +--+  +--+--+  +
+        |  |  |     |        |  |
+        +  +--+--+--+--+--+  +  +
+        |  |           |     |  |
+        +  +--+  +--+  +  +--+  +
+        |        |        |     |
+        +--+--+--+--+--+--+--+--+
+
+
+*** test: maze is valid! impassible rooms created, exit and pillars can be traversed!
+
+
+        +--+--+--+--+--+--+--+--+
+        |   V |X |  |V  V  I  X |
+        +  +  +  +--+  +--+--+  +
+        |  |i |H    |   X  H |M |
+        +  +--+--+--+--+--+  +  +
+        |  |   V     X |P    |  |
+        +  +--+  +--+  +  +--+  +
+        |      M |        |   O |
+        +--+--+--+--+--+--+--+--+
