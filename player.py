@@ -7,6 +7,8 @@ class Player:
         self.__name = name
         self.__sound = sound
         self.__hitpoints = randint(60, 80)
+        self.__vision_potions = 0
+        self.__health_potions = 0
         self.__backpack = []
 
     @property
@@ -46,11 +48,19 @@ class Player:
         :return: amount of health potions
         :rtype: int
         """
-        count = 0
-        for o in self.__backpack:
-            if o.letter == 'H':
-                count += 1
-        return count
+        return self.__health_potions
+        # count = 0
+        # for o in self.__backpack:
+        #     if o.letter == 'H':
+        #         count += 1
+        # return count
+
+    @health_potions.setter
+    def health_potions(self, change):
+        if isinstance(change, int):
+            self.__health_potions += change
+        else:
+            raise TypeError('Only integer allowed for potion count change')
 
     @property
     def vision_potions(self):
@@ -59,11 +69,19 @@ class Player:
         :return: amount of vision potions
         :rtype: int
         """
-        count = 0
-        for o in self.__backpack:
-            if o.letter == 'V':
-                count += 1
-        return count
+        return self.__vision_potions
+        # count = 0
+        # for o in self.__backpack:
+        #     if o.letter == 'V':
+        #         count += 1
+        # return count
+
+    @vision_potions.setter
+    def vision_potions(self, change):
+        if isinstance(change, int):
+            self.__vision_potions += change
+        else:
+            raise TypeError('Only integer allowed for potion count change')
 
     def interact_objects(self, objects):
         """
@@ -81,6 +99,9 @@ class Player:
             elif obj.letter in ['H', 'V']:
                 if obj.letter == 'H':
                     obj.inspect()
+                    self.health_potions = 1
+                else:
+                    self.vision_potions = 1
                 self.__backpack.append(obj)
                 print(f'  {self.name} added {obj} to backpack!')
             elif obj not in self.__backpack:
@@ -130,12 +151,13 @@ class Player:
         if self.health_potions == 0:
             raise Exception("You do not any health potion to use")
 
-        for o in self.__backpack:
-            if o.letter == "H":
-                self.__backpack.remove(o)
+        for potion in self.__backpack:
+            if potion.letter == "H":
+                self.__backpack.remove(potion)
+                self.health_potions = -1
                 self.__sound.health_potion()
-                print(f'\n  You used a {o}, {o.health_points} health replenished!')
-                self.__hitpoints += o.health_points
+                print(f'\n  You used a {potion}, {potion.health_points} health replenished!')
+                self.__hitpoints += potion.health_points
                 break
 
         if self.__hitpoints > 100:
@@ -154,11 +176,12 @@ class Player:
         if self.vision_potions == 0:
             raise Exception("You do not have any vision potion to use")
 
-        for o in self.__backpack:
-            if o.letter == "V":
-                o.function(map, loc)
-                self.__sound.health_potion()
-                self.__backpack.remove(o)
+        for potion in self.__backpack:
+            if potion.letter == "V":
+                potion.function(map, loc)
+                self.__sound.vision_potion()
+                self.__backpack.remove(potion)
+                self.vision_potions = -1
                 break
 
     def __fall_pit(self, pit):
@@ -186,3 +209,23 @@ class Player:
             f"  Total Healing Potions: {self.health_potions}\n"
             f"  Total Vision Potions: {self.vision_potions}\n"
             f"  Pillars Keys Found: {pillars}\n")
+
+
+"""
+Adventurer.java
+    • Has a name
+    • Contains at least the following:
+        o Hit Points - initially set to 75 - 100 upon creation (randomly generate - you can change the 
+        range) o The number of Healing Potions
+        o The number of Vision Potions
+        o The which Pillars found
+    • Ability to move in Dungeon (you might decide to place this behavior elsewhere)
+    • Increases or decreases the Hit Points accordingly
+    • Contains a _ _ str _ _ () method that builds a String containing:
+        o Name
+        o Hit Points
+        o Total Healing Potions
+        o Total Vision Potions
+        o List of Pillars Pieces Found
+
+"""

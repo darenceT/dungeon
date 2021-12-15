@@ -28,7 +28,7 @@ class VisionPotion(DungeonObject):
         :rtype: str
         """
         Art.in_game()
-        print('  *** Using potion in ...', end='')
+        print('              *** Using potion in ...', end='')
         count = [' 3,', ' 2,', ' 1!']
         for i in count:
             time.sleep(1)
@@ -48,7 +48,7 @@ class VisionPotion(DungeonObject):
         hor = dungeon_map.hor
         ver = dungeon_map.ver
 
-        spaces = '              '
+        spaces = '                         '
         vision = f'\n\n{spaces}'
         vert_top = f'\n{spaces}'
 
@@ -112,5 +112,5 @@ class VisionPotion(DungeonObject):
         elif y+1 < dungeon_map.height:
             vision += '+\n'
         
-        print(vision, '\n  Rooms surrounding you are revealed!\n'
-              '  (Up to 9 including current room)')
+        print(vision, '\n             Rooms surrounding you are revealed!\n'
+              '             (Up to 9 including current room)')

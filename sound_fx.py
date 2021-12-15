@@ -149,26 +149,26 @@ class SoundFx:
         Sound for collecting pillar key, obtained by Manny
         """
         if self.__is_running:
-            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'pillar.mp3')), maxtime=600)
+            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'pillar.mp3')))
     
     def pit(self):
         """
         Sound for falling into pit, obtained by Manny, edited by Darence
         """
         if self.__is_running:
-            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'pit.mp3')), maxtime=600)
+            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'pit.mp3')))
 
     def health_potion(self):
         """
         Sound for consuming health potion, obtained by Pranav
         """
         if self.__is_running:
-            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'health_potion.mp3')), maxtime=600)
+            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'health_potion.mp3')))
 
     def vision_potion(self):
         """
         Sound for effects of vision potion, obtained by Pranav
         """
         if self.__is_running:
-            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'vision_potion.mp3')), maxtime=600)
+            mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'vision_potion.mp3')))
             

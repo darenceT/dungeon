@@ -12,6 +12,8 @@ class DungeonAdventure:
     objects in dungeon rooms. Allow player to move to different rooms, lose
     game by losing all of player health or win by collecting 4 pillars & reaching
     exit.
+    NOTE: Access hidden map! During game, press 'm" for pause-menu, then '5'. See
+    __move_options() and pause_game.py.
     """
     def __init__(self, player_input):
         """
@@ -76,6 +78,7 @@ class DungeonAdventure:
         Player status includes inventory information.
         Potion menu allows consumption of potions.
         Pause menu allows additional options including hidden map, reset game, & exit.
+        NOTE: Access hidden map: press 'm" for pause-menu, then '5'
         :param location: room location of player
         :type location: tuple(x-coord, y-coord)
         """
@@ -118,18 +121,4 @@ class DungeonAdventure:
                     print('  That path is not possible!')
                 else:
                     return next_room[choice][0], next_room[choice][1]
-                    
-"""
-DungeonAdventure
-    • Contains the main logic for playing the game
-    • Introduces the game describing what the game is about and how to play
-    • Creates a Dungeon Object and a Adventurer Object
-    • Obtains the name of the adventurer from the user
-    • Does the following repetitively:
-        o Prints the current room (this is based on the Adventurer's current location)
-        o Determines the Adventurer's options (Move, Use a Potion)
-        o Continues this process until the Adventurer wins or dies
-        o NOTE: Include a hidden menu option for testing that prints out the entire Dungeon -- specify
-        what the menu option is in your documentation for the DungeonAdventure class
-    • At the conclusion of the game, display the entire Dungeon
-"""
+                
