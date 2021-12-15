@@ -64,7 +64,7 @@ class DungeonObject(ABC):
     letter = property(get_letter)
 
     @abstractmethod
-    def function(self):
+    def function(self, item=None, name=None):
         """
         Require that every object in child class have a function method
         """

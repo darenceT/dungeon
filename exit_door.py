@@ -1,5 +1,5 @@
 from dungeon_object import DungeonObject
-from pillar import Pillar
+from art import Art
 import time
 
 
@@ -41,25 +41,20 @@ class ExitDoor(DungeonObject):
         else:
             raise TypeError('Only boolean type allowed')
 
-    def function(self, keys):
+    def function(self, keys=None, name=None):
         """
         Allow player to open door, setting freedom to True if player has collect
         4 pillar keys.
         :param keys: player's inventory of pillar keys
         :type keys: Pillar []
+        :param name: player name
+        :type name: str
         """
         if len(keys) == 4:
-            print('  You put in all 4 pillar keys and you hear some gears turning...')
-            time.sleep(2)
-            print('  INSERT ART HERE\n'
-                  '  You found your escape!')
+            print('  You put in all 4 pillar keys and you hear some gears turning...\n')
+            time.sleep(3)
+            Art.win(name)
             self.freedom = True
         else:
             print('  You see some light...it\'s a door! There are 4 strange-key holes...\n'
                   '  You only have', len(keys), 'keys...')
-
-
-if __name__ == '__main__':          ############## DELETE #################
-    p = ExitDoor()
-    print(p.name)
-    print(p.letter)

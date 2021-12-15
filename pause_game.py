@@ -5,15 +5,21 @@ from sound_option import SoundOption
 
 class PauseGame:
     """
-    In-game menu to access sound menu, game instructions, restart and exit game
+    In-game menu to access sound options, game instructions, restart and exit game
+
+    NOTE: Access hidden map by input "5" then enter.
     """
     @staticmethod
-    def menu(map, sound):
+    def menu(map_dungeon, sound):
         """
         Take user's input for choices in menu
         NOTE: hidden map by entering '5'
-        :param map: map information
-        :type map: BuildDungeon
+
+        Credit https://www.youtube.com/watch?v=63nw00JqHo0
+        :param map_dungeon: map of dungeon for revealing hidden map
+        :type map_dungeon: BuildDungeon
+        :param sound: SoundFx instance to pass to sound menu
+        :type sound: SoundFx
         :return: brings boolean to DungeonAdventure, allowing to continue game
         or exit game
         :rtype: bool 
@@ -51,7 +57,7 @@ class PauseGame:
                 return True
             elif selection == "5":
                 ClearScreen()
-                print(f'\n\n{spaces}You found the hidden map!\n\n{map}')
+                print(f'\n\n                 You found the hidden map!\n\n{map_dungeon}')
                 input('\n       Press Enter to return to menu')
                 selection = None
             elif selection == "0":

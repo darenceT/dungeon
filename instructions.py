@@ -4,8 +4,15 @@ from sound_option import SoundOption
 from art import Art
 
 class Instructions:
-
+    """
+    This runs the main menu, through which the user can access the game, read instructions for the game, adjust sound
+    options or exit the game.
+    """
     def __init__(self):
+        """
+        Create instance to pass to DungeonAdventure SoundFx instance, player name & difficulty.
+        Start menu.
+        """
         self.__sound = SoundFx()
         self.__player_name = ""
         self.__difficulty = 0
@@ -15,16 +22,16 @@ class Instructions:
     def player_name(self):
         """
         Getter for player name
-        :return: 
-        :rtype:
+        :return: player name
+        :rtype: str
         """
         return self.__player_name
 
     @player_name.setter
     def player_name(self, name):
         """
-        Setter for 
-        :raises:
+        Setter for player name
+        :raises: if param is not str type
         """
         if not isinstance(name, str):
             raise TypeError('Only string accepted for name')
@@ -33,17 +40,17 @@ class Instructions:
     @property
     def difficulty(self):
         """
-        Getter for 
-        :return:
-        :rtype:
+        Getter for difficulty level
+        :return: user's difficulty level choice
+        :rtype: int
         """
         return self.__difficulty
 
     @difficulty.setter
     def difficulty(self, num):
         """
-        Setter for 
-        :raises:
+        Setter for difficulty level, secondary check that user input is appropriate.
+        :raises: if int is not between 1 and 3
         """
         if 1 > num > 3:
             raise ValueError('Secondary line of error caught, number is not between 1 and 3')
@@ -52,9 +59,9 @@ class Instructions:
     @property
     def sound(self):
         """
-        Getter for 
-        :return:
-        :rtype:
+        Getter for sound
+        :return: obtain user's instance of SoundFx
+        :rtype: SoundFx
         """
         return self.__sound
 
@@ -80,6 +87,10 @@ class Instructions:
         input('\n               Press Enter to return to menu')
     
     def menu(self):
+        """
+        This allows the user to navigate the main menu through the selection of specified options.
+        Credit https://www.youtube.com/watch?v=63nw00JqHo0
+        """
         self.__sound.intro()
         Art.intro()
         selection = None
@@ -124,14 +135,11 @@ class Instructions:
         self.player_name = name
 
     def pick_difficulty(self):
+        """
+        Allow user to pick difficulty level for dungeon. Ensures appropriate input before access
+        setter for difficulty
+        """
         difficulty = input("  Enter a game difficulty level between 1 and 3: ").strip()
         while difficulty.isnumeric() is False or int(difficulty) < 1 or int(difficulty) > 3:
             difficulty = input("  Please only enter a game difficulty level between 1 and 3: ")
         self.difficulty = int(difficulty)
-
-
-# below is for testing, delete before submission
-if __name__ == '__main__':
-    m = Instructions()
-    print(m.difficulty)
-    print(m.player_name)

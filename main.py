@@ -15,7 +15,7 @@ class Main:
         """
         DungeonAdventure(Instructions())
         while True:
-            choice = input('\n    Play again? (yes/no):').lower().strip()
+            choice = input('\n    Play again? (yes/no): ').lower().strip()
             if choice in ['y', 'yes']:
                 DungeonAdventure(Instructions())
             elif choice in ['n', 'no'] :

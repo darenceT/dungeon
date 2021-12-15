@@ -2,6 +2,7 @@ from dungeon_object import DungeonObject
 import time
 from art import Art
 
+
 class Pillar(DungeonObject):
     """
     Inherit from abstract base class DungeonObject.
@@ -26,9 +27,3 @@ class Pillar(DungeonObject):
         Art.pillar(self.letter)
         time.sleep(2)
         print(f'  You have collected {self.name} key!')
-
-
-if __name__ == '__main__':          ############## DELETE #################
-    p = Pillar('E')
-    # print(isinstance(p, Lack))
-    print(p.letter)

@@ -28,7 +28,7 @@ class VisionPotion(DungeonObject):
         :rtype: str
         """
         Art.in_game()
-        print('              *** Using potion in ...', end='')
+        print('             *** Using potion in ...', end='')
         count = [' 3,', ' 2,', ' 1!']
         for i in count:
             time.sleep(1)

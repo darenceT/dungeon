@@ -275,13 +275,15 @@ class BuildDungeon:
         """
         Print out map of dungeon using __hor and __ver properties.
         This will reveal all objects even after they have been picked up by player.
+        Credit code to https://rosettacode.org/wiki/Maze_generation#Python
         :return: map of dungeon
         :rtype: str
         """
-        s = "\n\n        "
+        spaces = '                 '
+        map_print = f"\n\n{spaces}"
         for a, b in zip(self.__hor, self.__ver):
-            s += ''.join(a + ['\n        '] + b + ['\n        '])
-        return s
+            map_print += ''.join(a + [f'\n{spaces}'] + b + [f'\n{spaces}'])
+        return map_print
 
 
 # delete this later for submission

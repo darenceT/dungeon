@@ -4,7 +4,6 @@ from pillar import Pillar
 from health_potion import HealthPotion
 from vision_potion import VisionPotion
 from pit import Pit
-
 from random import randrange
 
 

@@ -48,9 +48,3 @@ class EntranceDoor(DungeonObject):
             print('  You found an iphone.\n'
                   '  It contains a "Torch" app you can use as a flashlight!\n')
             self.deactivate = True
-
-
-if __name__ == '__main__':          ############## DELETE #################
-    p = EntranceDoor()
-    print(p.name)
-    print(p.letter)

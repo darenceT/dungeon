@@ -34,7 +34,7 @@ class Art:
 
     def in_game():
         """
-        Display art at top of screen during game
+        Display art at top of screen during game. Added by Darence
         Credit to https://patorjk.com/software/taag
         """
         spaces ='              ' 
@@ -47,7 +47,7 @@ class Art:
 
     def pillar(letter):
         """
-        Display art when obtaining each pillar key
+        Display art when obtaining each pillar key. Added by Darence
         Credit to https://www.asciiart.eu/logos/caduceus
         """
         if letter == 'A':
@@ -123,7 +123,7 @@ class Art:
 
     def lose(name):
         """
-        Graphic for losing game, displays user's name and today's date
+        Graphic for losing game, displays user's name and today's date, added by Darence
         Credit https://ascii.co.uk/art/rip
         """
         name = '{0: ^19}'.format(name)
@@ -137,9 +137,9 @@ class Art:
              '                  |            |\n'
              '     _____._____%_|            |_______  _____\n'
              '   _/                                    \|   |\n'
-            f'  |             {name}           <\'\n'
+             f'  |             {name}           <\'\n'
              '  |____.-.________             ____/|_________|\n'
-            f'                  | {today} |\n'
+             f'                  | {today} |\n'
              '                  |            |\n'
              '                  |            |\n'
              '                  |   _        <\n'
@@ -148,42 +148,35 @@ class Art:
              '               .%%|          -< @%%%\n'
              '               %`@|     v      |@@%@%%    - mfj\n'
              '           .%%%@@@|%    |    % @@@%%@%%%%\n\n'
-            '               Your health reached 0!\n\n' 
-            '                 ** GAME OVER **\n')
+             '              Your health reached 0!\n\n' 
+             '                 ** GAME OVER **\n')
     
     @staticmethod
-    def win():
+    def win(name):
         """
-        Graphic for losing game, displays user's name and today's date
-        Credit https://ascii.co.uk/art/rip
+        Added by Pranav, edited by Darence
+        Credit https://ascii.co.uk/art/doors
         """
+        spaces = '                      '
         print(
-        '              *****////////////////////////*///////\n'
-        '             /****////*//////////////////**///////\n'
-        '    .******/*/******/////////////////////**////////***//**.\n'
-        '     **.     ,/***/*/////////////////////**//////,     .**\n'
-        '     .**     .*******////////////////////**//////.     */.\n'
-        '      ,**     ******//*///////////////*//**/////*     */,\n'
-        '       .**    .****//////////////////////*//////.    **.\n'
-        '        .**,   */****////////////////////*/////*   ,**.\n'
-        '          .**,  ********/////////////////*/////  ,**.\n'
-        '            .***,/***/*//////////////////*////.***.\n'
-        '               ,**/***/////////////////**////**.\n'
-        '                  .*****////////////////////.\n'
-        '                    ****/*////////////////*\n'
-        '                     .***/////*/////**///.\n'
-        '                       .*******///**///.\n'
-        '                          ,*****////*\n'
-        '                             ,**/.\n'
-        '                             */*//\n'
-        '                            ,***//.\n'
-        '                           .*/***//\n'
-        '                         .******/////\n'
-        '                      ,*************////,\n'
-        '                 .*/**/************/*****///*\n'
-        '              *##(////###########%%%%%%%%%%%%%%%\n'
-        '              *#((////###########%%%%%%%%%%%%%%#\n'
-        '              *#((////###########%%%%%%%%%%%%%%#\n')
-
-# a = Art
-# a.win()
+            f'{spaces}    /|\n'
+            f'{spaces}   / |\n'
+            f'{spaces}  /  | \n'
+            f'{spaces} /_ _|_ _ _ _ __\n'
+            f'{spaces}|               |\n'
+            f'{spaces}|   __________  |\n'
+            f'{spaces}|  |   |   |  | |\n'
+            f'{spaces}|  |-+-|-+-|-+| |\n'
+            f'{spaces}|  |   |   |  | |\n'
+            f'{spaces}|   ----------  |\n'               
+            f'{spaces}|               |\n'
+            f'{spaces}|   _______     |\n'
+            f'{spaces}|  |A ▄ ▄ E| () |\n'
+            f'{spaces}|  |I ▄ ▄ P| || |\n'
+            f'{spaces}|   -------  () |\n'
+            f'{spaces}|               |\n'
+            f'{spaces}|               |\n'
+            f'{spaces}|               |\n'
+            f'{spaces}|_ _ _ _ _ _ _ _|\n\n'
+            '  You have successfully collected all 4 pillars!\n'
+            f'  Congratulations {name}, you successfully escaped the dungeon!')

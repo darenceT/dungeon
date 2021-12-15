@@ -1,0 +1,1063 @@
+pygame 2.1.0 (SDL 2.0.16, Python 3.10.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+
+ ▓█████▄  █    ██  ███▄    █   ▄████ ▓█████  ▒█████   ███▄    █
+ ▒██▀ ██▌ ██  ▓██▒ ██ ▀█   █  ██▒ ▀█▒▓█   ▀ ▒██▒  ██▒ ██ ▀█   █
+ ░██   █▌▓██  ▒██░▓██  ▀█ ██▒▒██░▄▄▄░▒███   ▒██░  ██▒▓██  ▀█ ██▒
+ ░▓█▄   ▌▓▓█  ░██░▓██▒  ▐▌██▒░▓█  ██▓▒▓█  ▄ ▒██   ██░▓██▒  ▐▌██▒
+ ░▒████▓ ▒▒█████▓ ▒██░   ▓██░░▒▓███▀▒░▒████▒░ ████▓▒░▒██░   ▓██░
+ ▒▒▓  ▒ ░▒▓▒ ▒ ▒ ░ ▒░   ▒ ▒  ░▒   ▒ ░░ ▒░ ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒
+ ░ ▒  ▒ ░░▒░ ░ ░ ░ ░░   ░ ▒░  ░   ░  ░ ░  ░  ░ ▒ ▒░ ░ ░░   ░ ▒░
+ ░ ░  ░  ░░░ ░ ░    ░   ░ ░ ░ ░   ░    ░   ░ ░ ░ ▒     ░   ░ ░
+ ░       ░              ░       ░    ░  ░    ░ ░           ░
+ ▄████▄  ██▀███  ▄▄▄       █     █░ ██▓    ▓█████  ██▀███
+ ▒██▀ ▀█ ▓██ ▒ ██▒████▄    ▓█░ █ ░█░▓██▒    ▓█   ▀ ▓██ ▒ ██▒
+ ▒▓█    ▄▓██ ░▄█ ▒██  ▀█▄  ▒█░ █ ░█ ▒██░    ▒███   ▓██ ░▄█ ▒
+ ▒▓▓▄ ▄██▒██▀▀█▄ ░██▄▄▄▄██ ░█░ █ ░█ ▒██░    ▒▓█  ▄ ▒██▀▀█▄
+ ▒ ▓███▀ ░██▓ ▒██▒▓█   ▓██▒░░██▒██▓ ░██████▒░▒████▒░██▓ ▒██▒
+ ░ ░▒ ▒  ░ ▒▓ ░▒▓░▒▒   ▓▒█░░ ▓░▒ ▒  ░ ▒░▓  ░░░ ▒░ ░░ ▒▓ ░▒▓░
+ ░  ▒    ░▒ ░ ▒░ ▒   ▒▒ ░  ▒ ░ ░  ░ ░ ▒  ░ ░ ░  ░  ░▒ ░ ▒░
+ ░         ░░   ░  ░   ▒     ░   ░    ░ ░      ░     ░░   ░
+ ░ ░        ░          ░  ░    ░        ░  ░   ░  ░   ░
+          Run in Terminal/CMD for best experience!
+
+              Press Enter to return to menu
+
+
+
+
+                    DUNGEON CRAWLER
+
+
+                    [1] Start New Game
+                    [2] Game Instructions
+                    [3] Sound option
+                    [0] Exit Game
+
+
+                   Enter your selection: 1
+
+  Enter your player name: 1
+  Please enter an appropriate name.
+
+  Enter your player name: manny
+  Enter a game difficulty level between 1 and 3: 1
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 1, y: 1):
+
+                            +--+
+                            |i
+                            +--+
+
+     This room contains: Entrance
+
+  You found an iphone.
+  It contains a "Torch" app you can use as a flashlight!
+
+
+  Your options for moving to next room: East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 2, y: 1):
+
+                            +--+
+                             X
+                            +--+
+
+     This room contains: Pit
+
+
+  Walk slow or run too fast, you still fell into a pit!
+
+  You lose 21 health.
+
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 3, y: 1):
+
+                            +  +
+                             V |
+                            +--+
+
+     This room contains: Vision Potion
+
+  Manny added Vision Potion to backpack!
+
+  Your options for moving to next room: North, West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: p
+
+  You have 0 health potion(s),and 1 vision potion(s):
+	 [v] Use a vision potion
+
+	 [r] Return
+
+  Enter your option(s) [r, v]: v
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+              *** Using potion in ... 3, 2, 1!
+
+                         +--+--+--+
+                            |M    |
+                         +--+  +  +
+                          X  V |M
+                         +--+--+--+
+                          M |  |  |
+                         +--+--+--+
+
+             Rooms surrounding you are revealed!
+             (Up to 9 including current room)
+
+  Your options for moving to next room: North, West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: n
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 3, y: 0):
+
+                            +--+
+                            |M
+                            +  +
+
+     This room contains: Pillar of Inheritance, Health Potion
+
+                       _____  _  _____
+                      (___  \(I)/  ___)
+                        (___ | | ___)
+                         /")`| |'("\
+                        | |  | |  | |
+                         \ \_| |_/ /
+                          `._!' _.'
+                            / .'\
+                           | / | |
+                            \|/ /
+                             /.<
+                            (| |)
+                             | '
+                             | |
+                             `-'
+
+  You see a shiny button and you are tempted to push it...
+  You have collected Pillar of Inheritance key!
+  This Health Potion can heal 10 points!
+
+  Manny added Health Potion to backpack!
+
+  Your options for moving to next room: South, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 4, y: 0):
+
+                            +--+
+                               |
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: South, West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: s
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 4, y: 1):
+
+                            +  +
+                            |M
+                            +--+
+
+     This room contains: Vision Potion, Minor Health Potion
+
+  Manny added Vision Potion to backpack!
+  This Minor Health Potion can heal 5 points!
+
+  Manny added Minor Health Potion to backpack!
+
+  Your options for moving to next room: North, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: p
+
+  You have 2 health potion(s),and 1 vision potion(s):
+	 [h] Use a health potion
+	 [v] Use a vision potion
+
+	 [r] Return
+
+  Enter your option(s) [r, h, v]: h
+
+  You used a Health Potion, 10 health replenished!
+  Manny's health is now 54 health points
+
+  Your options for moving to next room: North, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: p
+
+  You have 1 health potion(s),and 1 vision potion(s):
+	 [h] Use a health potion
+	 [v] Use a vision potion
+
+	 [r] Return
+
+  Enter your option(s) [r, h, v]: h
+
+  You used a Minor Health Potion, 5 health replenished!
+  Manny's health is now 59 health points
+
+  Your options for moving to next room: North, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 5, y: 1):
+
+                            +--+
+                               |
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: South, West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: s
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 5, y: 2):
+
+                            +  +
+                            |
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: North, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 6, y: 2):
+
+                            +--+
+                             M |
+                            +  +
+
+     This room contains: Vision Potion, Pit
+
+  Manny added Vision Potion to backpack!
+
+  Walk slow or run too fast, you still fell into a pit!
+
+  You lose 22 health.
+
+
+  Your options for moving to next room: South, West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: p
+
+  You have 0 health potion(s),and 2 vision potion(s):
+	 [v] Use a vision potion
+
+	 [r] Return
+
+  Enter your option(s) [r, v]: v
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+              *** Using potion in ... 3, 2, 1!
+
+                         +--+  +  +
+                            |X |  |
+                         +  +--+  +
+                         |   M |  |
+                         +--+  +  +
+                                O |
+                         +--+--+--+
+
+             Rooms surrounding you are revealed!
+             (Up to 9 including current room)
+
+  Your options for moving to next room: South, West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: s
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 6, y: 3):
+
+                            +  +
+
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: North, West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 5, y: 3):
+
+                            +--+
+
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 4, y: 3):
+
+                            +--+
+
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 3, y: 3):
+
+                            +--+
+                             H
+                            +--+
+
+     This room contains: Greater Health Potion
+
+  This Greater Health Potion can heal 15 points!
+
+  Manny added Greater Health Potion to backpack!
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: p
+
+  You have 1 health potion(s),and 1 vision potion(s):
+	 [h] Use a health potion
+	 [v] Use a vision potion
+
+	 [r] Return
+
+  Enter your option(s) [r, h, v]: h
+
+  You used a Greater Health Potion, 15 health replenished!
+  Manny's health is now 52 health points
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 2, y: 3):
+
+                            +--+
+                             X
+                            +--+
+
+     This room contains: Pit
+
+
+  Walk slow or run too fast, you still fell into a pit!
+
+  You lose 23 health.
+
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 1, y: 3):
+
+                            +  +
+                            |
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: North, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: n
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 1, y: 2):
+
+                            +--+
+
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: South, West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 0, y: 2):
+
+                            +  +
+                            |
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: North, South, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: n
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 0, y: 1):
+
+                            +  +
+                            |  |
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: North, South
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: n
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 0, y: 0):
+
+                            +--+
+                            |E
+                            +  +
+
+     This room contains: Pillar of Encapsulation
+
+                             _
+                     _____ ( E )  _____
+                    vVVVVV\__|__/VVVVVv
+                   vVVVVVVvvv|vvvVVVVVVv
+                  vVVVV      |      VVVVv
+                 vVVV        | >=.   VVVv
+                 vVV         |____)   VVv
+                 v          (|          v
+                             |)
+                            (|
+                             |)
+                            (|
+                             |`
+                ejm          |
+
+  You see a shiny button and you are tempted to push it...
+  You have collected Pillar of Encapsulation key!
+
+  Your options for moving to next room: South, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: p
+
+  You have 0 health potion(s),and 1 vision potion(s):
+	 [v] Use a vision potion
+
+	 [r] Return
+
+  Enter your option(s) [r, v]: v
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+              *** Using potion in ... 3, 2, 1!
+
+
+
+                         +--+--+
+                         |E
+                         +  +--+
+                         |  |i
+                         +  +--+
+
+             Rooms surrounding you are revealed!
+             (Up to 9 including current room)
+
+  Your options for moving to next room: South, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: n
+  That path is not possible!
+
+  Your options for moving to next room: South, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 1, y: 0):
+
+                            +--+
+
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 2, y: 0):
+
+                            +--+
+                               |
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 1, y: 0):
+
+                            +--+
+
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 0, y: 0):
+
+                            +--+
+                            |E
+                            +  +
+
+     This room contains: Pillar of Encapsulation
+
+
+  Your options for moving to next room: South, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: s
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 0, y: 1):
+
+                            +  +
+                            |  |
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: North, South
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: s
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 0, y: 2):
+
+                            +  +
+                            |
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: North, South, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: s
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 0, y: 3):
+
+                            +  +
+                            |M |
+                            +--+
+
+     This room contains: Pillar of Polymorphism, Minor Health Potion
+
+                             _
+                  _..._    /` `\    _..._
+                .'     '. |  P  | .'     '.
+          ,    /         '.\   /.'         \    ,
+          \`--'  .--.    .-.> <.-.    .--.  '--`/
+           '.__.'    '._/ ^ ) ( ^ \_.'    '.__.'
+                       |  |`| |`|  |
+                       \  \ | | /  /
+                        '. '; ;' .'
+                          '. ' .'
+                          /  /` \
+                         |  | |  |
+                          \ \ / /
+                           '.'.'
+                     jgs   / / \
+                          / / \ \
+                         | /| |\ |
+                         \/ | | \/
+                            \_/
+
+  You see a shiny button and you are tempted to push it...
+  You have collected Pillar of Polymorphism key!
+  This Minor Health Potion can heal 5 points!
+
+  Manny added Minor Health Potion to backpack!
+
+  Your options for moving to next room: North
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: i
+
+  Name: Manny
+  Hit Points: 29
+  Total Healing Potions: 1
+  Total Vision Potions: 0
+  Pillars Keys Found: 3
+
+
+  Your options for moving to next room: North
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: s
+  That path is not possible!
+
+  Your options for moving to next room: North
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: n
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 0, y: 2):
+
+                            +  +
+                            |
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: North, South, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 1, y: 2):
+
+                            +--+
+
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: South, West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: s
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 1, y: 3):
+
+                            +  +
+                            |
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: North, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: n
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 1, y: 2):
+
+                            +--+
+
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: South, West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 2, y: 2):
+
+                            +--+
+                             M |
+                            +--+
+
+     This room contains: Pillar of Abstraction, Vision Potion
+
+                            .-.
+                      ___  ( A )  ___
+                 ,_.-'   `'-| |-'`   '-._,
+                  '.      .-| |-.      .'
+                    `~~~~`  |.') `~~~~`
+                           (_.|
+                            |._)
+                            |.')
+                           (_.|
+                            |._)
+                           ('.|
+                            |._)
+                     jgs    '-'
+
+  You see a shiny button and you are tempted to push it...
+  You have collected Pillar of Abstraction key!
+  Manny added Vision Potion to backpack!
+
+  Your options for moving to next room: West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: i
+
+  Name: Manny
+  Hit Points: 29
+  Total Healing Potions: 1
+  Total Vision Potions: 1
+  Pillars Keys Found: 4
+
+
+  Your options for moving to next room: West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 1, y: 2):
+
+                            +--+
+
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: South, West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: s
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 1, y: 3):
+
+                            +  +
+                            |
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: North, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 2, y: 3):
+
+                            +--+
+                             X
+                            +--+
+
+     This room contains: Pit
+
+  You safely walk around the pit
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu:
+  Invalid input!
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 3, y: 3):
+
+                            +--+
+
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 4, y: 3):
+
+                            +--+
+
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 5, y: 3):
+
+                            +--+
+
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 6, y: 3):
+
+                            +  +
+
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: North, West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Manny entered room (x: 7, y: 3):
+
+                            +  +
+                             O |
+                            +--+
+
+     This room contains: Exit
+
+  You put in all 4 pillar keys and you hear some gears turning...
+
+                           /|
+                          / |
+                         /  |
+                        /_ _|_ _ _ _ __
+                       |               |
+                       |   __________  |
+                       |  |   |   |  | |
+                       |  |-+-|-+-|-+| |
+                       |  |   |   |  | |
+                       |   ----------  |
+                       |               |
+                       |   _______     |
+                       |  |A ▄ ▄ E| () |
+                       |  |I ▄ ▄ P| || |
+                       |   -------  () |
+                       |               |
+                       |               |
+                       |               |
+                       |_ _ _ _ _ _ _ _|
+
+  You have successfully collected all 4 pillars!
+  Congratulations Manny, you successfully escaped the dungeon!
+
+
+                   +--+--+--+--+--+--+--+--+
+                   |E       |M    |        |
+                   +  +--+--+  +  +--+  +  +
+                   |  |i  X  V |M    |X |  |
+                   +  +--+--+--+--+  +--+  +
+                   |      M |  |  |   M |  |
+                   +  +  +--+--+--+--+  +  +
+                   |M |   X              O |
+                   +--+--+--+--+--+--+--+--+
+
+
+
+    Play again? (yes/no): n
+
+    Thanks for playing!
+
+
+Process finished with exit code 0

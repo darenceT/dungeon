@@ -1,0 +1,318 @@
+Hello from the pygame community. https://www.pygame.org/contribute.html
+
+ ▓█████▄  █    ██  ███▄    █   ▄████ ▓█████  ▒█████   ███▄    █ 
+ ▒██▀ ██▌ ██  ▓██▒ ██ ▀█   █  ██▒ ▀█▒▓█   ▀ ▒██▒  ██▒ ██ ▀█   █ 
+ ░██   █▌▓██  ▒██░▓██  ▀█ ██▒▒██░▄▄▄░▒███   ▒██░  ██▒▓██  ▀█ ██▒
+ ░▓█▄   ▌▓▓█  ░██░▓██▒  ▐▌██▒░▓█  ██▓▒▓█  ▄ ▒██   ██░▓██▒  ▐▌██▒
+ ░▒████▓ ▒▒█████▓ ▒██░   ▓██░░▒▓███▀▒░▒████▒░ ████▓▒░▒██░   ▓██░
+ ▒▒▓  ▒ ░▒▓▒ ▒ ▒ ░ ▒░   ▒ ▒  ░▒   ▒ ░░ ▒░ ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒ 
+ ░ ▒  ▒ ░░▒░ ░ ░ ░ ░░   ░ ▒░  ░   ░  ░ ░  ░  ░ ▒ ▒░ ░ ░░   ░ ▒░
+ ░ ░  ░  ░░░ ░ ░    ░   ░ ░ ░ ░   ░    ░   ░ ░ ░ ▒     ░   ░ ░
+ ░       ░              ░       ░    ░  ░    ░ ░           ░ 
+ ▄████▄  ██▀███  ▄▄▄       █     █░ ██▓    ▓█████  ██▀███    
+ ▒██▀ ▀█ ▓██ ▒ ██▒████▄    ▓█░ █ ░█░▓██▒    ▓█   ▀ ▓██ ▒ ██▒ 
+ ▒▓█    ▄▓██ ░▄█ ▒██  ▀█▄  ▒█░ █ ░█ ▒██░    ▒███   ▓██ ░▄█ ▒ 
+ ▒▓▓▄ ▄██▒██▀▀█▄ ░██▄▄▄▄██ ░█░ █ ░█ ▒██░    ▒▓█  ▄ ▒██▀▀█▄  
+ ▒ ▓███▀ ░██▓ ▒██▒▓█   ▓██▒░░██▒██▓ ░██████▒░▒████▒░██▓ ▒██▒
+ ░ ░▒ ▒  ░ ▒▓ ░▒▓░▒▒   ▓▒█░░ ▓░▒ ▒  ░ ▒░▓  ░░░ ▒░ ░░ ▒▓ ░▒▓░
+ ░  ▒    ░▒ ░ ▒░ ▒   ▒▒ ░  ▒ ░ ░  ░ ░ ▒  ░ ░ ░  ░  ░▒ ░ ▒░ 
+ ░         ░░   ░  ░   ▒     ░   ░    ░ ░      ░     ░░   ░
+ ░ ░        ░          ░  ░    ░        ░  ░   ░  ░   ░
+          Run in Terminal/CMD for best experience!
+
+              Press Enter to return to menu
+
+
+
+
+                    DUNGEON CRAWLER
+
+
+                    [1] Start New Game
+                    [2] Game Instructions
+                    [3] Sound option
+                    [0] Exit Game
+
+
+                   Enter your selection: 1
+
+  Enter your player name: Man 32
+  Please enter an appropriate name.
+
+  Enter your player name: man
+  Enter a game difficulty level between 1 and 3: 1
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Man entered room (x: 3, y: 0):
+
+                            +--+
+                            |i  
+                            +--+
+
+     This room contains: Entrance 
+
+  You found an iphone.
+  It contains a "Torch" app you can use as a flashlight!
+
+
+  Your options for moving to next room: East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Man entered room (x: 4, y: 0):
+
+                            +--+
+                                
+                            +--+
+
+     This room is empty.
+
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: e
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Man entered room (x: 5, y: 0):
+
+                            +--+
+                               |
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: South, West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: s
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Man entered room (x: 5, y: 1):
+
+                            +  +
+                             X |
+                            +--+
+
+     This room contains: Pit 
+
+
+  Walk slow or run too fast, you still fell into a pit!
+
+  You lose 21 health.
+
+
+  Your options for moving to next room: North, West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: i
+
+  Name: Man
+  Hit Points: 47
+  Total Healing Potions: 0
+  Total Vision Potions: 0
+  Pillars Keys Found: 0
+
+
+  Your options for moving to next room: North, West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Man entered room (x: 4, y: 1):
+
+                            +--+
+                            |   
+                            +  +
+
+     This room is empty.
+
+
+  Your options for moving to next room: South, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: s
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Man entered room (x: 4, y: 2):
+
+                            +  +
+                             I |
+                            +--+
+
+     This room contains: Pillar of Inheritance 
+
+                       _____  _  _____
+                      (___  \(I)/  ___)
+                        (___ | | ___)
+                         /")`| |'("\ 
+                        | |  | |  | |
+                         \ \_| |_/ /
+                          `._!' _.'
+                            / .'\ 
+                           | / | |
+                            \|/ /
+                             /.<
+                            (| |)
+                             | '
+                             | |
+                             `-'
+
+  You see a shiny button and you are tempted to push it...
+  You have collected Pillar of Inheritance key!
+
+  Your options for moving to next room: North, West
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Man entered room (x: 3, y: 2):
+
+                            +--+
+                             X  
+                            +--+
+
+     This room contains: Pit 
+
+
+  Walk slow or run too fast, you still fell into a pit!
+
+  You lose 21 health.
+
+
+  Your options for moving to next room: West, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Man entered room (x: 2, y: 2):
+
+                            +  +
+                            |X  
+                            +--+
+
+     This room contains: Pit 
+
+
+  Walk slow or run too fast, you still fell into a pit!
+
+  You lose 16 health.
+
+
+  Your options for moving to next room: North, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: i
+
+  Name: Man
+  Hit Points: 10
+  Total Healing Potions: 0
+  Total Vision Potions: 0
+  Pillars Keys Found: 1
+
+
+  Your options for moving to next room: North, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: w
+  That path is not possible!
+
+  Your options for moving to next room: North, East
+  Input letter for your next action "n, s, e, w" for next room,
+  "p" for potion, "i" for status, "m" for menu: n
+
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+ ************ |D|u|n|g|e|o|n| |C|r|a|w|l|e|r| ************
+              +-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+
+
+
+             Man entered room (x: 2, y: 1):
+
+                            +  +
+                            |M  
+                            +  +
+
+     This room contains: Pillar of Encapsulation, Pit 
+
+                             _
+                     _____ ( E )  _____
+                    vVVVVV\__|__/VVVVVv
+                   vVVVVVVvvv|vvvVVVVVVv
+                  vVVVV      |      VVVVv
+                 vVVV        | >=.   VVVv
+                 vVV         |____)   VVv
+                 v          (|          v
+                             |)
+                            (|
+                             |)
+                            (|
+                             |`
+                ejm          |
+
+  You see a shiny button and you are tempted to push it...
+  You have collected Pillar of Encapsulation key!
+
+  Walk slow or run too fast, you still fell into a pit!
+
+  You lose 19 health.
+
+
+                   _____  _____
+                  <     `/     |
+                   >  _     _ (
+                  |  |_) | |_) |
+                  |  | \ | |   |
+                  |            |
+     _____._____%_|            |_______  _____
+   _/                                    \|   |
+  |                     Man                   <'
+  |____.-.________             ____/|_________|
+                  | 2021-12-15 |
+                  |            |
+                  |            |
+                  |   _        <
+                  |__/         |
+                   / `--.      |
+               .%%|          -< @%%%
+               %`@|     v      |@@%@%%    - mfj
+           .%%%@@@|%    |    % @@@%%@%%%%
+
+               Your health reached 0!
+
+                 ** GAME OVER **
+
+
+    Play again? (yes/no): n
+
+    Thanks for playing!
+
+
+Process finished with exit code 0

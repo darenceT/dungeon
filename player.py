@@ -14,7 +14,7 @@ class Player:
     @property
     def name(self):
         """
-        Gets the current name
+        Gets the player name
         :return: player name
         :rtype: str
         """
@@ -35,7 +35,7 @@ class Player:
     @property
     def hitpoints(self):
         """
-        Get current hitpoints
+        Get player's current hitpoints
         :return: amount of player health
         :rtype: int
         """
@@ -114,7 +114,7 @@ class Player:
             if obj.letter == 'i':
                 obj.function()
             elif obj.letter == 'O':
-                obj.function(self.__pillars)
+                obj.function(self.__pillars, self.name)
             elif obj.letter == 'X':
                 self.__fall_pit(obj)
             elif obj.letter in ['H', 'V']:
