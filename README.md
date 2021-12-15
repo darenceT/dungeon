@@ -4,7 +4,7 @@
 
 Darence: maze, DungeonAdventure, Room, gameplay, all objects, UML, sound & pause menu, art
 Manny: player, potion menu, pit, UML
-Pranav: intro, instructions, pause menu, music
+Pranav: intro, instructions, pause menu, music, exit art
 
 
 This assignment satisfies all 10 course objectives! 
