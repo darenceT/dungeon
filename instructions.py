@@ -1,15 +1,17 @@
 from clear_screen import ClearScreen
 from sound_fx import SoundFx
-import pyfiglet
-
+from sound_option import SoundOption
+from art import Art
 
 class Instructions:
-
+    """
+    This runs the main menu, through which the user can access the game, read instructions for the game, adjust sound
+    options or exit the game.
+    """
     def __init__(self):
+        self.__sound = SoundFx()
         self.__player_name = ""
         self.__difficulty = 0
-        title_banner = pyfiglet.figlet_format("Welcome to Dungeon Crawler!")
-        print(title_banner)
         self.menu()
 
     @property
@@ -28,27 +30,22 @@ class Instructions:
 
     @difficulty.setter
     def difficulty(self, num):
-        if 1 >= num >= 3:
+        if 1 > num > 3:
             raise ValueError('Secondary line of error caught, number is not between 1 and 3')
         self.__difficulty = num
 
-    # @staticmethod
-    # def clear():
-    #     """
-    #     Function clears screen after each input for improve game play.
-    #     Credit to https://www.geeksforgeeks.org/clear-screen-python/
-    #     """
-    #     if name == 'nt':
-    #         _ = system('cls')
-    #     else:
-    #         _ = system('clear')
+    @property
+    def sound(self):
+        return self.__sound
 
     @staticmethod
     def instructions():
+        """
+        This introduces how the game works.
+        """
         ClearScreen()
-        instructions_banner = pyfiglet.figlet_format("Instructions")
-        print(instructions_banner)
-        print("  You are tasked with guiding the player character through a\n"
+        print("\n               Welcome to the Dungeon Crawler!\n\n"
+              "  You are tasked with guiding the player character through a\n"
               "  dangerous maze. The player can move North, South, East or West\n"
               "  by using the keys 'n', 's', 'e', and 'w' respectively. Make it\n "
               " through the maze alive while finding the four pillars of Object\n"
@@ -60,39 +57,55 @@ class Instructions:
               "  vision potions reveal 8 rounds around you. You only Win the game\n"
               "  when you reach the end of the maze AFTER collecting all four\n"
               "  pillars. Good Luck Explorer!")
-        if input('\n               Press Enter to return to menu'):
-            return
-
+        input('\n               Press Enter to return to menu')
+        return
+    
     def menu(self):
-        SoundFx.intro()
-        option = -1
-        while option != 0:
+        """
+        This allows the user to navigate the main menu through the selection of specified options.
+        Credit https://www.youtube.com/watch?v=63nw00JqHo0
+        """
+        self.__sound.intro()
+        Art.intro()
+        selection = None
+        spaces = "                   "
+        choices = ["1", "2", "3", "0"]
+        while selection not in choices:
             ClearScreen()
-            print("\n\n\n\n                     DUNGEON CRAWLER\n\n\n"
-                  "                     [1] Start New Game\n"
-                  "                     [2] Game Instructions\n"
-                  "                     [0] Exit Game\n\n")
-            option = int(input("                    Enter your option: "))
-            if option == 1:
+            print("\n\n\n\n"
+                  f"{spaces} DUNGEON CRAWLER\n\n\n"
+                  f"{spaces} [1] Start New Game\n"
+                  f"{spaces} [2] Game Instructions\n"
+                  f"{spaces} [3] Sound option\n"
+                  f"{spaces} [0] Exit Game\n\n")
+            if selection is not None and selection not in choices:
+                print(f"{spaces}Invalid selection! Please choose again.\n")
+            selection = input(f"{spaces}Enter your selection: ").strip()
+            if selection == "1":
                 self.make_player_name()
                 self.pick_difficulty()
                 return
-            elif option == 2:
+            elif selection == "2":
                 self.instructions()
-                print()
-                continue
-            else:
-                print("  Invalid Option! Please choose again.\n")
-                continue
-            # add menu for music options
-
-        print("\n  Thank you for playing!")
-        exit()
-
+                selection = None
+            elif selection == "3":
+                SoundOption.change(self.__sound)
+                selection = None
+            elif selection == "0":
+                print(f"\n{spaces}Thank you for playing!\n\n")
+                exit()
+    
     def make_player_name(self):
-        name = input("\n  Enter a character name: ").capitalize().strip()
-        while name.isalpha() is False:
-            name = input("  Please input an appropriate name: ")
+        """
+        User can only enter letter and space containing names
+        Credit https://stackoverflow.com/questions/29460405/checking-if-string-is-only-letters-and-spaces-python 
+        """
+        while True:
+            name = input("\n  Enter your player name: ").capitalize().strip()
+            if all(x.isalpha() or x.isspace() for x in name):
+                break
+            else:
+                print("  Please enter an appropriate name.")
         self.player_name = name
 
     def pick_difficulty(self):

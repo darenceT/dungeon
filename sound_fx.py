@@ -108,9 +108,17 @@ class SoundFx:
             mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'pit.mp3')), maxtime=600)
 
     def health_potion(self):
+        """
+        Sound effect for using a health potion.
+        Credit https://www.fiftysounds.com/royalty-free-music/sfx-magic2.html
+        """
         if self.__is_running:
             mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'health_potion.py')), maxtime=600)
 
     def vision_potion(self):
+        """
+        Sound effect for using a vision potion.
+        Credit https://www.freesoundslibrary.com/magic-sound-effect/
+        """
         if self.__is_running:
             mixer.Channel(1).play(pygame.mixer.Sound(Path('sound', 'vision_potion.py')), maxtime=600)
