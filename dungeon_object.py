@@ -67,6 +67,10 @@ class DungeonObject(ABC):
     def function(self, item=None, name=None):
         """
         Require that every object in child class have a function method
+        :param item: optionally allow child class to pass in an object
+        :type item: DungeonObject
+        :param name: optionally allow child class to pass in player name
+        :type name: str
         """
         pass
 

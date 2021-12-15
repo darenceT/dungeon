@@ -2,7 +2,10 @@ from clear_screen import ClearScreen
 from datetime import date
 
 class Art:
-
+    """
+    Contains art that will be used by other classes:
+    introduction, in-game header, lose, win, & pillars
+    """
     @staticmethod
     def intro():
         """
@@ -154,6 +157,7 @@ class Art:
     @staticmethod
     def win(name):
         """
+        Art for winning game, door opens.
         Added by Pranav, edited by Darence
         Credit https://ascii.co.uk/art/doors
         """

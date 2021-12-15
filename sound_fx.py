@@ -134,7 +134,6 @@ class SoundFx:
             mixer.music.load(Path('sound/win.mp3'))
             mixer.music.play(-1)
 
-    
     def enter_room(self):
         """
         Sound for entering each room
