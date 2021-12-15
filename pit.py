@@ -68,10 +68,3 @@ class Pit(DungeonObject):
             print('  You safely walk around the pit\n')
             time.sleep(1)
             return 0
-
-
-if __name__ == '__main__':          ############## DELETE #################
-    p = Pit()
-    print(p.letter)
-    p.visited = True
-    print(p.visited)

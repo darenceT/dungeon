@@ -2,8 +2,9 @@
 
 <pre>
 
-Darence: maze, DungeonAdventure, room, objects, game play
-Manny: player, potion menu, pit, UML, Tkinter
+Darence: maze, DungeonAdventure, room, all objects, 
+UML, sound & pause menu, art
+Manny: player, potion menu, pit, UML
 Pranav: intro, instructions, pause menu, music, storyboard
 
 <a href=https://docs.google.com/document/d/1_fHq2u9l7wrHIi3lbca_GFkGuPdS3TVKLNKEBCa02TU/edit>summary of classes</a>

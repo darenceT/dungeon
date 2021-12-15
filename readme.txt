@@ -1,9 +1,11 @@
 Team 6
 
-Darence Thong: Build maze, rooms, dungeonAdventure, objects, uml, sound & menu, art
+Darence Thong: Build maze, rooms, dungeonAdventure, all objects, 
+UML, sound & pause menu, art, maze generation output
 Time spent: 30 hours
 
-Manuel Duarte: Player, potion menu, pit, uml, requirement.txt, win & lose output
+Manuel Duarte: Player, potion menu, pit, UML, requirement.txt, 
+win & lose output
 Time spent:
 
 Pranav Ramakrishnan: Intro, instructions, pause menu, sound
@@ -11,10 +13,8 @@ Time spent:
 
 No shortcomings
 
+Extra credit requested for creativity and effort (art, sound, clear screen effect),
+and modular design for added art and sound, such as separate sound menu accessible 
+by intro menu, and in-game menu. Extra work done for sound options.
 
-
-
-        • what work each person did
-        • estimate of time spent on project
-        • any shortcomings the project has
-        • any other information you might think is useful for grading
+To access hidden map: During game, press "m" for pause-menu, enter, then '5' and enter.

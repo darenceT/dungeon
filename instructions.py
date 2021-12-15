@@ -78,7 +78,6 @@ class Instructions:
               "  when you reach the end of the maze AFTER collecting all four\n"
               "  pillars. Good Luck Explorer!")
         input('\n               Press Enter to return to menu')
-        return
     
     def menu(self):
         self.__sound.intro()
