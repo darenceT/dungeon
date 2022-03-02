@@ -21,11 +21,11 @@ To reveal secret map in-game, enter the pause-menu then enter 5.
 
 Some screenshots:  
 
-![Screenshot1](https://github.com/darenceT/dungeon/tree/main/docs/screenshot1.png)  
+![Screenshot1](https://github.com/darenceT/dungeon/blob/main/docs/screenshot1.png)  
   
-![Screenshot2](https://github.com/darenceT/dungeon/tree/main/docs/screenshot1.png)  
+![Screenshot2](https://github.com/darenceT/dungeon/blob/main/docs/screenshot1.png)  
   
-![Screenshot3](https://github.com/darenceT/dungeon/tree/main/docs/screenshot1.png)  
+![Screenshot3](https://github.com/darenceT/dungeon/blob/main/docs/screenshot1.png)  
 
   
   
