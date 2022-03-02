@@ -23,9 +23,9 @@ Some screenshots:
 
 ![Screenshot1](https://github.com/darenceT/dungeon/blob/main/docs/screenshot1.png)  
   
-![Screenshot2](https://github.com/darenceT/dungeon/blob/main/docs/screenshot1.png)  
+![Screenshot2](https://github.com/darenceT/dungeon/blob/main/docs/screenshot2.png)  
   
-![Screenshot3](https://github.com/darenceT/dungeon/blob/main/docs/screenshot1.png)  
+![Screenshot3](https://github.com/darenceT/dungeon/blob/main/docs/screenshot3.png)  
 
   
   
