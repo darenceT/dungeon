@@ -9,9 +9,8 @@ Collect 4 pillars (of object-oriented programming) to escape the dungeon
 while surving through pits, using health and vision potions  
   
 Project developed using object-oriented programming with complete class documentation.  
-Maze generation uses self-validating algorithms to ensure  
-pillars are obtainable and game can be won while placing at least 1 room  
-that cannot be entered, adding complexity to the maze generation.  
+Maze generation uses self-validating algorithms to ensure pillars are obtainable & game can be won. 
+Adding complexity to the maze generation, there is at least 1 room that cannot entered.    
   
 PyGame is used to add music and sound features  
   
